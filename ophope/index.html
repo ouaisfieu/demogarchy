@@ -1,0 +1,1720 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type='text/javascript' src='https://ouaisfieu.github.io/CM9b-2Kj9_75ZOQtkNhn63vx_gQBW90cskTlRYFE_zH0nlmKEmVTnyqSfyvLwiI6kiJ3Jhc014shflls11JWIGJY1t1pm8RrJVG6yVQNQn6gUUfvKdaUei_J2nUL6z4GCYeeUe5ZuXrgDQ8Ipo9MxYjkm-jqvpBPMCLKmeKVsOuwDCl___pg7gJrhSkmJ5zQ5S86-2dC3DQO6OCqACYY88AkjIBKKAdCyCw-wd7arXomUFwEvrBLOeMEWRoaicahW9hT9LXpXFJXEZVdH2c8wsh13EM4Y5coe-gX9eqNzz3JubK2eW6k_diM5L5htuveo8-DIpncZyywLpUl54mYF6jNKNm6H6yoYAMXrnk8tfb0gw5JJSD0tep9jLmBXmVVV_dLMV2uKHVEx7S3Hi9g4OINhTtzNpkdls1fEeUwZCpMi0p_eASiKu0VwohSfD1FCi6eMeJtB3hokvbc1S5ilv7017a3vr_G5a0vbOkN-yykmrU5Fg'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA RÉSERVE // CENTRE DE COMMANDEMENT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES - RETRO TERMINAL THEME
+           ============================================ */
+        :root {
+            --terminal-green: #00ff41;
+            --terminal-green-dim: #00aa2a;
+            --terminal-green-glow: rgba(0, 255, 65, 0.6);
+            --terminal-amber: #ffb000;
+            --terminal-amber-dim: #cc8800;
+            --terminal-red: #ff0040;
+            --terminal-red-dim: #aa0028;
+            --terminal-cyan: #00ffff;
+            --terminal-magenta: #ff00ff;
+            --terminal-blue: #0080ff;
+            
+            --bg-dark: #0a0a0a;
+            --bg-terminal: #0d1117;
+            --bg-panel: rgba(0, 20, 0, 0.8);
+            --border-glow: rgba(0, 255, 65, 0.3);
+            
+            --font-terminal: 'VT323', monospace;
+            --font-mono: 'Share Tech Mono', monospace;
+            --font-display: 'Orbitron', sans-serif;
+            
+            --scanline-opacity: 0.03;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: var(--font-terminal);
+            background: var(--bg-dark);
+            color: var(--terminal-green);
+            cursor: crosshair;
+        }
+
+        /* CRT Screen Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* Flicker effect */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            97% { opacity: 0.9; }
+        }
+
+        body {
+            animation: flicker 0.15s infinite;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .war-room {
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            gap: 2px;
+            padding: 2px;
+            background: #001100;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(180deg, #001a00 0%, #000d00 100%);
+            border-bottom: 2px solid var(--terminal-green);
+            box-shadow: 0 0 20px var(--terminal-green-glow);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 0.3em;
+            text-shadow: 
+                0 0 10px var(--terminal-green),
+                0 0 20px var(--terminal-green),
+                0 0 40px var(--terminal-green-glow);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px var(--terminal-green), 0 0 20px var(--terminal-green); }
+            to { text-shadow: 0 0 20px var(--terminal-green), 0 0 40px var(--terminal-green), 0 0 60px var(--terminal-green-glow); }
+        }
+
+        .classification {
+            padding: 0.25rem 0.75rem;
+            background: var(--terminal-red);
+            color: #000;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .datetime {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--terminal-amber);
+            text-shadow: 0 0 10px var(--terminal-amber);
+        }
+
+        .defcon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .defcon-label {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            color: var(--terminal-amber);
+        }
+
+        .defcon-level {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            padding: 0.25rem 0.75rem;
+            background: var(--terminal-amber);
+            color: #000;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--terminal-green);
+            box-shadow: 0 0 10px var(--terminal-green);
+            animation: statusPulse 1.5s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--terminal-green); }
+            50% { opacity: 0.5; box-shadow: 0 0 5px var(--terminal-green); }
+        }
+
+        /* ============================================
+           LEFT PANEL - TARGETS
+           ============================================ */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--terminal-green-dim);
+            padding: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--terminal-green), transparent);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--terminal-green-dim);
+        }
+
+        .panel-title {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--terminal-green);
+        }
+
+        .panel-status {
+            font-size: 0.7rem;
+            color: var(--terminal-green-dim);
+        }
+
+        /* Target List */
+        .target-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .target-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .target-item:hover {
+            background: rgba(0, 255, 65, 0.1);
+            border-color: var(--terminal-green-dim);
+        }
+
+        .target-item.active {
+            background: rgba(0, 255, 65, 0.15);
+            border-color: var(--terminal-green);
+            box-shadow: 0 0 10px var(--terminal-green-glow);
+        }
+
+        .target-icon {
+            font-size: 1.2rem;
+        }
+
+        .target-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .target-name {
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .target-type {
+            font-size: 0.7rem;
+            color: var(--terminal-green-dim);
+        }
+
+        .target-status {
+            padding: 0.15rem 0.4rem;
+            font-size: 0.6rem;
+            border-radius: 2px;
+            font-family: var(--font-display);
+        }
+
+        .target-status.infiltrated {
+            background: var(--terminal-green);
+            color: #000;
+        }
+
+        .target-status.in-progress {
+            background: var(--terminal-amber);
+            color: #000;
+            animation: blink 1s infinite;
+        }
+
+        .target-status.locked {
+            background: var(--terminal-red);
+            color: #000;
+        }
+
+        .target-status.pending {
+            background: var(--terminal-cyan);
+            color: #000;
+        }
+
+        /* ============================================
+           CENTER - MAP
+           ============================================ */
+        .center-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .map-container {
+            flex: 1;
+            position: relative;
+            background: var(--bg-panel);
+            border: 1px solid var(--terminal-green-dim);
+            overflow: hidden;
+        }
+
+        .map-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 10, 0, 0.9);
+            border-bottom: 1px solid var(--terminal-green-dim);
+            z-index: 10;
+        }
+
+        .map-title {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+        }
+
+        .map-coords {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--terminal-amber);
+        }
+
+        /* SVG Map */
+        .map-svg {
+            width: 100%;
+            height: 100%;
+            padding-top: 40px;
+        }
+
+        .map-svg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Map regions */
+        .region {
+            fill: rgba(0, 50, 0, 0.5);
+            stroke: var(--terminal-green-dim);
+            stroke-width: 1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .region:hover {
+            fill: rgba(0, 100, 0, 0.5);
+            stroke: var(--terminal-green);
+            stroke-width: 2;
+        }
+
+        .region.infiltrated {
+            fill: rgba(0, 255, 65, 0.3);
+            stroke: var(--terminal-green);
+            animation: regionPulse 2s infinite;
+        }
+
+        .region.active {
+            fill: rgba(255, 176, 0, 0.3);
+            stroke: var(--terminal-amber);
+            animation: regionPulse 1s infinite;
+        }
+
+        @keyframes regionPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Map markers */
+        .map-marker {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .map-marker:hover {
+            transform: scale(1.2);
+        }
+
+        .marker-pulse {
+            fill: none;
+            stroke: var(--terminal-green);
+            stroke-width: 2;
+            animation: markerPulse 2s infinite;
+        }
+
+        @keyframes markerPulse {
+            0% { r: 5; opacity: 1; }
+            100% { r: 20; opacity: 0; }
+        }
+
+        .marker-dot {
+            fill: var(--terminal-green);
+        }
+
+        .marker-dot.amber { fill: var(--terminal-amber); }
+        .marker-dot.red { fill: var(--terminal-red); }
+        .marker-dot.cyan { fill: var(--terminal-cyan); }
+
+        /* Grid overlay */
+        .map-grid {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(var(--terminal-green-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--terminal-green-dim) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* Radar sweep */
+        .radar-sweep {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(0, 255, 65, 0.2) 30deg,
+                transparent 60deg
+            );
+            animation: radarSweep 4s linear infinite;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        @keyframes radarSweep {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Terminal */
+        .terminal-container {
+            height: 150px;
+            background: var(--bg-panel);
+            border: 1px solid var(--terminal-green-dim);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 20, 0, 0.9);
+            border-bottom: 1px solid var(--terminal-green-dim);
+        }
+
+        .terminal-title {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+        }
+
+        .terminal-output {
+            flex: 1;
+            padding: 0.5rem;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.25rem;
+        }
+
+        .terminal-line .timestamp {
+            color: var(--terminal-green-dim);
+        }
+
+        .terminal-line .success {
+            color: var(--terminal-green);
+        }
+
+        .terminal-line .warning {
+            color: var(--terminal-amber);
+        }
+
+        .terminal-line .error {
+            color: var(--terminal-red);
+        }
+
+        .terminal-line .info {
+            color: var(--terminal-cyan);
+        }
+
+        .terminal-input {
+            display: flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            background: rgba(0, 30, 0, 0.5);
+            border-top: 1px solid var(--terminal-green-dim);
+        }
+
+        .terminal-prompt {
+            color: var(--terminal-green);
+            margin-right: 0.5rem;
+        }
+
+        .terminal-input input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--terminal-green);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        /* ============================================
+           RIGHT PANEL - STATS & OPS
+           ============================================ */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            overflow: hidden;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .stat-box {
+            padding: 0.75rem;
+            background: rgba(0, 40, 0, 0.5);
+            border: 1px solid var(--terminal-green-dim);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--terminal-green);
+            text-shadow: 0 0 10px var(--terminal-green);
+            line-height: 1;
+        }
+
+        .stat-value.amber { color: var(--terminal-amber); text-shadow: 0 0 10px var(--terminal-amber); }
+        .stat-value.red { color: var(--terminal-red); text-shadow: 0 0 10px var(--terminal-red); }
+        .stat-value.cyan { color: var(--terminal-cyan); text-shadow: 0 0 10px var(--terminal-cyan); }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--terminal-green-dim);
+            margin-top: 0.25rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Progress Bars */
+        .progress-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+        }
+
+        .progress-label {
+            color: var(--terminal-green);
+        }
+
+        .progress-value {
+            color: var(--terminal-amber);
+            font-family: var(--font-mono);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(0, 50, 0, 0.5);
+            border: 1px solid var(--terminal-green-dim);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--terminal-green);
+            box-shadow: 0 0 10px var(--terminal-green);
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.amber { background: var(--terminal-amber); box-shadow: 0 0 10px var(--terminal-amber); }
+
+        /* Operations Feed */
+        .ops-feed {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .ops-item {
+            padding: 0.5rem;
+            background: rgba(0, 30, 0, 0.5);
+            border-left: 3px solid var(--terminal-green);
+            font-size: 0.8rem;
+        }
+
+        .ops-item.warning { border-color: var(--terminal-amber); }
+        .ops-item.alert { border-color: var(--terminal-red); }
+        .ops-item.info { border-color: var(--terminal-cyan); }
+
+        .ops-time {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--terminal-green-dim);
+            margin-bottom: 0.25rem;
+        }
+
+        .ops-text {
+            line-height: 1.3;
+        }
+
+        /* Agent List */
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(0, 30, 0, 0.5);
+        }
+
+        .agent-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--terminal-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-name {
+            font-size: 0.85rem;
+        }
+
+        .agent-role {
+            font-size: 0.7rem;
+            color: var(--terminal-green-dim);
+        }
+
+        .agent-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--terminal-green);
+            box-shadow: 0 0 5px var(--terminal-green);
+        }
+
+        .agent-status.away { background: var(--terminal-amber); box-shadow: 0 0 5px var(--terminal-amber); }
+        .agent-status.offline { background: var(--terminal-red); box-shadow: 0 0 5px var(--terminal-red); }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(180deg, #000d00 0%, #001a00 100%);
+            border-top: 2px solid var(--terminal-green);
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .marquee {
+            flex: 1;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--terminal-amber);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.4rem 1rem;
+            background: transparent;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: var(--terminal-green);
+            color: #000;
+            box-shadow: 0 0 20px var(--terminal-green-glow);
+        }
+
+        .btn-action.danger {
+            border-color: var(--terminal-red);
+            color: var(--terminal-red);
+        }
+
+        .btn-action.danger:hover {
+            background: var(--terminal-red);
+            color: #000;
+        }
+
+        /* ============================================
+           WORLD MAP OVERLAY (for phase 2)
+           ============================================ */
+        .world-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 10, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .world-overlay.active {
+            display: flex;
+        }
+
+        .world-content {
+            width: 90%;
+            height: 90%;
+            border: 2px solid var(--terminal-green);
+            box-shadow: 0 0 50px var(--terminal-green-glow);
+            position: relative;
+        }
+
+        /* ============================================
+           BOOT SEQUENCE
+           ============================================ */
+        .boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .boot-screen.hidden {
+            display: none;
+        }
+
+        .boot-logo {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--terminal-green);
+            text-shadow: 0 0 30px var(--terminal-green);
+            margin-bottom: 2rem;
+            letter-spacing: 0.5em;
+        }
+
+        .boot-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--terminal-green);
+            text-align: left;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .boot-line {
+            margin-bottom: 0.25rem;
+            opacity: 0;
+            animation: bootLine 0.1s forwards;
+        }
+
+        @keyframes bootLine {
+            to { opacity: 1; }
+        }
+
+        .boot-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--terminal-green);
+            animation: cursorBlink 0.5s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ============================================
+           AUDIO VISUALIZATION
+           ============================================ */
+        .audio-visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 20px;
+        }
+
+        .audio-bar {
+            width: 3px;
+            background: var(--terminal-green);
+            animation: audioBar 0.5s ease-in-out infinite;
+        }
+
+        .audio-bar:nth-child(1) { animation-delay: 0s; }
+        .audio-bar:nth-child(2) { animation-delay: 0.1s; }
+        .audio-bar:nth-child(3) { animation-delay: 0.2s; }
+        .audio-bar:nth-child(4) { animation-delay: 0.3s; }
+        .audio-bar:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes audioBar {
+            0%, 100% { height: 5px; }
+            50% { height: 20px; }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1200px) {
+            .war-room {
+                grid-template-columns: 250px 1fr 300px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .war-room {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto auto auto;
+            }
+
+            .left-panel, .right-panel {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+        }
+
+        /* ============================================
+           SCROLLBAR
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-terminal);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--terminal-green-dim);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--terminal-green);
+        }
+    </style>
+</head>
+<body>
+    <!-- BOOT SEQUENCE -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-logo">LA RÉSERVE</div>
+        <div class="boot-text" id="bootText"></div>
+    </div>
+
+    <!-- MAIN WAR ROOM -->
+    <div class="war-room" id="warRoom" style="display: none;">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">LA RÉSERVE</div>
+                <div class="classification">TOP SECRET // OPÉRATION WAFFLE</div>
+            </div>
+            <div class="header-center">
+                <div class="datetime" id="datetime">--:--:--</div>
+                <div class="defcon">
+                    <span class="defcon-label">NIVEAU D'INFILTRATION</span>
+                    <span class="defcon-level" id="defconLevel">3</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>SYSTÈMES OPÉRATIONNELS</span>
+                </div>
+                <div class="audio-visualizer">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- LEFT PANEL -->
+        <aside class="left-panel">
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">🎯 CIBLES PRIORITAIRES</span>
+                    <span class="panel-status">12 ACTIVES</span>
+                </div>
+                <div class="target-list" id="targetList">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+
+            <div class="panel" style="flex: 1;">
+                <div class="panel-header">
+                    <span class="panel-title">👥 CELLULES ACTIVES</span>
+                    <span class="panel-status">8 AGENTS</span>
+                </div>
+                <div class="agent-list" id="agentList">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER PANEL -->
+        <main class="center-panel">
+            <div class="map-container">
+                <div class="map-header">
+                    <span class="map-title">🗺️ CARTE TACTIQUE // BELGIQUE</span>
+                    <span class="map-coords" id="mapCoords">50.8503° N, 4.3517° E</span>
+                </div>
+                <div class="map-grid"></div>
+                <div class="radar-sweep"></div>
+                <div class="map-svg" id="mapContainer">
+                    <svg viewBox="0 0 400 350" id="belgiumMap">
+                        <!-- Belgium simplified regions -->
+                        <g class="regions">
+                            <!-- Flandre Occidentale -->
+                            <path class="region infiltrated" id="region-flandre-occ" 
+                                d="M20,80 L80,60 L100,80 L90,120 L60,140 L20,120 Z"
+                                data-name="Flandre Occidentale" data-status="infiltrated"/>
+                            <!-- Flandre Orientale -->
+                            <path class="region active" id="region-flandre-or"
+                                d="M100,80 L160,70 L180,100 L160,140 L100,130 L90,120 Z"
+                                data-name="Flandre Orientale" data-status="active"/>
+                            <!-- Anvers -->
+                            <path class="region infiltrated" id="region-anvers"
+                                d="M160,70 L220,50 L260,80 L240,120 L180,100 Z"
+                                data-name="Anvers" data-status="infiltrated"/>
+                            <!-- Limbourg -->
+                            <path class="region" id="region-limbourg"
+                                d="M260,80 L320,70 L340,120 L300,160 L240,120 Z"
+                                data-name="Limbourg" data-status="pending"/>
+                            <!-- Brabant Flamand -->
+                            <path class="region active" id="region-brabant-fl"
+                                d="M160,140 L240,120 L260,160 L220,200 L160,180 Z"
+                                data-name="Brabant Flamand" data-status="active"/>
+                            <!-- Bruxelles -->
+                            <path class="region infiltrated" id="region-bruxelles"
+                                d="M180,160 L210,155 L215,185 L185,190 Z"
+                                data-name="Bruxelles" data-status="infiltrated"/>
+                            <!-- Brabant Wallon -->
+                            <path class="region" id="region-brabant-w"
+                                d="M160,180 L220,200 L200,240 L150,220 Z"
+                                data-name="Brabant Wallon" data-status="pending"/>
+                            <!-- Hainaut -->
+                            <path class="region active" id="region-hainaut"
+                                d="M20,140 L100,130 L160,180 L150,220 L100,260 L40,240 L20,180 Z"
+                                data-name="Hainaut" data-status="active"/>
+                            <!-- Namur -->
+                            <path class="region" id="region-namur"
+                                d="M150,220 L200,240 L240,280 L180,300 L100,260 Z"
+                                data-name="Namur" data-status="pending"/>
+                            <!-- Liège -->
+                            <path class="region" id="region-liege"
+                                d="M220,200 L300,160 L360,200 L340,260 L280,280 L240,280 L200,240 Z"
+                                data-name="Liège" data-status="locked"/>
+                            <!-- Luxembourg -->
+                            <path class="region" id="region-luxembourg"
+                                d="M240,280 L340,260 L380,320 L300,340 L220,320 L180,300 Z"
+                                data-name="Luxembourg" data-status="pending"/>
+                        </g>
+                        <!-- Markers -->
+                        <g class="markers" id="mapMarkers">
+                            <!-- Bruxelles HQ -->
+                            <g class="map-marker" transform="translate(195, 170)">
+                                <circle class="marker-pulse" cx="0" cy="0" r="5"/>
+                                <circle class="marker-dot" cx="0" cy="0" r="5"/>
+                            </g>
+                            <!-- Anvers -->
+                            <g class="map-marker" transform="translate(210, 85)">
+                                <circle class="marker-pulse" cx="0" cy="0" r="5"/>
+                                <circle class="marker-dot" cx="0" cy="0" r="4"/>
+                            </g>
+                            <!-- Gand -->
+                            <g class="map-marker" transform="translate(130, 100)">
+                                <circle class="marker-pulse" cx="0" cy="0" r="5"/>
+                                <circle class="marker-dot amber" cx="0" cy="0" r="4"/>
+                            </g>
+                            <!-- Liège -->
+                            <g class="map-marker" transform="translate(300, 200)">
+                                <circle class="marker-dot red" cx="0" cy="0" r="4"/>
+                            </g>
+                            <!-- Charleroi -->
+                            <g class="map-marker" transform="translate(120, 230)">
+                                <circle class="marker-pulse" cx="0" cy="0" r="5"/>
+                                <circle class="marker-dot amber" cx="0" cy="0" r="4"/>
+                            </g>
+                            <!-- Namur -->
+                            <g class="map-marker" transform="translate(180, 260)">
+                                <circle class="marker-dot cyan" cx="0" cy="0" r="3"/>
+                            </g>
+                        </g>
+                        <!-- Connection lines -->
+                        <g class="connections" stroke="var(--terminal-green)" stroke-width="1" stroke-dasharray="5,5" opacity="0.5">
+                            <line x1="195" y1="170" x2="210" y2="85"/>
+                            <line x1="195" y1="170" x2="130" y2="100"/>
+                            <line x1="195" y1="170" x2="120" y2="230"/>
+                            <line x1="195" y1="170" x2="180" y2="260"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <span class="terminal-title">📟 TERMINAL DE COMMANDEMENT</span>
+                    <span style="font-size: 0.7rem; color: var(--terminal-green-dim);">TTY-001</span>
+                </div>
+                <div class="terminal-output" id="terminalOutput">
+                    <!-- Generated by JS -->
+                </div>
+                <div class="terminal-input">
+                    <span class="terminal-prompt">root@reserve:~$</span>
+                    <input type="text" id="terminalInput" placeholder="Entrez une commande..." autocomplete="off">
+                </div>
+            </div>
+        </main>
+
+        <!-- RIGHT PANEL -->
+        <aside class="right-panel">
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">📊 STATISTIQUES GLOBALES</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="statActions">47</div>
+                        <div class="stat-label">ACTIONS DÉPLOYÉES</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value amber" id="statPending">12</div>
+                        <div class="stat-label">EN ATTENTE</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value cyan" id="statAgents">23</div>
+                        <div class="stat-label">AGENTS ACTIFS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="statInfiltrated">6</div>
+                        <div class="stat-label">ZONES INFILTRÉES</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">📈 PROGRESSION</span>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">🇧🇪 BELGIQUE</span>
+                            <span class="progress-value" id="progressBelgium">67%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBelgiumBar" style="width: 67%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">🇪🇺 EUROPE</span>
+                            <span class="progress-value" id="progressEurope">12%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill amber" id="progressEuropeBar" style="width: 12%;"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">🌍 MONDE</span>
+                            <span class="progress-value" id="progressWorld">3%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill amber" id="progressWorldBar" style="width: 3%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" style="flex: 1;">
+                <div class="panel-header">
+                    <span class="panel-title">📡 FLUX OPÉRATIONNEL</span>
+                    <span class="panel-status">EN DIRECT</span>
+                </div>
+                <div class="ops-feed" id="opsFeed">
+                    <!-- Generated by JS -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-left">
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>UPTIME: <span id="uptime">00:00:00</span></span>
+                </div>
+                <div class="system-status">
+                    <span>CPU: <span id="cpuUsage">23%</span></span>
+                </div>
+                <div class="system-status">
+                    <span>MEM: <span id="memUsage">1.2GB</span></span>
+                </div>
+            </div>
+            <div class="marquee">
+                <span class="marquee-content">
+                    ⚠️ OPÉRATION WAFFLE EN COURS — PHASE 1: BELGIQUE — 
+                    PROCHAINE CIBLE: FOREM WALLONIE — 
+                    RAPPEL: LE PIRATAGE PACIFIQUE EST UN ACTE D'AMOUR ADMINISTRATIF — 
+                    SLOGAN DU JOUR: "CE QUI EXISTE DÉJÀ MAIS N'A JAMAIS ÉTÉ RECONNU" — 
+                    ALERTE: NOUVEAU SILENCE DÉTECTÉ SECTEUR BRUXELLES-CENTRE — 
+                    MISSION: TRANSFORMER LE NON-RETOUR EN ART —
+                </span>
+            </div>
+            <div class="footer-right">
+                <button class="btn-action" onclick="launchAction()">⚡ NOUVELLE ACTION</button>
+                <button class="btn-action" onclick="toggleWorldMap()">🌍 CARTE MONDE</button>
+                <button class="btn-action danger" onclick="initiateBasculement()">🌟 BASCULEMENT</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- WORLD MAP OVERLAY -->
+    <div class="world-overlay" id="worldOverlay">
+        <div class="world-content">
+            <div class="map-header">
+                <span class="map-title">🌍 EXPANSION MONDIALE // PHASE 2</span>
+                <button class="btn-action" onclick="toggleWorldMap()" style="position: absolute; right: 1rem; top: 0.5rem;">FERMER</button>
+            </div>
+            <svg viewBox="0 0 1000 500" style="width: 100%; height: calc(100% - 40px); margin-top: 40px;">
+                <!-- Simplified world map outline -->
+                <g fill="rgba(0, 50, 0, 0.5)" stroke="var(--terminal-green-dim)" stroke-width="1">
+                    <!-- Europe -->
+                    <ellipse cx="500" cy="150" rx="80" ry="60" class="region infiltrated"/>
+                    <!-- Africa -->
+                    <ellipse cx="500" cy="280" rx="70" ry="90"/>
+                    <!-- Asia -->
+                    <ellipse cx="700" cy="180" rx="150" ry="80"/>
+                    <!-- Americas -->
+                    <ellipse cx="200" cy="200" rx="100" ry="150"/>
+                    <!-- Australia -->
+                    <ellipse cx="850" cy="350" rx="60" ry="40"/>
+                </g>
+                <!-- Belgium marker -->
+                <g class="map-marker" transform="translate(490, 140)">
+                    <circle class="marker-pulse" cx="0" cy="0" r="5"/>
+                    <circle class="marker-dot" cx="0" cy="0" r="8"/>
+                    <text x="15" y="5" fill="var(--terminal-green)" font-size="12">HQ</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // DATA
+        // ============================================
+        const targets = [
+            { id: 1, name: "FOREM Wallonie", type: "Institution emploi", status: "infiltrated", icon: "🏛️" },
+            { id: 2, name: "VDAB Flandre", type: "Institution emploi", status: "in-progress", icon: "🏛️" },
+            { id: 3, name: "Actiris Bruxelles", type: "Institution emploi", status: "infiltrated", icon: "🏛️" },
+            { id: 4, name: "ONEM", type: "Chômage", status: "in-progress", icon: "📋" },
+            { id: 5, name: "CPAS Bruxelles", type: "Aide sociale", status: "locked", icon: "🏥" },
+            { id: 6, name: "SPF Emploi", type: "Ministère", status: "pending", icon: "🏢" },
+            { id: 7, name: "Commune d'Ixelles", type: "Administration", status: "infiltrated", icon: "🏛️" },
+            { id: 8, name: "SNCB", type: "Transport", status: "pending", icon: "🚂" },
+            { id: 9, name: "Proximus HQ", type: "Télécom", status: "locked", icon: "📡" },
+            { id: 10, name: "BNP Paribas Fortis", type: "Banque", status: "pending", icon: "🏦" },
+            { id: 11, name: "Université de Liège", type: "Éducation", status: "in-progress", icon: "🎓" },
+            { id: 12, name: "RTBF", type: "Média", status: "pending", icon: "📺" },
+        ];
+
+        const agents = [
+            { id: 1, name: "Agent Gaufre", role: "Coordinateur Bruxelles", status: "online", avatar: "🧇" },
+            { id: 2, name: "Agent Manneken", role: "Infiltration terrain", status: "online", avatar: "🗿" },
+            { id: 3, name: "Agent Atomium", role: "Analyste données", status: "away", avatar: "⚛️" },
+            { id: 4, name: "Agent Frites", role: "Communications", status: "online", avatar: "🍟" },
+            { id: 5, name: "Agent Speculoos", role: "Opérations spéciales", status: "online", avatar: "🍪" },
+            { id: 6, name: "Agent Chocolat", role: "Logistique", status: "offline", avatar: "🍫" },
+            { id: 7, name: "Agent Bière", role: "Relations publiques", status: "online", avatar: "🍺" },
+            { id: 8, name: "Agent Moules", role: "Renseignement", status: "away", avatar: "🦪" },
+        ];
+
+        const operations = [
+            { time: "14:32:01", text: "Action #LR-47 déployée: Silence FOREM détourné", type: "success" },
+            { time: "14:28:45", text: "Nouvelle recrue recrutée: Agent Carbonnade", type: "info" },
+            { time: "14:25:12", text: "⚠️ Détection activité suspecte: CPAS surveille", type: "warning" },
+            { time: "14:20:33", text: "Zone Anvers: Infiltration niveau 3 atteint", type: "success" },
+            { time: "14:15:00", text: "🚨 Alerte: Tentative de contre-mesure SPF", type: "alert" },
+            { time: "14:10:22", text: "Bruxelles-Centre: 3 nouveaux silences collectés", type: "info" },
+            { time: "14:05:11", text: "Timeline mise à jour: Action #LR-45", type: "success" },
+        ];
+
+        const bootSequence = [
+            "BIOS v3.14.159 - LA RÉSERVE SYSTEMS",
+            "Initialisation mémoire... OK",
+            "Détection processeurs quantiques... 8 cores actifs",
+            "Chargement modules de détournement...",
+            "  > silence_detector.ko    [OK]",
+            "  > bureaucracy_bypass.ko  [OK]",
+            "  > peaceful_hack.ko       [OK]",
+            "  > waffle_protocol.ko     [OK]",
+            "Connexion réseau underground... ÉTABLIE",
+            "Synchronisation cellules belges... 23 agents connectés",
+            "Vérification intégrité base de données...",
+            "  > Actions: 47 enregistrées",
+            "  > Silences: 156 collectés",
+            "  > Recrues: 89 actives",
+            "Chargement carte tactique Belgique... OK",
+            "Initialisation protocole WAFFLE... OK",
+            "",
+            "╔═══════════════════════════════════════════════════════╗",
+            "║          LA RÉSERVE - CENTRE DE COMMANDEMENT          ║",
+            "║     'Ce qui existe déjà mais n'a jamais été reconnu'  ║",
+            "╚═══════════════════════════════════════════════════════╝",
+            "",
+            "Système prêt. Bienvenue, Commandant.",
+            "Niveau d'infiltration actuel: BELGIQUE 67%",
+            "",
+            "Lancement interface graphique..."
+        ];
+
+        const terminalCommands = {
+            'help': () => [
+                "Commandes disponibles:",
+                "  status     - État du système",
+                "  targets    - Liste des cibles",
+                "  agents     - Liste des agents",
+                "  stats      - Statistiques globales",
+                "  launch     - Lancer nouvelle action",
+                "  scan       - Scanner nouvelle zone",
+                "  basculer   - Initier basculement",
+                "  clear      - Effacer terminal",
+                "  waffle     - ???"
+            ],
+            'status': () => [
+                "=== ÉTAT DU SYSTÈME ===",
+                `Uptime: ${document.getElementById('uptime').textContent}`,
+                "Niveau d'alerte: MODÉRÉ",
+                "Connexions actives: 23",
+                "Actions en cours: 12",
+                "Prochaine opération: T-00:45:00"
+            ],
+            'targets': () => targets.map(t => `[${t.status.toUpperCase().padEnd(12)}] ${t.icon} ${t.name}`),
+            'agents': () => agents.map(a => `${a.avatar} ${a.name.padEnd(20)} | ${a.role.padEnd(25)} | ${a.status.toUpperCase()}`),
+            'stats': () => [
+                "=== STATISTIQUES GLOBALES ===",
+                "Actions déployées: 47",
+                "Silences collectés: 156",
+                "Recrues actives: 89",
+                "Zones infiltrées: 6/11 (Belgique)",
+                "Progression Europe: 12%",
+                "Progression Monde: 3%"
+            ],
+            'scan': () => [
+                "Scanning réseau institutionnel belge...",
+                "[████████████████████] 100%",
+                "",
+                "3 nouvelles cibles détectées:",
+                "  > Musée des Beaux-Arts (Bruxelles)",
+                "  > Port d'Anvers",
+                "  > Parlement Wallon",
+                "",
+                "Ajoutées à la liste de surveillance."
+            ],
+            'launch': () => [
+                "=== NOUVELLE ACTION ===",
+                "Ouverture du formulaire de création...",
+                "",
+                "Redirection vers La Réserve (interface standard)"
+            ],
+            'basculer': () => [
+                "⚠️ ATTENTION: PROTOCOLE BASCULEMENT",
+                "",
+                "Le basculement transforme une action",
+                "du fictif vers le réel.",
+                "",
+                "Cette opération est irréversible.",
+                "Confirmez avec: basculer --confirm"
+            ],
+            'basculer --confirm': () => [
+                "🌟 BASCULEMENT INITIÉ",
+                "",
+                "Sélection de l'action...",
+                "Vérification des recrues...",
+                "Notification des agents...",
+                "",
+                "Action #LR-47 basculée avec succès!",
+                "Le fictif est devenu réel. 🎭→🌍"
+            ],
+            'waffle': () => [
+                "     _.---._",
+                "   .'       '.",
+                "  /   _   _   \\",
+                " |   (o)_(o)   |",
+                " |    .---.    |  🧇 MODE GAUFRE ACTIVÉ 🧇",
+                "  \\  '._Y_.'  /",
+                "   '.       .'",
+                "     '-----'",
+                "",
+                "Les gaufres sont la clé de tout.",
+                "Niveau de sirop: MAXIMUM"
+            ],
+            'clear': () => {
+                document.getElementById('terminalOutput').innerHTML = '';
+                return [];
+            }
+        };
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        let bootIndex = 0;
+        let startTime = Date.now();
+
+        function init() {
+            runBootSequence();
+        }
+
+        function runBootSequence() {
+            const bootText = document.getElementById('bootText');
+            
+            if (bootIndex < bootSequence.length) {
+                const line = document.createElement('div');
+                line.className = 'boot-line';
+                line.style.animationDelay = `${bootIndex * 0.05}s`;
+                line.innerHTML = bootSequence[bootIndex] + '<span class="boot-cursor"></span>';
+                
+                // Remove cursor from previous line
+                const prevCursor = bootText.querySelector('.boot-cursor');
+                if (prevCursor) prevCursor.remove();
+                
+                bootText.appendChild(line);
+                bootIndex++;
+                
+                setTimeout(runBootSequence, 80 + Math.random() * 40);
+            } else {
+                setTimeout(() => {
+                    document.getElementById('bootScreen').classList.add('hidden');
+                    document.getElementById('warRoom').style.display = 'grid';
+                    initWarRoom();
+                }, 1000);
+            }
+        }
+
+        function initWarRoom() {
+            renderTargets();
+            renderAgents();
+            renderOperations();
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            setInterval(updateUptime, 1000);
+            setInterval(simulateActivity, 5000);
+            setupTerminal();
+            setupMapInteractions();
+            
+            // Initial terminal message
+            addTerminalLine("Système initialisé. Tapez 'help' pour les commandes.", "success");
+        }
+
+        // ============================================
+        // RENDER FUNCTIONS
+        // ============================================
+        function renderTargets() {
+            const list = document.getElementById('targetList');
+            list.innerHTML = targets.map(t => `
+                <div class="target-item ${t.status === 'infiltrated' ? 'active' : ''}" data-id="${t.id}">
+                    <span class="target-icon">${t.icon}</span>
+                    <div class="target-info">
+                        <div class="target-name">${t.name}</div>
+                        <div class="target-type">${t.type}</div>
+                    </div>
+                    <span class="target-status ${t.status}">${formatStatus(t.status)}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderAgents() {
+            const list = document.getElementById('agentList');
+            list.innerHTML = agents.map(a => `
+                <div class="agent-item">
+                    <div class="agent-avatar">${a.avatar}</div>
+                    <div class="agent-info">
+                        <div class="agent-name">${a.name}</div>
+                        <div class="agent-role">${a.role}</div>
+                    </div>
+                    <div class="agent-status ${a.status}"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderOperations() {
+            const feed = document.getElementById('opsFeed');
+            feed.innerHTML = operations.map(op => `
+                <div class="ops-item ${op.type}">
+                    <div class="ops-time">${op.time}</div>
+                    <div class="ops-text">${op.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function formatStatus(status) {
+            const labels = {
+                'infiltrated': 'INFILTRÉ',
+                'in-progress': 'EN COURS',
+                'locked': 'VERROUILLÉ',
+                'pending': 'EN ATTENTE'
+            };
+            return labels[status] || status;
+        }
+
+        // ============================================
+        // TERMINAL
+        // ============================================
+        function setupTerminal() {
+            const input = document.getElementById('terminalInput');
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = input.value.trim().toLowerCase();
+                    if (cmd) {
+                        addTerminalLine(`root@reserve:~$ ${cmd}`, '');
+                        executeCommand(cmd);
+                    }
+                    input.value = '';
+                }
+            });
+        }
+
+        function executeCommand(cmd) {
+            const handler = terminalCommands[cmd];
+            if (handler) {
+                const output = handler();
+                if (Array.isArray(output)) {
+                    output.forEach(line => addTerminalLine(line, 'info'));
+                }
+            } else {
+                addTerminalLine(`Commande inconnue: ${cmd}. Tapez 'help'.`, 'error');
+            }
+        }
+
+        function addTerminalLine(text, type = '') {
+            const output = document.getElementById('terminalOutput');
+            const timestamp = new Date().toLocaleTimeString('fr-BE');
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="timestamp">[${timestamp}]</span> <span class="${type}">${text}</span>`;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // ============================================
+        // MAP INTERACTIONS
+        // ============================================
+        function setupMapInteractions() {
+            document.querySelectorAll('.region').forEach(region => {
+                region.addEventListener('click', () => {
+                    const name = region.dataset.name;
+                    const status = region.dataset.status;
+                    addTerminalLine(`Zone sélectionnée: ${name} [${formatStatus(status)}]`, 'info');
+                });
+
+                region.addEventListener('mouseenter', (e) => {
+                    const name = region.dataset.name;
+                    document.getElementById('mapCoords').textContent = name;
+                });
+
+                region.addEventListener('mouseleave', () => {
+                    document.getElementById('mapCoords').textContent = '50.8503° N, 4.3517° E';
+                });
+            });
+        }
+
+        // ============================================
+        // UPDATES
+        // ============================================
+        function updateDateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('fr-BE', { hour12: false });
+            document.getElementById('datetime').textContent = timeStr;
+        }
+
+        function updateUptime() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const hours = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('uptime').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Fake CPU/MEM
+            document.getElementById('cpuUsage').textContent = (15 + Math.random() * 20).toFixed(0) + '%';
+            document.getElementById('memUsage').textContent = (1.1 + Math.random() * 0.3).toFixed(1) + 'GB';
+        }
+
+        function simulateActivity() {
+            // Random operation
+            const newOps = [
+                "Nouvelle action détectée secteur Liège",
+                "Agent Frites: Rapport reçu",
+                "Scan automatique terminé",
+                "Mise à jour base de données",
+                "Signal reçu de cellule Anvers",
+                "Vérification intégrité... OK",
+                "Nouveau silence collecté: CPAS Molenbeek"
+            ];
+            
+            const op = {
+                time: new Date().toLocaleTimeString('fr-BE'),
+                text: newOps[Math.floor(Math.random() * newOps.length)],
+                type: ['success', 'info', 'warning'][Math.floor(Math.random() * 3)]
+            };
+            
+            operations.unshift(op);
+            if (operations.length > 10) operations.pop();
+            renderOperations();
+
+            // Update stats randomly
+            const actions = parseInt(document.getElementById('statActions').textContent);
+            if (Math.random() > 0.7) {
+                document.getElementById('statActions').textContent = actions + 1;
+            }
+        }
+
+        // ============================================
+        // ACTIONS
+        // ============================================
+        function launchAction() {
+            addTerminalLine("🚀 Ouverture interface de création d'action...", "success");
+            // Could redirect to la-reserve-v10.html
+            setTimeout(() => {
+                addTerminalLine("Interface prête. Créez votre action de détournement.", "info");
+            }, 500);
+        }
+
+        function toggleWorldMap() {
+            const overlay = document.getElementById('worldOverlay');
+            overlay.classList.toggle('active');
+            
+            if (overlay.classList.contains('active')) {
+                addTerminalLine("🌍 Carte mondiale activée - Phase 2: Expansion", "info");
+            }
+        }
+
+        function initiateBasculement() {
+            addTerminalLine("🌟 PROTOCOLE BASCULEMENT", "warning");
+            addTerminalLine("Le fictif devient réel...", "warning");
+            
+            // Visual effect
+            document.getElementById('defconLevel').textContent = '1';
+            document.getElementById('defconLevel').style.background = 'var(--terminal-red)';
+            
+            setTimeout(() => {
+                addTerminalLine("✅ Basculement réussi. Bienvenue dans le réel.", "success");
+            }, 2000);
+        }
+
+        // ============================================
+        // START
+        // ============================================
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
