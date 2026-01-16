@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type='text/javascript' src='https://ouaisfieu.github.io/idXdIp88HCBN8idlaYdBAc9ClIGBQ7_-FFjLHpzM6A6o9WhY1qVHexCIRB6-Vdd1aN635HGNqJbGubdGwYxGt4R5AX474hHjRQ-ymG45aGES9q40kuNypC9fQGHejXbk06fyzXTApiC1XTglU-RaKOVG9YIerc8TqZ6K0m5xl7qPG6LcKjeiekP_sxMrTJMUloPDx3Eq40B2_CaCnayU6jdCbHNHF-bCJ0daEUx6bX_VB7Uncf_hLLMW9bFNTQOXt39AXUx-H9bT-jnUk3G6C37DURc0eBPtxiYM5tdB3HxZwb2lyMWathTFXUMWapuYRgzqzzBqVcHWqWxQpHZOYHOAQCiqwuBC_XestzlASu4AiSE4YVQeKVtK_NHQVXN6uiKV54zLo8jCr3WycQCALcq-jjzPjmRD3MuSqqYWdDlsSPg-HjHfupHGg0OZQ_DJaCUao3bRne_6PiKplValHYiJokW9A847RwZNqiF6ika333IugZszTxY'></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FAKE NEWS — Programme Opérationnel</title>
+<style>
+:root{
+--bg:#0a0e1a;--panel:#151b2e;--border:#2a3f5f;
+--green:#7bed9f;--purple:#c77dff;--red:#ff6b6b;--yellow:#ffd43b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Courier New,monospace;background:var(--bg);color:#eaeaf0}
+header{padding:30px;border-bottom:3px solid var(--green);text-align:center}
+h1{color:var(--green);text-shadow:0 0 20px var(--green)}
+.container{max-width:1400px;margin:auto;padding:20px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:12px 18px;border:2px solid var(--border);background:var(--panel);cursor:pointer}
+.tab.active{border-color:var(--green);color:var(--green)}
+.section{display:none}
+.section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--panel);border:2px solid var(--border);padding:16px}
+.card h3{color:var(--purple);margin-bottom:8px}
+.meta{font-size:11px;opacity:.8;margin-top:8px}
+.btn{margin-top:12px;padding:10px;border:2px solid var(--green);background:none;color:var(--green);cursor:pointer;width:100%}
+.btn.done{border-color:#666;color:#666;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.stat{background:var(--panel);border:2px solid var(--green);padding:20px;text-align:center}
+.stat .v{font-size:28px;color:var(--green)}
+.log{max-height:400px;overflow:auto}
+.log div{border-left:3px solid var(--purple);padding:8px;margin-bottom:6px;background:rgba(42,63,95,.3)}
+footer{text-align:center;opacity:.6;margin:40px 0}
+</style>
+</head>
+<body>
+
+<header>
+<h1>FAKE NEWS</h1>
+<p>MMO IRL & ONLINE · ASYNCHRONE · SANS MJ · DYSTOPIQUE & INSTRUCTIF</p>
+</header>
+
+<div class="container">
+<div class="tabs">
+<div class="tab active" data-s="missions">MISSIONS</div>
+<div class="tab" data-s="stats">STATS</div>
+<div class="tab" data-s="journal">JOURNAL</div>
+</div>
+
+<section id="missions" class="section active">
+<div class="grid" id="missionGrid"></div>
+</section>
+
+<section id="stats" class="section">
+<div class="stats">
+<div class="stat"><div class="v" id="xp">0</div>XP</div>
+<div class="stat"><div class="v" id="done">0</div>MISSIONS</div>
+<div class="stat"><div class="v" id="rep">0</div>RÉPUTATION</div>
+</div>
+</section>
+
+<section id="journal" class="section">
+<div class="log" id="log"></div>
+</section>
+</div>
+
+<footer>FAKE NEWS · programme autonome · offline-first</footer>
+
+<script>
+const state={xp:0,done:0,rep:0,log:[],completed:{}}
+
+const missions=[
+{id:1,t:'Détecter une fake news',d:'Identifier 3 fake news récentes et expliquer la méthode.',xp:50,type:'FACT-CHECK',p:89},
+{id:2,t:'Cartographier vos données',d:'Lister comptes en ligne et supprimer 3 services.',xp:60,type:'VIE PRIVÉE',p:134},
+{id:3,t:'Biais cognitif',d:'Identifier un biais et deux exemples concrets.',xp:75,type:'PSYCHO',p:67},
+{id:4,t:'Analyse critique média',d:'Analyse complète d’un article (300 mots).',xp:100,type:'ESPRIT CRITIQUE',p:52},
+{id:5,t:'Supply chain',d:'Tracer le parcours d’un objet du quotidien.',xp:120,type:'ÉCONOMIE',p:43},
+{id:6,t:'Algorithmes sociaux',d:'Observer et analyser votre feed 3 jours.',xp:130,type:'TECH',p:78},
+{id:7,t:'Budgétiser un projet citoyen',d:'Créer un budget réaliste pour un projet local.',xp:110,type:'CITOYEN',p:38},
+{id:8,t:'Comprendre une loi',d:'Lire, résumer et expliquer une loi récente.',xp:140,type:'JURIDIQUE',p:29},
+{id:9,t:'Empreinte carbone',d:'Calculer et réduire de 20%.',xp:80,type:'ÉCOLOGIE',p:156},
+{id:10,t:'Créer un média alternatif',d:'Lancer un micro-média local.',xp:220,type:'JOURNALISME',p:14},
+{id:11,t:'Traquer les lobbies',d:'Identifier l’influence sur une loi.',xp:190,type:'LOBBYING',p:19},
+{id:12,t:'Comprendre l’IA',d:'Tester une IA et analyser ses biais.',xp:130,type:'IA',p:86},
+{id:13,t:'Action collective IRL',d:'Organiser une action citoyenne.',xp:250,type:'ACTIVISME',p:11},
+{id:14,t:'Identifier manipulation',d:'Décortiquer 3 techniques rhétoriques.',xp:110,type:'RHÉTORIQUE',p:59},
+{id:15,t:'Créer une alternative',d:'Remplacer un service privé par un outil libre.',xp:200,type:'TECH',p:24}
+]
+
+function render(){
+const g=document.getElementById('missionGrid')
+g.innerHTML=''
+missions.forEach(m=>{
+const c=document.createElement('div')
+c.className='card'
+c.innerHTML=`
+<h3>${m.t}</h3>
+<p>${m.d}</p>
+<div class="meta">🎯 ${m.type} · 💎 ${m.xp} XP · 👥 ${m.p}</div>
+<button class="btn ${state.completed[m.id]?'done':''}">
+${state.completed[m.id]?'COMPLÉTÉ':'VALIDER'}
+</button>`
+c.querySelector('button').onclick=()=>complete(m)
+g.appendChild(c)
+})
+document.getElementById('xp').textContent=state.xp
+document.getElementById('done').textContent=state.done
+document.getElementById('rep').textContent=state.rep
+const l=document.getElementById('log')
+l.innerHTML=state.log.map(e=>`<div>${e}</div>`).join('')
+}
+
+function complete(m){
+if(state.completed[m.id])return
+state.completed[m.id]=true
+state.xp+=m.xp
+state.done++
+state.rep+=Math.floor(m.xp/10)
+state.log.unshift(`✔ ${m.t} (+${m.xp} XP)`)
+render()
+}
+
+document.querySelectorAll('.tab').forEach(t=>{
+t.onclick=()=>{
+document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'))
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+t.classList.add('active')
+document.getElementById(t.dataset.s).classList.add('active')
+}
+})
+
+render()
+</script>
+</body>
+</html>
