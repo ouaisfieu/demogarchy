@@ -1,0 +1,1857 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type='text/javascript' src='https://ouaisfieu.github.io/bt8_t1vT_7pkd_dkH13qf0bAjz9pe-F2NDqOIreiVCFn9-HqtPoS_vqqPPbXltWKcMzRbka2mrxoYjvXlHnWR7VSJVoWf3n0Q3nSjYh3vxxJXcvvUSa3n33Fj_stXDwSqmx-zmdzL3hUrCsvg-egDb7z9ajHy78NtOKXDds6IApK-TBZ9ZvccCCEWp0pG5QEPyhpgxCLyClOHRpBzT2Z2mF_oDZdpabrCD2P_0kJF2ZQf_ZKPt0TWdC9UO_FmboEQ2Wmm2dabEoTbUhKxJc4OtG9HaOE0Fmgxf34oMadc330LenMaF66TsQAF3GEcFgdyCbrxOvr4QQh1uBTCCTX7VOY8miHXcTytjwV1M_g9iXJx-S0TMiBbD4aw4XLPLa2P7MIgYcDJqmKLvBAIU7Gwf4Fw5MyTD9EQxf2TUCI7neEAW41BBCBe3thiLEYBcuDTpjPb7Fj4W2R_B_ffI3cH6Xk72szDngbbaLQFmWn6eE4I0WQ'></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>█▓▒░ NEXUS.BXL ░▒▓█ — Claim Your Territory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0a0c;
+      --abyss: #0d0d12;
+      --surface: #14141c;
+      --elevated: #1a1a26;
+      --border: rgba(0, 255, 157, 0.15);
+      --border-active: rgba(0, 255, 157, 0.5);
+      --primary: #00ff9d;
+      --primary-dim: rgba(0, 255, 157, 0.4);
+      --secondary: #ff006e;
+      --tertiary: #00d4ff;
+      --warning: #ffbe0b;
+      --text: #e0e0e8;
+      --text-dim: #6b6b7b;
+      --metro: #ff6b35;
+      --tram: #3a86ff;
+      --bus: #8338ec;
+      --noctis: #fb5607;
+      --tec: #00a651;
+      --glow: 0 0 30px rgba(0, 255, 157, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    
+    @keyframes glitch {
+      0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+      20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+      40% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
+      60% { clip-path: inset(40% 0 40% 0); transform: translate(-1px, 1px); }
+      80% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -1px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: var(--glow); }
+      50% { opacity: 0.7; box-shadow: 0 0 60px rgba(0, 255, 157, 0.5); }
+    }
+    
+    @keyframes noise {
+      0%, 100% { background-position: 0 0; }
+      10% { background-position: -5% -10%; }
+      30% { background-position: 3% 5%; }
+      50% { background-position: -2% 2%; }
+      70% { background-position: 7% -7%; }
+      90% { background-position: -3% 3%; }
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--void);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.02) 50%);
+      background-size: 100% 3px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9997;
+      animation: noise 0.5s steps(5) infinite;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, var(--void), transparent);
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    
+    .header-content {
+      max-width: 1800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .logo-symbol {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--tertiary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+    
+    .logo-subtitle {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    
+    .signature {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--secondary);
+      opacity: 0.7;
+      letter-spacing: 2px;
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+    }
+    
+    .stat-value {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .stat-label {
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cryptic-banner {
+      background: linear-gradient(90deg, transparent, var(--surface), transparent);
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 0;
+    }
+    
+    .cryptic-text {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+    
+    .cryptic-text .highlight {
+      color: var(--secondary);
+    }
+
+    .toolbar {
+      max-width: 1800px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
+    }
+    
+    .search-box::before {
+      content: '⌕';
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+    }
+    
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.6rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-dim);
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--primary-dim);
+      color: var(--text);
+    }
+    
+    .filter-btn.active {
+      background: var(--primary);
+      color: var(--void);
+      border-color: var(--primary);
+    }
+    
+    .filter-btn.metro.active { background: var(--metro); border-color: var(--metro); }
+    .filter-btn.tram.active { background: var(--tram); border-color: var(--tram); }
+    .filter-btn.bus.active { background: var(--bus); border-color: var(--bus); }
+    .filter-btn.noctis.active { background: var(--noctis); border-color: var(--noctis); }
+    .filter-btn.tec.active { background: var(--tec); border-color: var(--tec); }
+
+    main {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+    }
+    
+    @media (min-width: 1200px) {
+      .board { grid-template-columns: repeat(12, 1fr); }
+    }
+
+    .stop-card {
+      aspect-ratio: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .stop-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: all 0.3s;
+    }
+    
+    .stop-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--border-active);
+      box-shadow: 0 10px 40px rgba(0, 255, 157, 0.15);
+    }
+    
+    .stop-card:hover::before {
+      background: var(--primary);
+      box-shadow: 0 0 20px var(--primary);
+    }
+    
+    .stop-card.claimed {
+      border-color: var(--secondary);
+      background: linear-gradient(135deg, var(--surface), rgba(255, 0, 110, 0.1));
+    }
+    
+    .stop-card.claimed::before {
+      background: var(--secondary);
+    }
+    
+    .stop-card.mystery {
+      border-color: var(--warning);
+      animation: pulse 2s infinite;
+    }
+    
+    .stop-id {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      color: var(--text-dim);
+      opacity: 0.5;
+    }
+    
+    .stop-name {
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin: 0.25rem 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    
+    .stop-lines {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: auto;
+    }
+    
+    .line-badge {
+      font-size: 0.5rem;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .line-badge.metro { background: var(--metro); color: white; }
+    .line-badge.tram { background: var(--tram); color: white; }
+    .line-badge.bus { background: var(--bus); color: white; }
+    .line-badge.noctis { background: var(--noctis); color: white; }
+    .line-badge.tec { background: var(--tec); color: white; }
+    
+    .claimed-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.5rem;
+      padding: 2px 5px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .source-badge {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      font-size: 0.45rem;
+      padding: 1px 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .modal-overlay.open { display: flex; }
+    
+    .modal {
+      background: var(--abyss);
+      border: 1px solid var(--border-active);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0, 255, 157, 0.2);
+    }
+    
+    .modal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--tertiary), var(--secondary));
+    }
+    
+    .modal-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .modal-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+    
+    .modal-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+    
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.2s;
+    }
+    
+    .modal-close:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+    
+    .modal-body {
+      padding: 1.5rem;
+    }
+    
+    .modal-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .modal-section h3 {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 0.75rem;
+    }
+    
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .info-item {
+      background: var(--surface);
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    
+    .info-item label {
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .info-item .value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-top: 0.25rem;
+    }
+    
+    .lines-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .lines-display .line-badge {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+    }
+
+    .claim-form {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--abyss);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    
+    .btn-primary {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--tertiary));
+      border: none;
+      border-radius: 8px;
+      color: var(--void);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 157, 0.3);
+    }
+    
+    .btn-secondary {
+      width: 100%;
+      padding: 0.75rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-dim);
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    .import-zone {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .import-zone:hover,
+    .import-zone.dragover {
+      border-color: var(--primary);
+      background: rgba(0, 255, 157, 0.05);
+    }
+    
+    .import-zone h4 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .import-zone p {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    
+    .import-formats {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    .format-tag {
+      font-size: 0.6rem;
+      padding: 3px 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-dim);
+    }
+
+    .export-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .export-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .export-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .export-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .export-card .name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    
+    .export-card .desc {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    
+    .footer-message {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .footer-signature {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin: 1.5rem 0;
+      opacity: 0.8;
+    }
+    
+    .footer-hint {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      opacity: 0.5;
+    }
+
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      text-align: center;
+    }
+    
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .stats-bar { justify-content: center; }
+      .toolbar { flex-direction: column; }
+      .search-box { width: 100%; }
+      .filter-group { justify-content: center; flex-wrap: wrap; }
+      .board { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+      .export-options { grid-template-columns: 1fr; }
+    }
+
+    .hidden { display: none !important; }
+    input[type="file"] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div>
+          <div class="logo-symbol">NEXUS</div>
+          <div class="logo-subtitle">Brussels Transit Territory Game</div>
+        </div>
+      </div>
+      
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-value" id="totalStops">—</span>
+          <span class="stat-label">Arrêts</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="claimedStops">0</span>
+          <span class="stat-label">Claimed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="mysteryStops">?</span>
+          <span class="stat-label">Mysteries</span>
+        </div>
+      </div>
+      
+      <div class="signature">— S.</div>
+    </div>
+  </header>
+  
+  <div class="cryptic-banner">
+    <p class="cryptic-text">
+      "Celui qui contrôle les <span class="highlight">nœuds</span> contrôle le <span class="highlight">réseau</span>. 
+      Mais qui contrôle le <span class="highlight">contrôleur</span>?"
+    </p>
+  </div>
+  
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Rechercher un arrêt, une ligne..." autocomplete="off">
+    </div>
+    
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn metro" data-filter="metro">Métro</button>
+      <button class="filter-btn tram" data-filter="tram">Tram</button>
+      <button class="filter-btn bus" data-filter="bus">Bus</button>
+      <button class="filter-btn noctis" data-filter="noctis">Noctis</button>
+      <button class="filter-btn tec" data-filter="tec">TEC</button>
+    </div>
+    
+    <div class="filter-group">
+      <button class="filter-btn" data-filter="claimed">Claimed</button>
+      <button class="filter-btn" data-filter="mystery">Mysteries</button>
+    </div>
+    
+    <button class="filter-btn" onclick="openImportModal()">📥 Import</button>
+    <button class="filter-btn" onclick="openExportModal()">📤 Export</button>
+  </div>
+  
+  <main>
+    <div class="board" id="board">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Initialisation du réseau...</div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="footer-grid">
+      <p class="footer-message">
+        Ce jeu n'a pas de règles. Le but est de trouver le créateur.<br>
+        Mais le créateur est protégé par le RGPD.<br>
+        Chaque arrêt réclamé laisse une trace. Chaque trace raconte une histoire.
+      </p>
+      <div class="footer-signature">— S.</div>
+      <p class="footer-hint">/* Cherchez entre les lignes. Les données ne mentent pas. */</p>
+    </div>
+  </footer>
+  
+  <!-- Stop Detail Modal -->
+  <div class="modal-overlay" id="stopModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="modalTitle">—</h2>
+          <p class="modal-subtitle" id="modalSubtitle">ID: —</p>
+        </div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>Informations</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Latitude</label>
+              <div class="value" id="modalLat">—</div>
+            </div>
+            <div class="info-item">
+              <label>Longitude</label>
+              <div class="value" id="modalLon">—</div>
+            </div>
+            <div class="info-item">
+              <label>Source</label>
+              <div class="value" id="modalSource">—</div>
+            </div>
+            <div class="info-item">
+              <label>Type</label>
+              <div class="value" id="modalType">—</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Lignes desservies</h3>
+          <div class="lines-display" id="modalLines">—</div>
+        </div>
+        
+        <div class="modal-section">
+          <h3>Réclamer ce spot</h3>
+          <div class="claim-form">
+            <div class="form-group">
+              <label>Votre pseudonyme</label>
+              <input type="text" id="claimName" placeholder="Agent_███" maxlength="30">
+            </div>
+            <div class="form-group">
+              <label>Message cryptique (optionnel)</label>
+              <textarea id="claimMessage" placeholder="Laissez un indice pour les autres chasseurs..."></textarea>
+            </div>
+            <button class="btn-primary" onclick="claimSpot()">⚡ Claim This Territory</button>
+            <button class="btn-secondary" onclick="publishToGithub()">↗ Publier sur GitHub</button>
+            <button class="btn-secondary" onclick="deployToVercel()">▲ Déployer sur Vercel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Import Modal -->
+  <div class="modal-overlay" id="importModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Importer des données</h2>
+          <p class="modal-subtitle">STIB, TEC, GTFS...</p>
+        </div>
+        <button class="modal-close" onclick="closeImportModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="import-zone" id="importZone" onclick="document.getElementById('fileInput').click()">
+          <h4>📁 Glissez vos fichiers ici</h4>
+          <p>ou cliquez pour sélectionner</p>
+          <div class="import-formats">
+            <span class="format-tag">stops.txt (GTFS)</span>
+            <span class="format-tag">stops.json</span>
+            <span class="format-tag">arrets.csv (TEC)</span>
+          </div>
+        </div>
+        <input type="file" id="fileInput" accept=".txt,.json,.csv" onchange="handleFileImport(event)">
+        
+        <div class="modal-section">
+          <h3>Formats supportés</h3>
+          <p style="font-size: 0.75rem; color: var(--text-dim); line-height: 1.6;">
+            <strong>GTFS stops.txt</strong>: Format standard STIB/De Lijn<br>
+            <strong>JSON</strong>: Export Nexus ou API STIB<br>
+            <strong>CSV TEC</strong>: Arrêts bus wallons avec coordonnées
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Export Modal -->
+  <div class="modal-overlay" id="exportModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Exporter vos territoires</h2>
+          <p class="modal-subtitle">Publiez votre progression</p>
+        </div>
+        <button class="modal-close" onclick="closeExportModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="export-options">
+          <div class="export-card" onclick="exportJSON()">
+            <div class="icon">{ }</div>
+            <div class="name">JSON</div>
+            <div class="desc">Données brutes</div>
+          </div>
+          <div class="export-card" onclick="exportMarkdown()">
+            <div class="icon">📝</div>
+            <div class="name">Markdown</div>
+            <div class="desc">Pour GitHub</div>
+          </div>
+          <div class="export-card" onclick="generateGithubPage()">
+            <div class="icon">🐙</div>
+            <div class="name">GitHub Pages</div>
+            <div class="desc">Site statique</div>
+          </div>
+          <div class="export-card" onclick="generateVercelConfig()">
+            <div class="icon">▲</div>
+            <div class="name">Vercel</div>
+            <div class="desc">Deploy config</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden ARG data -->
+  <div style="display:none" aria-hidden="true">
+    <!-- 
+      ███████╗ ██╗
+      ██╔════╝ ██║
+      ███████╗ ██║
+      ╚════██║ ╚═╝
+      ███████║ ██╗
+      ╚══════╝ ╚═╝
+      
+      Les coordonnées suivantes forment un message:
+      50.8467° N, 4.3499° E → Départ
+      Le réseau est un labyrinthe.
+      Chaque arrêt claimed révèle une lettre.
+      
+      Hint: RGPD Article 15 - Droit d'accès
+      
+      — S.
+    -->
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════
+    // REAL STIB STOPS DATA (from official GTFS)
+    // ═══════════════════════════════════════════════════════════════
+    const STIB_STOPS = [
+      {id:"0089",name:"MONTGOMERY",lat:50.838006,lon:4.40897,type:"metro",lines:["1","5"],source:"STIB"},
+      {id:"0470F",name:"SIMONIS",lat:50.863666,lon:4.329612,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0501",name:"DE BROUCKERE",lat:50.851494,lon:4.352876,type:"metro",lines:["1","5"],source:"STIB"},
+      {id:"0511",name:"ROGIER",lat:50.855635,lon:4.35804,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0521",name:"GARE DU NORD",lat:50.860134,lon:4.359946,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0601",name:"BOURSE",lat:50.847772,lon:4.348972,type:"tram",lines:["3","4"],source:"STIB"},
+      {id:"0611",name:"ANNEESSENS",lat:50.844184,lon:4.345254,type:"tram",lines:["3","4","51"],source:"STIB"},
+      {id:"0621",name:"LEMONNIER",lat:50.840084,lon:4.341039,type:"tram",lines:["3","4","51"],source:"STIB"},
+      {id:"0631",name:"GARE DU MIDI",lat:50.836497,lon:4.337946,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0703",name:"PORTE DE HAL",lat:50.832547,lon:4.342972,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0704",name:"PARVIS ST-GILLES",lat:50.829721,lon:4.346537,type:"tram",lines:["3","4","51"],source:"STIB"},
+      {id:"0705",name:"HORTA",lat:50.825702,lon:4.34549,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0706",name:"ALBERT",lat:50.82109,lon:4.343888,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"0811",name:"GEORGES HENRI",lat:50.843453,lon:4.405598,type:"tram",lines:["7","25"],source:"STIB"},
+      {id:"0821",name:"DIAMANT",lat:50.848931,lon:4.402428,type:"tram",lines:["7","25"],source:"STIB"},
+      {id:"0901",name:"BOILEAU",lat:50.832955,lon:4.405187,type:"tram",lines:["8"],source:"STIB"},
+      {id:"1000",name:"GARE CENTRALE",lat:50.8451,lon:4.359617,type:"metro",lines:["1","5"],source:"STIB"},
+      {id:"1006",name:"POGGE",lat:50.866609,lon:4.375391,type:"bus",lines:["29","63"],source:"STIB"},
+      {id:"1010",name:"LE ROUX",lat:50.878265,lon:4.321409,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1013",name:"VANDERSTICHELEN",lat:50.866192,lon:4.338672,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1014F",name:"MIROIR",lat:50.870847,lon:4.324577,type:"bus",lines:["53","87"],source:"STIB"},
+      {id:"1015",name:"BERVOETS",lat:50.816648,lon:4.319873,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1018",name:"BON AIR",lat:50.835978,lon:4.274419,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1019",name:"PICARD",lat:50.864062,lon:4.344119,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1021",name:"BELGICA",lat:50.867597,lon:4.336128,type:"metro",lines:["6"],source:"STIB"},
+      {id:"1024B",name:"WTC",lat:50.861176,lon:4.355358,type:"bus",lines:["12","14"],source:"STIB"},
+      {id:"1035",name:"GARE DE JETTE",lat:50.880181,lon:4.330411,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1037",name:"HOP. MILITAIRE",lat:50.907736,lon:4.389004,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1040",name:"MERCATOR",lat:50.908333,lon:4.39609,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1042",name:"ICHEC",lat:50.838265,lon:4.408091,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1043",name:"HOF TER MUSSCHEN",lat:50.854208,lon:4.447844,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1044",name:"SIMONE VEIL",lat:50.905522,lon:4.403494,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1046G",name:"LEGRAND",lat:50.816346,lon:4.371817,type:"tram",lines:["92","97"],source:"STIB"},
+      {id:"1053",name:"MARLY",lat:50.898577,lon:4.402396,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1054",name:"NELSON MANDELA",lat:50.899278,lon:4.399029,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1057",name:"PETER BENOIT",lat:50.895472,lon:4.388029,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1060",name:"HEEMBEEK",lat:50.887074,lon:4.377409,type:"bus",lines:["47","53"],source:"STIB"},
+      {id:"1063",name:"CESAR DE PAEPE",lat:50.842901,lon:4.350818,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1064",name:"GOFFIN",lat:50.866879,lon:4.310144,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1066",name:"EUGENE TOUSSAINT",lat:50.881187,lon:4.321846,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1068",name:"PRES COMMUNS",lat:50.889929,lon:4.381395,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1086",name:"PAUL DESCHANEL",lat:50.859427,lon:4.379125,type:"bus",lines:["29"],source:"STIB"},
+      {id:"1089",name:"PAVILLONS MEUDON",lat:50.893925,lon:4.397845,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1094",name:"VALIDA",lat:50.86631,lon:4.303465,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1095",name:"PLACE DE L'EGLISE",lat:50.861233,lon:4.292961,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1096",name:"BENES",lat:50.864112,lon:4.312275,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1097",name:"BASTOGNE",lat:50.861273,lon:4.315886,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1098",name:"SIPPELBERG",lat:50.861828,lon:4.322201,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1099",name:"PARC MONNET",lat:50.869995,lon:4.288174,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1102A",name:"SEPT ETOILES",lat:50.864585,lon:4.285551,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1103",name:"ANCIENNE BARRIERE",lat:50.885545,lon:4.316271,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1105",name:"COMHAIRE",lat:50.859962,lon:4.296378,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1110",name:"VAN HAELEN",lat:50.780214,lon:4.325869,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1111",name:"COLLEGE S.-COEUR",lat:50.866675,lon:4.314886,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1114B",name:"VANHUFFEL",lat:50.860432,lon:4.331643,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1115",name:"AUTRIQUE",lat:50.85877,lon:4.330078,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1116",name:"HUNDERENVELD",lat:50.866817,lon:4.281688,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1117",name:"DELACROIX",lat:50.845809,lon:4.323051,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1118B",name:"GENOT",lat:50.862575,lon:4.301247,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1119",name:"WINTEROY",lat:50.864477,lon:4.30662,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1121",name:"BLOKKEN",lat:50.921593,lon:4.428627,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1124",name:"TRONE",lat:50.841632,lon:4.364819,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1125",name:"HOP. SAINT-PIERRE",lat:50.8347,lon:4.346152,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1126",name:"JEU DE BALLE",lat:50.837424,lon:4.349035,type:"bus",lines:["27"],source:"STIB"},
+      {id:"1127",name:"CHAPELLE",lat:50.841246,lon:4.351814,type:"bus",lines:["27","48"],source:"STIB"},
+      {id:"1128",name:"PETIT SABLON",lat:50.839898,lon:4.355875,type:"bus",lines:["27","95"],source:"STIB"},
+      {id:"1131B",name:"LUXEMBOURG",lat:50.839745,lon:4.373679,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1132",name:"TREVES",lat:50.841004,lon:4.374318,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1133",name:"PARC LEOPOLD",lat:50.840341,lon:4.378663,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1134",name:"NERVIENS",lat:50.839287,lon:4.386635,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1135",name:"GAULOIS",lat:50.838062,lon:4.392801,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1136",name:"MERODE",lat:50.839216,lon:4.398528,type:"metro",lines:["1","5"],source:"STIB"},
+      {id:"1138",name:"ZEPHYR",lat:50.846783,lon:4.420899,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1140",name:"DEGROOFF",lat:50.843639,lon:4.411958,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1141",name:"MEUDON",lat:50.84508,lon:4.417254,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1145",name:"GARE DE L'OUEST",lat:50.848351,lon:4.322094,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1172",name:"LIBERTE",lat:50.862688,lon:4.326239,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1187",name:"ROYALE",lat:50.8413,lon:4.358156,type:"bus",lines:["27","38","71"],source:"STIB"},
+      {id:"1201",name:"MOORTEBEEK",lat:50.841799,lon:4.286876,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1202",name:"OSSEGHEM",lat:50.856387,lon:4.326529,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1203",name:"WESTLAND SHOPPING",lat:50.838025,lon:4.284196,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1204",name:"FRUITS",lat:50.837374,lon:4.290288,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1207",name:"PAULSEN",lat:50.843463,lon:4.300495,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1229",name:"UNION",lat:50.819628,lon:4.325398,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1231",name:"CHATAIGNES",lat:50.817222,lon:4.325196,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1237",name:"ELEPHANT",lat:50.851948,lon:4.33237,type:"bus",lines:["89"],source:"STIB"},
+      {id:"1239",name:"ZAMAN-FOREST NAT.",lat:50.814081,lon:4.324773,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1243",name:"NEPTUNIUM",lat:50.865284,lon:4.37756,type:"bus",lines:["29"],source:"STIB"},
+      {id:"1244",name:"GROENINGHE",lat:50.854077,lon:4.328448,type:"bus",lines:["89"],source:"STIB"},
+      {id:"1248",name:"SAINT-DENIS",lat:50.811385,lon:4.318647,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1249",name:"STADE",lat:50.893037,lon:4.332466,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1250",name:"HOUZEAU",lat:50.80305,lon:4.358807,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1252",name:"STOCKEL",lat:50.840858,lon:4.462754,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1273",name:"AMBIORIX",lat:50.846234,lon:4.38347,type:"bus",lines:["29","63"],source:"STIB"},
+      {id:"1278",name:"LA CHASSE",lat:50.829955,lon:4.390926,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1280B",name:"FLAGEY",lat:50.828384,lon:4.373165,type:"bus",lines:["38","59","60","71"],source:"STIB"},
+      {id:"1281",name:"SUZAN DANIEL",lat:50.863306,lon:4.349156,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1283B",name:"BIPLAN",lat:50.884092,lon:4.410163,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1303",name:"RIETHUISEN",lat:50.867019,lon:4.321136,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1306",name:"SCHWEITZER",lat:50.864418,lon:4.29709,type:"bus",lines:["84"],source:"STIB"},
+      {id:"1313",name:"BOSSAERT-BASILIQ.",lat:50.865077,lon:4.320101,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1314",name:"BESME",lat:50.863632,lon:4.324662,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1317",name:"SCHUMAN",lat:50.844329,lon:4.384186,type:"metro",lines:["1","5"],source:"STIB"},
+      {id:"1320",name:"ARIANE",lat:50.85644,lon:4.431044,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1328",name:"ARBRE BALLON",lat:50.892851,lon:4.312731,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1339",name:"KRAAINEM",lat:50.849022,lon:4.459021,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1348",name:"TOUR ET TAXIS",lat:50.864947,lon:4.350303,type:"bus",lines:["47"],source:"STIB"},
+      {id:"1355",name:"ROODEBEEK",lat:50.84747,lon:4.436562,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1358",name:"COTEAUX",lat:50.85969,lon:4.376229,type:"bus",lines:["29"],source:"STIB"},
+      {id:"1375",name:"GERGEL",lat:50.851218,lon:4.487768,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1376B",name:"GRAND SABLON",lat:50.841413,lon:4.353383,type:"bus",lines:["27","95"],source:"STIB"},
+      {id:"1377",name:"DEUTSCHE SCHULE",lat:50.852427,lon:4.491947,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1380",name:"LONG-CHENE",lat:50.853332,lon:4.496851,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1402B",name:"MICHEL-ANGE",lat:50.845205,lon:4.386602,type:"bus",lines:["21","79"],source:"STIB"},
+      {id:"1403",name:"JAMBLINNE DE MEUX",lat:50.847236,lon:4.393729,type:"bus",lines:["21","79"],source:"STIB"},
+      {id:"1404",name:"VICTOR HUGO",lat:50.847707,lon:4.397407,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1406",name:"VERGOTE",lat:50.845754,lon:4.403994,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1408",name:"MONTALD",lat:50.843986,lon:4.421288,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1410",name:"MELARD",lat:50.842013,lon:4.428398,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1411",name:"MAX WALLER",lat:50.805602,lon:4.313003,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1412",name:"VOOT",lat:50.841014,lon:4.434987,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1415",name:"STADE FALLON",lat:50.841169,lon:4.443304,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1419",name:"GUEUX",lat:50.847115,lon:4.391358,type:"bus",lines:["21"],source:"STIB"},
+      {id:"1421",name:"SLEGERS",lat:50.841465,lon:4.432368,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1422",name:"DEPORTES",lat:50.839795,lon:4.437871,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1423",name:"PARC MALOU",lat:50.840299,lon:4.440293,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1442",name:"NEERSTALLE",lat:50.801301,lon:4.317317,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1444",name:"FOREST CENTRE",lat:50.812173,lon:4.315949,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1447",name:"VICTOR ALLARD",lat:50.800989,lon:4.329699,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1448",name:"VICTOR GAMBIER",lat:50.798952,lon:4.333472,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1452",name:"CARREFOUR STALLE",lat:50.795638,lon:4.321455,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1453",name:"CALYPSO 2000",lat:50.803007,lon:4.409778,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1457",name:"WAGON",lat:50.797046,lon:4.328719,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1466",name:"HOP. DES ENFANTS",lat:50.88792,lon:4.327875,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1468",name:"HELDENPLEIN",lat:50.92666,lon:4.424904,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1470",name:"KASSEI",lat:50.923006,lon:4.415323,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1472",name:"FORESTERIE",lat:50.786148,lon:4.42484,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1476",name:"FROISSART",lat:50.8405,lon:4.381885,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1477B",name:"CERIA",lat:50.816266,lon:4.290209,type:"metro",lines:["5"],source:"STIB"},
+      {id:"1478",name:"CAMPUS CERIA",lat:50.815856,lon:4.29502,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1479",name:"COLOMBOPHILES",lat:50.818644,lon:4.298266,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1480",name:"WAXWEILER",lat:50.823075,lon:4.296755,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1481",name:"ENSOR",lat:50.920629,lon:4.40563,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1482",name:"RENE HENRY",lat:50.836154,lon:4.295301,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1484",name:"POMMIER",lat:50.835155,lon:4.280397,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1490",name:"VAN BEETHOVEN",lat:50.828854,lon:4.293893,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1491",name:"JOZEF BAUS",lat:50.839511,lon:4.494793,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1493",name:"WAUTERS",lat:50.818515,lon:4.294711,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1497B",name:"TOULOUSE",lat:50.843138,lon:4.375982,type:"bus",lines:["21","27"],source:"STIB"},
+      {id:"1498",name:"HUIT HEURES",lat:50.820497,lon:4.299327,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1500",name:"MUSEE DU TRAM",lat:50.832932,lon:4.432063,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1507",name:"HELMET",lat:50.874534,lon:4.386495,type:"tram",lines:["55"],source:"STIB"},
+      {id:"1508",name:"MADOU",lat:50.849102,lon:4.369937,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1509",name:"SAINT-JOSSE",lat:50.849751,lon:4.374333,type:"bus",lines:["29","63"],source:"STIB"},
+      {id:"1510",name:"GUTENBERG",lat:50.849039,lon:4.377279,type:"bus",lines:["29","63"],source:"STIB"},
+      {id:"1512",name:"VINCOTTE",lat:50.85162,lon:4.384813,type:"bus",lines:["29"],source:"STIB"},
+      {id:"1513",name:"DAILLY",lat:50.852473,lon:4.388463,type:"tram",lines:["25","62"],source:"STIB"},
+      {id:"1514B",name:"RADIUM",lat:50.852399,lon:4.392447,type:"tram",lines:["25"],source:"STIB"},
+      {id:"1518",name:"LEVIE",lat:50.847919,lon:4.407745,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1519",name:"MAI",lat:50.848322,lon:4.413496,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1520",name:"HEYDENBERG",lat:50.848617,lon:4.417628,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1521",name:"SPEECKAERT",lat:50.848436,lon:4.420326,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1522",name:"VERHEYLEWEGHEN",lat:50.848165,lon:4.425145,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1525",name:"PEUPLIERS",lat:50.852894,lon:4.437955,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1526",name:"MARCEL THIRY",lat:50.855664,lon:4.440581,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1527",name:"JESPERS",lat:50.857103,lon:4.441439,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1528",name:"HOF TEN BERG",lat:50.858827,lon:4.43867,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1529",name:"HYMANS",lat:50.846731,lon:4.431215,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1533",name:"GULLEDELLE",lat:50.855498,lon:4.428174,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1534",name:"CICERON",lat:50.860617,lon:4.420453,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1535",name:"PADUWA",lat:50.859649,lon:4.414209,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1538B",name:"DE LOMBAERDE",lat:50.859742,lon:4.416887,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1540",name:"CHARMILLE",lat:50.850757,lon:4.434245,type:"bus",lines:["28"],source:"STIB"},
+      {id:"1544",name:"LEOPOLD II",lat:50.836077,lon:4.412949,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1545",name:"JULES CESAR",lat:50.834547,lon:4.420311,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1546",name:"CHIEN VERT",lat:50.834697,lon:4.426884,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1547",name:"BRESIL",lat:50.80283,lon:4.390317,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1568",name:"CLOVIS",lat:50.849894,lon:4.381107,type:"bus",lines:["29"],source:"STIB"},
+      {id:"1576",name:"PRINC. ELISABETH",lat:50.872992,lon:4.376771,type:"tram",lines:["55"],source:"STIB"},
+      {id:"1581",name:"JACQUES BREL",lat:50.84128,lon:4.315397,type:"metro",lines:["5"],source:"STIB"},
+      {id:"1584",name:"KLAKKEDELLE",lat:50.846716,lon:4.442702,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1585",name:"VANDERVELDE",lat:50.847414,lon:4.447702,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1586",name:"ALMA",lat:50.847868,lon:4.45584,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1592",name:"GILLON",lat:50.855891,lon:4.36719,type:"bus",lines:["65","66"],source:"STIB"},
+      {id:"1594",name:"GLOBE",lat:50.800674,lon:4.337416,type:"bus",lines:["48","60"],source:"STIB"},
+      {id:"1597B",name:"CHIREC",lat:50.817082,lon:4.400814,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1599",name:"DIELEGHEM",lat:50.888054,lon:4.319338,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1600",name:"TRIANGLE",lat:50.850022,lon:4.334696,type:"bus",lines:["89"],source:"STIB"},
+      {id:"1601",name:"REINE ASTRID",lat:50.848082,lon:4.467057,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1602",name:"VIOLETTES",lat:50.84073,lon:4.484638,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1604",name:"UCCLE CALEVOET",lat:50.791986,lon:4.332798,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1605",name:"LOUIS MARCELIS",lat:50.846945,lon:4.483422,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1607",name:"ALPHONSE XIII",lat:50.79104,lon:4.36895,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1616",name:"VOISINS",lat:50.852094,lon:4.481924,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1617",name:"PLAINE DES SPORTS",lat:50.843555,lon:4.487245,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1618",name:"SAINT-NICOLAS",lat:50.814467,lon:4.288169,type:"bus",lines:["46"],source:"STIB"},
+      {id:"1620B",name:"HERNALSTEEN",lat:50.840141,lon:4.489543,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1623",name:"GARE DE SAINT-JOB",lat:50.79428,lon:4.362192,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1625",name:"EGLISE WEZEMBEEK",lat:50.852723,lon:4.482954,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1629",name:"OPPEM",lat:50.835745,lon:4.495689,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1630",name:"DIRECTOIRE",lat:50.78918,lon:4.359647,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1632",name:"COLLEGE ST-PIERRE",lat:50.806433,lon:4.34079,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1633",name:"PEYO",lat:50.81049,lon:4.340145,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1636",name:"COGHEN",lat:50.814107,lon:4.339161,type:"tram",lines:["4","92"],source:"STIB"},
+      {id:"1643",name:"HEROS",lat:50.80353,lon:4.34164,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1652",name:"PLACE SAINT-JOB",lat:50.793728,lon:4.363929,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1654",name:"PORTE DE NAMUR",lat:50.839217,lon:4.363777,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1665",name:"HERMES",lat:50.828595,lon:4.316431,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1674F",name:"BRUXELLOIS",lat:50.873581,lon:4.322738,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1676F",name:"SQ. DU CENTENAIRE",lat:50.875999,lon:4.318701,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1678F",name:"EXPOSITION",lat:50.879669,lon:4.315958,type:"bus",lines:["53","84"],source:"STIB"},
+      {id:"1682F",name:"UZ BRUSSEL",lat:50.88634,lon:4.311669,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1684F",name:"UZ-PEDIATRIE",lat:50.889498,lon:4.309422,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1689F",name:"DE HEYN",lat:50.893478,lon:4.319755,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1690F",name:"PALFIJN",lat:50.89407,lon:4.325231,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1695F",name:"ROI BAUDOUIN",lat:50.89631,lon:4.329465,type:"metro",lines:["6"],source:"STIB"},
+      {id:"1702",name:"DEFACQZ",lat:50.829003,lon:4.362507,type:"bus",lines:["54"],source:"STIB"},
+      {id:"1706",name:"IDALIE",lat:50.83592,lon:4.372487,type:"bus",lines:["38","71"],source:"STIB"},
+      {id:"1708",name:"COMBAZ",lat:50.825241,lon:4.338686,type:"tram",lines:["51"],source:"STIB"},
+      {id:"1711",name:"BONAVENTURE",lat:50.885563,lon:4.322378,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1712",name:"FETIS",lat:50.833227,lon:4.385801,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1714",name:"BUEDTS",lat:50.828191,lon:4.393776,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1715",name:"ARSENAL",lat:50.826393,lon:4.396727,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1716",name:"STRATEGIE",lat:50.824135,lon:4.400458,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1717",name:"ROCHEFORT",lat:50.824316,lon:4.335555,type:"tram",lines:["51"],source:"STIB"},
+      {id:"1718B",name:"EGLISE ST-JULIEN",lat:50.820617,lon:4.409552,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1719",name:"VANDROMME",lat:50.819093,lon:4.414807,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1720B",name:"VALDUC",lat:50.817395,lon:4.421282,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1723B",name:"SCHOONEJANS",lat:50.811714,lon:4.432757,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1724",name:"SACRE-COEUR",lat:50.809887,lon:4.436147,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1725",name:"TRANSVAAL",lat:50.808245,lon:4.435562,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1726",name:"LOUISE",lat:50.835924,lon:4.356089,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1727",name:"UZ-VUB",lat:50.886007,lon:4.308504,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1728",name:"MUSEUM",lat:50.835745,lon:4.37717,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1729",name:"SCIENCE",lat:50.839842,lon:4.369371,type:"bus",lines:["38","54","71"],source:"STIB"},
+      {id:"1731",name:"AUDERGHEM-SHOP.",lat:50.816646,lon:4.425399,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1733",name:"ETANGS",lat:50.835493,lon:4.380861,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1736",name:"DE WANSIJN",lat:50.792251,lon:4.359013,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1737",name:"DROSSART",lat:50.79192,lon:4.351576,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1740",name:"WIELS",lat:50.824145,lon:4.325624,type:"bus",lines:["50"],source:"STIB"},
+      {id:"1754",name:"HERRMANN-DEBROUX",lat:50.812487,lon:4.428388,type:"metro",lines:["5"],source:"STIB"},
+      {id:"1766",name:"FIRMIN LECHARLIER",lat:50.871086,lon:4.330171,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1767",name:"LEOPOLD I",lat:50.872802,lon:4.328702,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1781",name:"GRAND-PLACE",lat:50.845003,lon:4.351728,type:"bus",lines:["48","95"],source:"STIB"},
+      {id:"1788B",name:"GUILL. DE GREEF",lat:50.882563,lon:4.335713,type:"bus",lines:["53"],source:"STIB"},
+      {id:"1792",name:"MERCHTEM",lat:50.858268,lon:4.336469,type:"bus",lines:["49"],source:"STIB"},
+      {id:"1793",name:"ETANGS NOIRS",lat:50.857124,lon:4.33165,type:"metro",lines:["2","6"],source:"STIB"},
+      {id:"1803B",name:"LEMAN",lat:50.837065,lon:4.38664,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1804",name:"LOUIS HAP",lat:50.83435,lon:4.388044,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1806",name:"ONZE NOVEMBRE",lat:50.832789,lon:4.395101,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1807",name:"ROI VAINQUEUR",lat:50.83226,lon:4.398901,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1810",name:"BARON DE CASTRO",lat:50.828744,lon:4.407946,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1811",name:"DREVE DE NIVELLES",lat:50.826613,lon:4.411843,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1812",name:"MOUETTES",lat:50.824949,lon:4.414481,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1813",name:"CHANT D'OISEAU",lat:50.827185,lon:4.41822,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1814B",name:"OCEAN ATLANTIQUE",lat:50.830501,lon:4.418486,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1815",name:"MOSTINCK",lat:50.833278,lon:4.423319,type:"bus",lines:["34"],source:"STIB"},
+      {id:"1817",name:"GARE DE LINKEBEEK",lat:50.774289,lon:4.338893,type:"bus",lines:["43"],source:"STIB"},
+      {id:"1818",name:"KELLE",lat:50.831355,lon:4.438019,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1819",name:"MERTENS",lat:50.831502,lon:4.443557,type:"tram",lines:["44"],source:"STIB"},
+      {id:"1821",name:"RUE AU BOIS",lat:50.831349,lon:4.452485,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1822",name:"MANOIR D'ANJOU",lat:50.828395,lon:4.456118,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1823",name:"VANDER MEERSCHEN",lat:50.825859,lon:4.457146,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1825",name:"SAINTE-ALIX",lat:50.828376,lon:4.463049,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1826",name:"PADDOCK",lat:50.832598,lon:4.463862,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1828",name:"GERSIS",lat:50.841322,lon:4.459728,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1829",name:"VAL DES SEIGNEURS",lat:50.842242,lon:4.456536,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1830",name:"KONKEL",lat:50.842081,lon:4.450887,type:"metro",lines:["1"],source:"STIB"},
+      {id:"1831",name:"DON BOSCO",lat:50.841399,lon:4.448927,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1834",name:"MAREYDE",lat:50.832914,lon:4.446811,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1835",name:"BOULEAUX",lat:50.836926,lon:4.467474,type:"bus",lines:["36"],source:"STIB"},
+      {id:"1848",name:"MA CAMPAGNE",lat:50.823825,lon:4.353143,type:"tram",lines:["51"],source:"STIB"},
+      {id:"1880",name:"VARIA",lat:50.834405,lon:4.37815,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1881",name:"BLYCKAERTS",lat:50.833022,lon:4.375424,type:"bus",lines:["38","71"],source:"STIB"},
+      {id:"1890",name:"ANATOLE FRANCE",lat:50.876773,lon:4.385929,type:"tram",lines:["55"],source:"STIB"},
+      {id:"1893",name:"BORDET STATION",lat:50.877616,lon:4.409348,type:"bus",lines:["45"],source:"STIB"},
+      {id:"1903",name:"BIARRITZ",lat:50.825678,lon:4.369486,type:"bus",lines:["38","71"],source:"STIB"},
+      {id:"1910",name:"MALIBRAN",lat:50.830855,lon:4.373536,type:"bus",lines:["38","59","71"],source:"STIB"},
+      {id:"1912",name:"VLEURGAT",lat:50.823557,lon:4.367669,type:"tram",lines:["81"],source:"STIB"},
+      {id:"1913",name:"VAN EYCK",lat:50.819647,lon:4.366233,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1914",name:"PATTON",lat:50.817394,lon:4.366481,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1915",name:"BASCULE",lat:50.815338,lon:4.367106,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1916",name:"LONGCHAMP",lat:50.812034,lon:4.367336,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1917",name:"GOSSART",lat:50.811096,lon:4.362452,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1918",name:"MONTJOIE",lat:50.809738,lon:4.365162,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1919",name:"RENE GOBERT",lat:50.806357,lon:4.366364,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1920",name:"FLORIDE",lat:50.803796,lon:4.361786,type:"tram",lines:["92"],source:"STIB"},
+      {id:"1926B",name:"RITTWEGER",lat:50.798185,lon:4.336239,type:"bus",lines:["48"],source:"STIB"},
+      {id:"1929",name:"ENGELAND",lat:50.789477,lon:4.333814,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1930",name:"VEEWEYDE",lat:50.827432,lon:4.301067,type:"metro",lines:["5"],source:"STIB"},
+      {id:"1931",name:"BIGARREAUX",lat:50.784248,lon:4.332705,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1932",name:"GRIOTTES",lat:50.781047,lon:4.332395,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1933B",name:"MOENSBERG GARE",lat:50.778935,lon:4.332425,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1935",name:"BRAVES",lat:50.773299,lon:4.336027,type:"bus",lines:["43"],source:"STIB"},
+      {id:"1937",name:"BOURDON",lat:50.78698,lon:4.330689,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1938",name:"HOMBORCH",lat:50.77961,lon:4.338295,type:"bus",lines:["43"],source:"STIB"},
+      {id:"1939",name:"VIEUX CHEMIN",lat:50.776292,lon:4.33478,type:"tram",lines:["4"],source:"STIB"},
+      {id:"1942",name:"STATUAIRES",lat:50.803921,lon:4.349047,type:"bus",lines:["60"],source:"STIB"},
+      {id:"1944",name:"HOSPICES",lat:50.776778,lon:4.339069,type:"bus",lines:["43"],source:"STIB"},
+      {id:"1953",name:"CABRIS",lat:50.776396,lon:4.342327,type:"bus",lines:["43"],source:"STIB"},
+      {id:"8004",name:"STUYVENBERGH",lat:50.885588,lon:4.342629,type:"metro",lines:["6"],source:"STIB"},
+      {id:"8013",name:"HOUBA-BRUGMANN",lat:50.889549,lon:4.337629,type:"metro",lines:["6"],source:"STIB"},
+      {id:"8023",name:"HEYSEL",lat:50.897076,lon:4.335408,type:"metro",lines:["6"],source:"STIB"},
+      {id:"8033",name:"ROI BAUDOUIN",lat:50.896371,lon:4.328009,type:"metro",lines:["6"],source:"STIB"},
+    ];
+    
+    // ═══════════════════════════════════════════════════════════════
+    // STATE
+    // ═══════════════════════════════════════════════════════════════
+    let allStops = [];
+    let claimedSpots = JSON.parse(localStorage.getItem('nexus_claimed') || '{}');
+    let currentStop = null;
+    let mysterySpots = [];
+    
+    // ═══════════════════════════════════════════════════════════════
+    // INITIALIZATION
+    // ═══════════════════════════════════════════════════════════════
+    function initMysterySpots() {
+      const seed = new Date().getDate();
+      mysterySpots = [];
+      for (let i = 0; i < 7; i++) {
+        mysterySpots.push((seed * 13 + i * 37) % allStops.length);
+      }
+    }
+    
+    async function fetchStops() {
+      // Use embedded STIB data
+      return STIB_STOPS.map(s => ({...s, lines: s.lines || []}));
+    }
+    
+    function renderBoard(stops) {
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      
+      stops.forEach((stop, idx) => {
+        const card = document.createElement('div');
+        card.className = 'stop-card';
+        card.dataset.id = stop.id;
+        card.dataset.name = stop.name;
+        card.dataset.type = stop.type;
+        card.dataset.source = stop.source || 'STIB';
+        card.dataset.lines = (stop.lines || []).join(',');
+        
+        if (claimedSpots[stop.id]) card.classList.add('claimed');
+        if (mysterySpots.includes(idx)) card.classList.add('mystery');
+        
+        const linesHTML = (stop.lines || []).slice(0, 4).map(line => {
+          const type = getLineType(line);
+          return `<span class="line-badge ${type}">${line}</span>`;
+        }).join('');
+        
+        card.innerHTML = `
+          <span class="stop-id">#${stop.id}</span>
+          <span class="stop-name">${stop.name}</span>
+          <div class="stop-lines">${linesHTML}</div>
+          ${claimedSpots[stop.id] ? `<span class="claimed-badge">${claimedSpots[stop.id].name.slice(0,8)}</span>` : ''}
+          <span class="source-badge">${stop.source || 'STIB'}</span>
+        `;
+        
+        card.addEventListener('click', () => openStopModal(stop));
+        board.appendChild(card);
+      });
+      
+      updateStats();
+    }
+    
+    function getLineType(line) {
+      if (!line) return 'bus';
+      const l = line.toString();
+      if (['1','2','5','6'].includes(l)) return 'metro';
+      if (l.startsWith('N')) return 'noctis';
+      const num = parseInt(l);
+      if ([3,4,7,8,9,19,25,39,44,51,55,62,81,82,92,93,97].includes(num)) return 'tram';
+      return 'bus';
+    }
+    
+    function updateStats() {
+      document.getElementById('totalStops').textContent = allStops.length;
+      document.getElementById('claimedStops').textContent = Object.keys(claimedSpots).length;
+      document.getElementById('mysteryStops').textContent = mysterySpots.length;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // MODAL FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════
+    function openStopModal(stop) {
+      currentStop = stop;
+      document.getElementById('modalTitle').textContent = stop.name;
+      document.getElementById('modalSubtitle').textContent = `ID: ${stop.id}`;
+      document.getElementById('modalLat').textContent = stop.lat?.toFixed(6) || '—';
+      document.getElementById('modalLon').textContent = stop.lon?.toFixed(6) || '—';
+      document.getElementById('modalSource').textContent = stop.source || 'STIB';
+      document.getElementById('modalType').textContent = (stop.type || 'bus').toUpperCase();
+      
+      const linesHTML = (stop.lines || []).map(line => {
+        const type = getLineType(line);
+        return `<span class="line-badge ${type}">${line}</span>`;
+      }).join('') || '—';
+      document.getElementById('modalLines').innerHTML = linesHTML;
+      
+      if (claimedSpots[stop.id]) {
+        document.getElementById('claimName').value = claimedSpots[stop.id].name;
+        document.getElementById('claimMessage').value = claimedSpots[stop.id].message || '';
+      } else {
+        document.getElementById('claimName').value = '';
+        document.getElementById('claimMessage').value = '';
+      }
+      
+      document.getElementById('stopModal').classList.add('open');
+    }
+    
+    function closeModal() {
+      document.getElementById('stopModal').classList.remove('open');
+      currentStop = null;
+    }
+    
+    function openImportModal() {
+      document.getElementById('importModal').classList.add('open');
+    }
+    
+    function closeImportModal() {
+      document.getElementById('importModal').classList.remove('open');
+    }
+    
+    function openExportModal() {
+      document.getElementById('exportModal').classList.add('open');
+    }
+    
+    function closeExportModal() {
+      document.getElementById('exportModal').classList.remove('open');
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // IMPORT FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════
+    function handleFileImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target.result;
+        const filename = file.name.toLowerCase();
+        
+        try {
+          let imported = [];
+          
+          if (filename.endsWith('.json')) {
+            imported = parseJSON(content);
+          } else if (filename.endsWith('.csv')) {
+            imported = parseCSV(content);
+          } else if (filename.endsWith('.txt')) {
+            imported = parseGTFS(content);
+          }
+          
+          if (imported.length > 0) {
+            allStops = [...allStops, ...imported];
+            initMysterySpots();
+            renderBoard(allStops);
+            closeImportModal();
+            showNotification(`${imported.length} arrêts importés!`);
+          }
+        } catch (err) {
+          console.error(err);
+          showNotification('Erreur d\'import: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+    
+    function parseJSON(content) {
+      const data = JSON.parse(content);
+      const arr = Array.isArray(data) ? data : Object.values(data);
+      
+      return arr.map((item, idx) => {
+        // Handle different JSON formats
+        if (item.coordinates) {
+          // TEC format
+          return {
+            id: `TEC_${idx}`,
+            name: item.stop_name || item.name,
+            lat: item.coordinates.lat,
+            lon: item.coordinates.lon,
+            type: 'tec',
+            lines: (item.numero || '').split(';').filter(Boolean),
+            source: 'TEC',
+            commune: item.commune
+          };
+        } else if (item.stop) {
+          // Nexus export format
+          return {
+            id: item.stop.id,
+            name: item.stop.name,
+            lat: item.stop.lat,
+            lon: item.stop.lon,
+            type: 'bus',
+            lines: item.stop.lines || [],
+            source: 'Import'
+          };
+        } else {
+          // Generic format
+          return {
+            id: item.id || item.stop_id || `IMP_${idx}`,
+            name: item.name || item.stop_name,
+            lat: parseFloat(item.lat || item.stop_lat),
+            lon: parseFloat(item.lon || item.stop_lon),
+            type: item.type || 'bus',
+            lines: item.lines || [],
+            source: item.source || 'Import'
+          };
+        }
+      }).filter(s => s.name && s.lat && s.lon);
+    }
+    
+    function parseCSV(content) {
+      const lines = content.trim().split('\n');
+      const header = lines[0].split(';');
+      const stops = [];
+      
+      for (let i = 1; i < lines.length && i < 500; i++) {
+        const values = lines[i].split(';');
+        const row = {};
+        header.forEach((h, idx) => row[h.trim()] = (values[idx] || '').trim());
+        
+        // Parse coordinates (format: "lat, lon")
+        const coords = (row.coordinates || '').split(',').map(c => parseFloat(c.trim()));
+        
+        if (row.stop_name && coords.length === 2) {
+          stops.push({
+            id: `TEC_${i}`,
+            name: row.stop_name,
+            lat: coords[0],
+            lon: coords[1],
+            type: 'tec',
+            lines: (row['numéro'] || row.numero || '').split(';').filter(Boolean),
+            source: 'TEC',
+            commune: row.commune
+          });
+        }
+      }
+      return stops;
+    }
+    
+    function parseGTFS(content) {
+      const lines = content.trim().split('\n');
+      const header = lines[0].split(',');
+      const stops = [];
+      const seen = new Set();
+      
+      for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',');
+        const row = {};
+        header.forEach((h, idx) => row[h.trim()] = (values[idx] || '').replace(/"/g, '').trim());
+        
+        const name = row.stop_name;
+        const locType = row.location_type;
+        
+        // Skip platforms (type 2) and already seen names
+        if (!name || locType === '2' || seen.has(name)) continue;
+        
+        seen.add(name);
+        stops.push({
+          id: row.stop_id,
+          name: name,
+          lat: parseFloat(row.stop_lat),
+          lon: parseFloat(row.stop_lon),
+          type: locType === '1' ? 'metro' : 'bus',
+          lines: [],
+          source: 'GTFS'
+        });
+      }
+      return stops;
+    }
+    
+    // Drag and drop
+    const importZone = document.getElementById('importZone');
+    importZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      importZone.classList.add('dragover');
+    });
+    importZone.addEventListener('dragleave', () => {
+      importZone.classList.remove('dragover');
+    });
+    importZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      importZone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        document.getElementById('fileInput').files = e.dataTransfer.files;
+        handleFileImport({target: {files: e.dataTransfer.files}});
+      }
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // CLAIM FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════
+    function claimSpot() {
+      if (!currentStop) return;
+      
+      const name = document.getElementById('claimName').value.trim() || 'Anonymous';
+      const message = document.getElementById('claimMessage').value.trim();
+      
+      claimedSpots[currentStop.id] = {
+        name: name,
+        message: message,
+        timestamp: new Date().toISOString(),
+        stop: {
+          id: currentStop.id,
+          name: currentStop.name,
+          lat: currentStop.lat,
+          lon: currentStop.lon,
+          lines: currentStop.lines
+        }
+      };
+      
+      localStorage.setItem('nexus_claimed', JSON.stringify(claimedSpots));
+      renderBoard(allStops);
+      closeModal();
+      showNotification('Territory claimed! 🎯');
+    }
+    
+    function publishToGithub() {
+      if (!currentStop) return;
+      
+      const claim = claimedSpots[currentStop.id] || {
+        name: document.getElementById('claimName').value.trim() || 'Anonymous',
+        message: document.getElementById('claimMessage').value.trim()
+      };
+      
+      const content = `# 🎯 NEXUS.BXL — Claim
+
+## ${currentStop.name}
+
+**Claimed by:** ${claim.name}  
+**Date:** ${new Date().toISOString()}
+
+### Coordinates
+- Latitude: ${currentStop.lat}
+- Longitude: ${currentStop.lon}
+
+### Lines
+${(currentStop.lines || []).map(l => `- ${l}`).join('\n') || '- N/A'}
+
+### Message
+> ${claim.message || '_No message left._'}
+
+---
+*Part of the NEXUS.BXL ARG. Find S.*
+`;
+      
+      const filename = `claims/${currentStop.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.md`;
+      const githubUrl = `https://github.com/new?filename=${encodeURIComponent(filename)}&value=${encodeURIComponent(content)}`;
+      window.open(githubUrl, '_blank');
+    }
+    
+    function deployToVercel() {
+      showNotification('Exportez d\'abord en HTML via Export > GitHub Pages!');
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // EXPORT FUNCTIONS
+    // ═══════════════════════════════════════════════════════════════
+    function exportJSON() {
+      const data = {
+        meta: { exported: new Date().toISOString(), game: 'NEXUS.BXL', signature: 'S.' },
+        claims: claimedSpots,
+        stops: allStops.slice(0, 50)
+      };
+      downloadFile(JSON.stringify(data, null, 2), 'nexus-data.json', 'application/json');
+    }
+    
+    function exportMarkdown() {
+      let md = `# 🎯 NEXUS.BXL — My Claims\n\n`;
+      md += `> Exported: ${new Date().toLocaleString()}\n\n`;
+      md += `## Statistics\n- Total Claims: ${Object.keys(claimedSpots).length}\n\n---\n\n`;
+      
+      Object.values(claimedSpots).forEach(claim => {
+        md += `### ${claim.stop.name}\n`;
+        md += `- **ID:** ${claim.stop.id}\n`;
+        md += `- **Claimed by:** ${claim.name}\n`;
+        md += `- **Lines:** ${(claim.stop.lines || []).join(', ') || 'N/A'}\n`;
+        if (claim.message) md += `- **Message:** "${claim.message}"\n`;
+        md += `\n`;
+      });
+      
+      md += `---\n\n*— S.*`;
+      downloadFile(md, 'nexus-claims.md', 'text/markdown');
+    }
+    
+    function generateGithubPage() {
+      const claims = Object.values(claimedSpots);
+      const html = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS.BXL — My Territory</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: monospace; background: #0a0a0c; color: #e0e0e8; min-height: 100vh; padding: 2rem; }
+    h1 { font-size: 2rem; background: linear-gradient(135deg, #00ff9d, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+    .card { background: #14141c; border: 1px solid rgba(0, 255, 157, 0.3); border-radius: 8px; padding: 1rem; }
+    .card h2 { font-size: 0.9rem; color: #00ff9d; }
+    .card p { font-size: 0.75rem; color: #6b6b7b; margin-top: 0.5rem; }
+    .signature { text-align: center; margin-top: 3rem; font-family: serif; font-style: italic; color: #ff006e; font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+  <h1>█▓▒░ NEXUS.BXL ░▒▓█</h1>
+  <div class="grid">
+    ${claims.map(c => `<div class="card"><h2>${c.stop.name}</h2><p>Claimed by: ${c.name}</p><p>Lines: ${(c.stop.lines || []).join(', ') || 'N/A'}</p>${c.message ? `<p>"${c.message}"</p>` : ''}</div>`).join('')}
+  </div>
+  <p class="signature">— S.</p>
+</body>
+</html>`;
+      downloadFile(html, 'index.html', 'text/html');
+      showNotification('index.html téléchargé! Uploadez sur GitHub Pages.');
+    }
+    
+    function generateVercelConfig() {
+      generateGithubPage();
+      setTimeout(() => {
+        const config = { version: 2, builds: [{ src: "index.html", use: "@vercel/static" }] };
+        downloadFile(JSON.stringify(config, null, 2), 'vercel.json', 'application/json');
+      }, 500);
+    }
+    
+    function downloadFile(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // FILTERS
+    // ═══════════════════════════════════════════════════════════════
+    function setupFilters() {
+      const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
+      const searchInput = document.getElementById('searchInput');
+      
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          
+          if (['all', 'metro', 'tram', 'bus', 'noctis', 'tec'].includes(filter)) {
+            document.querySelectorAll('.filter-btn[data-filter="all"], .filter-btn[data-filter="metro"], .filter-btn[data-filter="tram"], .filter-btn[data-filter="bus"], .filter-btn[data-filter="noctis"], .filter-btn[data-filter="tec"]').forEach(b => b.classList.remove('active'));
+          }
+          
+          btn.classList.toggle('active');
+          if (filter === 'all') {
+            filterBtns.forEach(b => { if (b.dataset.filter !== 'all') b.classList.remove('active'); });
+            btn.classList.add('active');
+          }
+          
+          applyFilters();
+        });
+      });
+      
+      searchInput.addEventListener('input', applyFilters);
+    }
+    
+    function applyFilters() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const activeFilters = Array.from(document.querySelectorAll('.filter-btn.active')).map(b => b.dataset.filter);
+      
+      document.querySelectorAll('.stop-card').forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const type = card.dataset.type;
+        const source = card.dataset.source.toLowerCase();
+        const lines = card.dataset.lines;
+        const id = card.dataset.id;
+        
+        let show = true;
+        
+        if (search && !name.includes(search) && !lines.includes(search) && !id.includes(search)) {
+          show = false;
+        }
+        
+        if (!activeFilters.includes('all')) {
+          if (activeFilters.some(f => ['metro', 'tram', 'bus', 'noctis', 'tec'].includes(f))) {
+            if (!activeFilters.includes(type) && !(activeFilters.includes('tec') && source === 'tec')) {
+              show = false;
+            }
+          }
+        }
+        
+        if (activeFilters.includes('claimed') && !claimedSpots[id]) show = false;
+        if (activeFilters.includes('mystery') && !card.classList.contains('mystery')) show = false;
+        
+        card.style.display = show ? '' : 'none';
+      });
+    }
+    
+    // ═══════════════════════════════════════════════════════════════
+    // UTILITIES
+    // ═══════════════════════════════════════════════════════════════
+    function showNotification(message) {
+      const notif = document.createElement('div');
+      notif.style.cssText = `
+        position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+        background: linear-gradient(135deg, #00ff9d, #00d4ff); color: #0a0a0c;
+        padding: 1rem 2rem; border-radius: 8px; font-weight: bold; z-index: 9999;
+      `;
+      notif.textContent = message;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 3000);
+    }
+    
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeImportModal();
+        closeExportModal();
+      }
+    });
+    
+    // ═══════════════════════════════════════════════════════════════
+    // INIT
+    // ═══════════════════════════════════════════════════════════════
+    async function init() {
+      allStops = await fetchStops();
+      initMysterySpots();
+      renderBoard(allStops);
+      setupFilters();
+      
+      console.log(`
+      ███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗
+      ████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝
+      ██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗
+      ██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║
+      ██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║
+      ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+      
+      Vous cherchez S.?
+      
+      Indice: Les données personnelles sont protégées.
+      Mais les patterns, eux, ne mentent jamais.
+      
+      Article 15 RGPD: Droit d'accès de la personne concernée.
+      Article 17 RGPD: Droit à l'effacement.
+      
+      — S.
+      `);
+    }
+    
+    init();
+  </script>
+</body>
+</html>
