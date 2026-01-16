@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTOCOLE NYXO - Hackez le Piège à l'Emploi</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #00ff41;
+            --green-dim: #00cc33;
+            --green-glow: rgba(0, 255, 65, 0.4);
+            --red: #ff0040;
+            --cyan: #00ffff;
+            --bg: #0a0a0a;
+            --bg-panel: rgba(0, 20, 0, 0.8);
+            --scanline: rgba(0, 255, 65, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg);
+            color: var(--green);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Scanlines effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                var(--scanline) 2px,
+                var(--scanline) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* CRT flicker */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
+            z-index: 999;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        /* Grid background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--green-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--green-dim) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Screen/Panel styles */
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Title styling */
+        .title {
+            font-family: 'VT323', monospace;
+            font-size: clamp(2rem, 8vw, 5rem);
+            text-align: center;
+            text-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
+            margin-bottom: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: var(--cyan);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+        }
+
+        /* Panel box */
+        .panel {
+            border: 1px solid var(--green);
+            background: var(--bg-panel);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10px;
+            right: 10px;
+            height: 1px;
+            background: var(--green);
+            box-shadow: 0 0 10px var(--green-glow);
+        }
+
+        .panel-title {
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--green-dim);
+        }
+
+        /* Stats box */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-box {
+            border: 1px solid var(--red);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-box.positive {
+            border-color: var(--green);
+        }
+
+        .stat-value {
+            font-family: 'VT323', monospace;
+            font-size: 2rem;
+            color: var(--red);
+        }
+
+        .stat-box.positive .stat-value {
+            color: var(--green);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: var(--bg);
+            border: 1px solid var(--green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--green);
+            width: 0%;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px var(--green-glow);
+        }
+
+        .progress-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--bg);
+            font-weight: bold;
+            mix-blend-mode: difference;
+        }
+
+        /* Buttons */
+        .btn {
+            font-family: 'Share Tech Mono', monospace;
+            background: transparent;
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--green);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--bg);
+            text-shadow: none;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        .btn-primary::before {
+            background: var(--cyan);
+        }
+
+        .btn-danger {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .btn-danger::before {
+            background: var(--red);
+        }
+
+        /* Terminal output */
+        .terminal {
+            background: #000;
+            border: 1px solid var(--green-dim);
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .terminal-line {
+            opacity: 0;
+            animation: typeLine 0.5s ease forwards;
+        }
+
+        @keyframes typeLine {
+            to { opacity: 1; }
+        }
+
+        .terminal .prompt {
+            color: var(--cyan);
+        }
+
+        .terminal .success {
+            color: var(--green);
+        }
+
+        .terminal .error {
+            color: var(--red);
+        }
+
+        .terminal .warning {
+            color: #ffaa00;
+        }
+
+        /* Cursor blink */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--green);
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Mission cards */
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mission-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--green-dim);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mission-card:hover {
+            border-color: var(--green);
+            background: rgba(0, 255, 65, 0.1);
+        }
+
+        .mission-card.completed {
+            border-color: var(--cyan);
+            opacity: 0.6;
+        }
+
+        .mission-card.locked {
+            border-color: #333;
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .mission-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .mission-info {
+            flex: 1;
+        }
+
+        .mission-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .mission-desc {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .mission-reward {
+            text-align: right;
+            color: var(--cyan);
+        }
+
+        /* Wallet display */
+        .wallet {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            border: 2px solid var(--green);
+            margin-bottom: 20px;
+        }
+
+        .wallet-icon {
+            font-size: 3rem;
+        }
+
+        .wallet-balance {
+            font-family: 'VT323', monospace;
+            font-size: 3rem;
+        }
+
+        .wallet-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn.active {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        /* Diagram/Flowchart */
+        .flowchart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--green);
+            min-width: 150px;
+        }
+
+        .flow-step.danger {
+            border-color: var(--red);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--green-dim);
+        }
+
+        /* Choice buttons */
+        .choices {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .choice-btn {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px dashed var(--green-dim);
+            margin-top: 40px;
+        }
+
+        .version {
+            color: var(--green-dim);
+        }
+
+        /* Glitch effect */
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-2px, 1px); }
+            94% { transform: translate(2px, -1px); }
+            96% { transform: translate(-1px, 2px); }
+            98% { transform: translate(1px, -2px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .panel {
+                padding: 15px;
+            }
+            .flowchart {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .loading-screen.hidden {
+            display: none;
+        }
+
+        .boot-text {
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .boot-line {
+            opacity: 0;
+        }
+
+        /* Icon styling with Unicode */
+        .icon-shield::before { content: '🛡️'; }
+        .icon-coin::before { content: '🪙'; }
+        .icon-skull::before { content: '💀'; }
+        .icon-lock::before { content: '🔒'; }
+        .icon-unlock::before { content: '🔓'; }
+        .icon-check::before { content: '✓'; }
+        .icon-cross::before { content: '✗'; }
+        .icon-arrow::before { content: '→'; }
+        .icon-warning::before { content: '⚠️'; }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- Loading/Boot Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="boot-text" id="bootText"></div>
+    </div>
+
+    <div class="container">
+        <!-- SCREEN 0: Title -->
+        <div class="screen" id="screen-title">
+            <div style="text-align: center; padding: 50px 0;">
+                <div class="title glitch">PROTOCOLE NYXO</div>
+                <div class="subtitle">Hackez le Piège à l'Emploi</div>
+                
+                <div class="panel" style="max-width: 600px; margin: 30px auto;">
+                    <div class="terminal" id="introTerminal"></div>
+                </div>
+
+                <div class="progress-container" style="max-width: 400px; margin: 20px auto;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="initProgress"></div>
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="startBtn" style="display: none;">
+                    > PRESS START TO BEGIN
+                </button>
+
+                <div class="version" style="margin-top: 30px;">v.2026.1</div>
+            </div>
+        </div>
+
+        <!-- SCREEN 1: System Diagnostic -->
+        <div class="screen" id="screen-diagnostic">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                SYSTEM DIAGNOSTIC
+            </div>
+            <div class="subtitle">LE NIVEAU ACTUEL : MODE ARIZONA (2025-2029)</div>
+
+            <div class="panel">
+                <div class="panel-title">CONTEXTE POLITIQUE</div>
+                <p>Coalition Arizona (N-VA, MR, Les Engagés, Vooruit, CD&V)</p>
+                <p style="margin-top: 10px;">Objectif Système : <span style="color: var(--red);">"Snoeien om te groeien"</span> (Couper pour croître)</p>
+                <p>Réduction budgétaire de <span style="color: var(--red);">18 milliards €</span> d'ici 2029.</p>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title" style="color: var(--red);">STATISTIQUES ENNEMIES</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">978.000</div>
+                        <div class="stat-label">JOUEURS INACTIFS<br>(Malades + Chômeurs + RIS)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">21-24 Mrd€</div>
+                        <div class="stat-label">COÛT PASSIF / AN</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">180.000</div>
+                        <div class="stat-label">EXCLUSIONS PRÉVUES<br>(Réforme chômage 2026)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-glitch')">
+                    > ANALYSER LE BUG
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: Le Glitch -->
+        <div class="screen" id="screen-glitch">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                LE GLITCH : LE PIÈGE INSTITUTIONNEL
+            </div>
+
+            <div class="panel">
+                <div class="flowchart">
+                    <div class="flow-step">
+                        <div style="font-size: 2rem;">🛡️</div>
+                        <div style="margin-top: 10px;"><strong>STEP 1</strong></div>
+                        <div style="color: var(--green);">Benefits</div>
+                        <div style="font-size: 0.8rem; color: #888;">Allocations + Statut BIM</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div style="font-size: 2rem;">💰</div>
+                        <div style="margin-top: 10px;"><strong>STEP 2</strong></div>
+                        <div style="color: #ffaa00;">Marginal Income</div>
+                        <div style="font-size: 0.8rem; color: #888;">Le moindre revenu...</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step danger">
+                        <div style="font-size: 2rem;">💀</div>
+                        <div style="margin-top: 10px;"><strong>STEP 3</strong></div>
+                        <div style="color: var(--red);">GAME OVER</div>
+                        <div style="font-size: 0.8rem; color: #888;">Perte BIM & Allocations</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">LE PROBLÈME : Un jeu à somme nulle</div>
+                <p>Si un bénéficiaire (BIM/Chômeur) gagne un revenu marginal, il déclenche une <span style="color: var(--red);">perte disproportionnée de droits</span>.</p>
+                <div style="margin-top: 15px; padding: 15px; border: 1px dashed var(--red);">
+                    <strong style="color: var(--red);">RÉSULTAT :</strong> Contribuer = Perdre sa sécurité.<br>
+                    <strong>LE BUG :</strong> Le système pénalise l'activité.
+                </div>
+            </div>
+
+            <div class="terminal" style="margin-top: 20px;">
+                <div><span class="prompt">> </span>SYSTEM LOG: Le système subventionne l'exclusion.</div>
+                <div><span class="error">> </span>Coût de l'inactivité : 1 million € par heure.</div>
+                <div><span class="prompt">> </span><span class="cursor"></span></div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-patch')">
+                    > DÉCOUVRIR LE PATCH
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: Le Patch -->
+        <div class="screen" id="screen-patch">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                LE PATCH : ÉCONOMIE CONTRIBUTIVE PROVISIONNÉE
+            </div>
+            <div class="subtitle">Transformer l'administratif en missions ARG</div>
+
+            <div class="panel">
+                <div class="panel-title">CONCEPT : Agence de Renseignement Citoyenne (ARC)</div>
+                <p>Gamification du devoir civique. Le contributeur devient un agent qui accomplit des missions à impact social positif.</p>
+                
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px; padding: 15px; border: 1px solid var(--green);">
+                            <div style="color: var(--cyan);">🔬 MISSION: Science Citoyenne</div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">Collecte de données environnementales</div>
+                        </div>
+                        <div style="flex: 1; min-width: 200px; padding: 15px; border: 1px solid var(--green);">
+                            <div style="color: var(--cyan);">🤝 MISSION: Care / Interaction</div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">Accompagnement social validé</div>
+                        </div>
+                        <div style="flex: 1; min-width: 200px; padding: 15px; border: 1px solid var(--green);">
+                            <div style="color: var(--cyan);">🧠 MISSION: Analyse Cognitive</div>
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">Audit civique & Open Source</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">OBJECTIF</div>
+                <p style="font-size: 1.2rem;">Restaurer le <span style="color: var(--green);">'Pouvoir d'Agir'</span> sans déclencher le <span style="color: var(--red);">Game Over</span>.</p>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-currency')">
+                    > VOIR LA MONNAIE
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: La Monnaie -->
+        <div class="screen" id="screen-currency">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                LA MONNAIE : LE POINT MSI / CRYPTOCOIN ARG
+            </div>
+
+            <div class="wallet">
+                <div class="wallet-icon">🪙</div>
+                <div>
+                    <div class="wallet-balance" id="msiBalance">0 MSI</div>
+                    <div class="wallet-label">Solde Provisionné</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="stats-grid">
+                    <div class="stat-box positive">
+                        <div class="stat-value" style="font-size: 1.5rem;">TYPE</div>
+                        <div class="stat-label">Quantification de valeur sociale<br>(Non spéculatif)</div>
+                    </div>
+                    <div class="stat-box positive">
+                        <div class="stat-value" style="font-size: 1.5rem;">TAUX</div>
+                        <div class="stat-label">Modèle Donut Economics<br>1 HEURE = 1 MSI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">DOMAINES D'APPLICATION</div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <div style="text-align: center; padding: 15px;">
+                        <div style="font-size: 2rem;">➕</div>
+                        <div style="color: var(--green);">Care & Lien Social</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px;">
+                        <div style="font-size: 2rem;">🌳</div>
+                        <div style="color: var(--green);">Reforestation & Biens Communs</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px;">
+                        <div style="font-size: 2rem;">🔍</div>
+                        <div style="color: var(--green);">Audit Civique & Open Source</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div><span class="success">> </span>PRINCIPE : Les contributeurs sont maîtres de leurs contributions (Souveraineté).</div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-provision')">
+                    > COMPRENDRE LE PROVISIONNEMENT
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: L'Inventaire / Provisionnement -->
+        <div class="screen" id="screen-provision">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                L'INVENTAIRE : LE PROVISIONNEMENT DIFFÉRÉ
+            </div>
+
+            <div class="panel">
+                <div class="flowchart">
+                    <div class="flow-step">
+                        <div style="font-size: 2rem;">🎯</div>
+                        <div style="margin-top: 10px;"><strong>ÉTAPE 1</strong></div>
+                        <div style="color: var(--green);">ACCUMULATION</div>
+                        <div style="font-size: 0.8rem; color: #888;">Missions = MSI gagnés</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div style="font-size: 2rem;">🔒</div>
+                        <div style="margin-top: 10px;"><strong>ÉTAPE 2</strong></div>
+                        <div style="color: #ffaa00;">STOCKAGE</div>
+                        <div style="font-size: 0.8rem; color: #888;">Fonds de Contribution</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step positive" style="border-color: var(--green);">
+                        <div style="font-size: 2rem;">💸</div>
+                        <div style="margin-top: 10px;"><strong>ÉTAPE 3</strong></div>
+                        <div style="color: var(--green);">LIQUIDATION FUTURE</div>
+                        <div style="font-size: 0.8rem; color: #888;">Conditions spécifiques</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" style="border-color: var(--cyan);">
+                <div class="panel-title" style="color: var(--cyan);">LOGIQUE FISCALE : La Clé</div>
+                <p style="font-size: 1.1rem;">L'argent est <strong>provisionné</strong>, pas <strong>perçu</strong>.</p>
+                <div style="margin-top: 15px; padding: 15px; background: rgba(0, 255, 255, 0.1);">
+                    <strong>Pas de perception</strong> = Pas de revenu imposable = <span style="color: var(--green);">Maintien des droits sociaux</span>
+                </div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-shield')">
+                    > ACTIVER LE BOUCLIER
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 6: Le Bouclier / Ruling -->
+        <div class="screen" id="screen-shield">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                LE BOUCLIER : LE RULING FISCAL (SDA)
+            </div>
+
+            <div class="panel">
+                <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="color: var(--green); margin-bottom: 10px;"><strong>DÉFINITION</strong></div>
+                        <p>Décision Anticipée contraignante avec le SPF Finances.</p>
+                        <div style="margin-top: 15px; color: var(--cyan);"><strong>DURÉE</strong></div>
+                        <p>Paix juridique garantie pour 5 ans.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="color: var(--green); margin-bottom: 10px;"><strong>PROTECTIONS ACTIVÉES</strong></div>
+                        <div style="font-size: 0.9rem;">
+                            <div style="padding: 5px 0;"><span style="color: var(--green);">[✓]</span> Structure validée (Pas d'abus fiscal art. 344 CIR 92)</div>
+                            <div style="padding: 5px 0;"><span style="color: var(--green);">[✓]</span> Provisionnement != Revenu Professionnel Taxable</div>
+                            <div style="padding: 5px 0;"><span style="color: var(--green);">[✓]</span> Relation B2B validée (Management Fees vs Salaire)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" style="border-color: var(--green); background: rgba(0, 255, 65, 0.05);">
+                <div style="text-align: center; font-size: 1.2rem;">
+                    <span style="color: var(--green);">> GOD MODE : ENABLED</span>
+                </div>
+                <p style="text-align: center; margin-top: 10px;">L'administration valide les règles du jeu à l'avance.</p>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-stealth')">
+                    > MODE FURTIF
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 7: Mode Furtif -->
+        <div class="screen" id="screen-stealth">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                MODE FURTIF : ÉVITER LA REQUALIFICATION SALARIALE
+            </div>
+            <div class="subtitle">NO SUBORDINATION DETECTED</div>
+
+            <div class="panel">
+                <div class="stats-grid">
+                    <div class="stat-box positive">
+                        <div style="font-size: 2rem;">⏰</div>
+                        <div class="stat-value" style="font-size: 1.2rem; text-decoration: line-through; color: #666;">HORAIRES FIXES</div>
+                        <div class="stat-label">Liberté temporelle totale</div>
+                    </div>
+                    <div class="stat-box positive">
+                        <div style="font-size: 2rem;">🎖️</div>
+                        <div class="stat-value" style="font-size: 1.2rem; text-decoration: line-through; color: #666;">ORDRES</div>
+                        <div class="stat-label">Choix libre des missions<br>Pas d'assignation</div>
+                    </div>
+                    <div class="stat-box positive">
+                        <div style="font-size: 2rem;">⚖️</div>
+                        <div class="stat-value" style="font-size: 1.2rem; text-decoration: line-through; color: #666;">SANCTIONS</div>
+                        <div class="stat-label">Impossible d'être viré<br>Uniquement désinscription</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div><span class="success">> </span>BASE LÉGALE : Loi sur le Volontariat (2005) & Logique Commerciale B2B.</div>
+                <div><span class="prompt">> </span>Le contributeur n'est PAS un employé. Il est un agent autonome.</div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-safehouse')">
+                    > VOIR LA SAFE HOUSE
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 8: Safe House / BIM -->
+        <div class="screen" id="screen-safehouse">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                LA SAFE HOUSE : PROTECTION DU STATUT BIM
+            </div>
+
+            <div class="progress-container">
+                <div style="text-align: center; margin-bottom: 10px;">STATUT BIM: <span style="color: var(--green);">100% ACTIF</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <div class="panel-title">MATHÉMATIQUE DE SÉCURITÉ</div>
+                        <p>Plafond BIM > Revenu Taxable.</p>
+                        <div style="margin-top: 15px; padding: 10px; border: 1px solid var(--green);">
+                            <strong>Solution ECP :</strong><br>
+                            Revenu Provisionné (Différé) = <br>
+                            Revenu Taxable Annuel <span style="color: var(--green); font-size: 1.5rem;">0€</span>
+                        </div>
+                        <p style="margin-top: 15px; color: var(--green);">RÉSULTAT : Le plafond n'est jamais dépassé.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <div class="panel-title">DROITS SÉCURISÉS (ARMURE)</div>
+                        <div style="font-size: 0.9rem;">
+                            <div style="padding: 8px 0;"><span style="color: var(--green);">🛡️</span> Maximum à Facturer (Soins de santé)</div>
+                            <div style="padding: 8px 0;"><span style="color: var(--green);">🛡️</span> Tarifs Sociaux (Énergie, SNCB, STIB)</div>
+                            <div style="padding: 8px 0;"><span style="color: var(--green);">🛡️</span> Allocations Familiales Majorées</div>
+                            <div style="padding: 8px 0;"><span style="color: var(--green);">🛡️</span> Allocations de Chômage / RIS</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-loot')">
+                    > STRATÉGIE DE LOOT
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 9: Stratégie de Loot -->
+        <div class="screen" id="screen-loot">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                STRATÉGIE DE LOOT : RÉMUNÉRATION PROGRESSIVE
+            </div>
+            <div class="subtitle">Comment sortir l'argent légalement (Exit Strategy)</div>
+
+            <div class="panel">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; border-left: 3px solid var(--green);">
+                        <div style="font-size: 1.5rem; color: var(--green);">NIVEAU 1</div>
+                        <div>
+                            <div style="color: var(--cyan);">SALAIRE LIMITÉ</div>
+                            <div style="font-size: 0.9rem; color: #888;">Restez sous les plafonds BIM.</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; border-left: 3px solid var(--cyan);">
+                        <div style="font-size: 1.5rem; color: var(--cyan);">NIVEAU 2</div>
+                        <div>
+                            <div style="color: var(--cyan);">DIVIDENDES (VVPR-bis)</div>
+                            <div style="font-size: 0.9rem; color: #888;">Après période de carence (3-4 ans).<br>Taxation réduite : 15% (au lieu de 30%).</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 20px; padding: 15px; border-left: 3px solid #ffaa00;">
+                        <div style="font-size: 1.5rem; color: #ffaa00;">NIVEAU 3</div>
+                        <div>
+                            <div style="color: var(--cyan);">DROITS D'AUTEUR</div>
+                            <div style="font-size: 0.9rem; color: #888;">Valorisation des méthodologies et codes créés.<br>Fiscalité avantageuse pour œuvres originales.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div><span class="warning">> </span>SIDE NOTE : Structure requise = SRL (Société de Management).</div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-coop')">
+                    > MODE MULTIJOUEUR
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 10: Mode Multijoueur -->
+        <div class="screen" id="screen-coop">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                MODE MULTIJOUEUR : LE CONSORTIUM
+            </div>
+
+            <div class="panel">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="display: inline-block; padding: 20px 40px; border: 2px solid var(--green);">
+                        <div style="font-size: 1.5rem;">CITOYEN / JOUEUR</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box positive">
+                        <div style="font-size: 2rem;">❤️</div>
+                        <div style="color: var(--cyan); margin: 10px 0;">MUTUELLES</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            (Solidaris / MC)<br>
+                            Objectif : Prévention Santé.<br>
+                            Sas de réactivation.<br>
+                            Rompre l'isolement.
+                        </div>
+                    </div>
+                    <div class="stat-box positive">
+                        <div style="font-size: 2rem;">✊</div>
+                        <div style="color: var(--cyan); margin: 10px 0;">SYNDICATS</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            (FGTB / CSC)<br>
+                            Objectif : Garantie de Non-Substitution.<br>
+                            Défense du travailleur précaire/gig.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal">
+                <div><span class="success">> </span>COALITION 2026 : Négocier le cadre légal ensemble.</div>
+            </div>
+
+            <div class="choices">
+                <button class="btn choice-btn" onclick="showScreen('screen-roadmap')">
+                    > VOIR LA ROADMAP
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 11: Roadmap -->
+        <div class="screen" id="screen-roadmap">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                ROADMAP : DE LA BÊTA AU GOLD MASTER
+            </div>
+
+            <div class="panel">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-end;">
+                    <div style="text-align: center; padding: 20px; border: 1px solid var(--green); min-width: 180px;">
+                        <div style="color: var(--green); font-size: 1.2rem;">2025</div>
+                        <div style="margin: 10px 0;">PILOTE (TUTORIAL)</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            Lieu : Auderghem<br>
+                            Test : ARG & Ruling Fiscal
+                        </div>
+                    </div>
+                    <div style="font-size: 2rem; color: var(--green-dim);">→</div>
+                    <div style="text-align: center; padding: 20px; border: 1px solid var(--cyan); min-width: 180px;">
+                        <div style="color: var(--cyan); font-size: 1.2rem;">2026</div>
+                        <div style="margin: 10px 0;">CO-OP (LIVRE BLANC)</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            Action : Coalition avec<br>
+                            Mutuelles & Syndicats.<br>
+                            Publication des résultats.
+                        </div>
+                    </div>
+                    <div style="font-size: 2rem; color: var(--green-dim);">→</div>
+                    <div style="text-align: center; padding: 20px; border: 1px solid #ffaa00; min-width: 180px;">
+                        <div style="color: #ffaa00; font-size: 1.2rem;">2027</div>
+                        <div style="margin: 10px 0;">RELEASE (LOI)</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            Objectif : Loi Nationale.<br>
+                            Reconnaissance du<br>
+                            'Statut Contributeur'.
+                        </div>
+                    </div>
+                    <div style="font-size: 2rem; color: var(--green-dim);">→</div>
+                    <div style="text-align: center; padding: 20px; border: 1px solid var(--green); min-width: 180px; background: rgba(0,255,65,0.1);">
+                        <div style="font-size: 2rem;">🏁</div>
+                        <div style="color: var(--green); font-size: 1.2rem;">2029</div>
+                        <div style="margin: 10px 0;">GOLD MASTER</div>
+                        <div style="font-size: 0.8rem; color: #888;">
+                            Sécurisation avant fin<br>
+                            législature Arizona.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="choices">
+                <button class="btn btn-primary choice-btn" onclick="showScreen('screen-start')">
+                    > PRESS START
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 12: Press Start -->
+        <div class="screen" id="screen-start">
+            <div style="text-align: center; padding: 50px 0;">
+                <div class="title" style="font-size: 4rem;">PRESS START</div>
+                <div class="subtitle" style="font-size: 1.5rem; color: var(--green);">GAME ON</div>
+
+                <div class="panel" style="max-width: 600px; margin: 30px auto;">
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        Le système est prêt. Le ruling est en cours.<br>
+                        Rejoignez le protocole. <span style="color: var(--green);">Devenez Contributeur.</span>
+                    </p>
+                </div>
+
+                <div style="margin: 30px 0;">
+                    <div style="text-decoration: line-through; color: #666; margin-bottom: 10px;">ARIZONA MODE</div>
+                    <div style="color: var(--green); font-size: 1.2rem;">[CROSS OUT EFFECT] → PLAYER ONE READY.</div>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <div style="color: #888; margin-bottom: 20px;">NYXO.BRUSSELS // OUAISFI.EU</div>
+                    <button class="btn btn-primary" onclick="showScreen('screen-simulator')">
+                        > LANCER LA SIMULATION
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 13: Simulator (Interactive) -->
+        <div class="screen" id="screen-simulator">
+            <div class="panel-title" style="text-align: center; font-size: 2rem;">
+                SIMULATEUR : VOTRE PARCOURS
+            </div>
+
+            <div class="nav">
+                <button class="btn nav-btn active" onclick="showSimTab('missions')">MISSIONS</button>
+                <button class="btn nav-btn" onclick="showSimTab('wallet')">WALLET</button>
+                <button class="btn nav-btn" onclick="showSimTab('status')">STATUS</button>
+            </div>
+
+            <!-- Missions Tab -->
+            <div class="sim-tab" id="tab-missions">
+                <div class="panel">
+                    <div class="panel-title">MISSIONS DISPONIBLES</div>
+                    <div class="mission-list" id="missionList">
+                        <!-- Missions will be populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallet Tab -->
+            <div class="sim-tab" id="tab-wallet" style="display: none;">
+                <div class="wallet">
+                    <div class="wallet-icon">🪙</div>
+                    <div>
+                        <div class="wallet-balance" id="walletBalance">0 MSI</div>
+                        <div class="wallet-label">Solde Provisionné</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">HISTORIQUE DES CONTRIBUTIONS</div>
+                    <div id="contributionHistory">
+                        <p style="color: #888;">Aucune contribution pour le moment. Accomplissez des missions!</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">OPTIONS DE LIQUIDATION (Futures)</div>
+                    <div class="stats-grid">
+                        <div class="stat-box" style="border-color: #666; opacity: 0.5;">
+                            <div>🎓 Formation</div>
+                            <div style="font-size: 0.8rem; color: #888;">Débloqué à 100 MSI</div>
+                        </div>
+                        <div class="stat-box" style="border-color: #666; opacity: 0.5;">
+                            <div>🏠 Projet</div>
+                            <div style="font-size: 0.8rem; color: #888;">Débloqué à 500 MSI</div>
+                        </div>
+                        <div class="stat-box" style="border-color: #666; opacity: 0.5;">
+                            <div>👴 Pension</div>
+                            <div style="font-size: 0.8rem; color: #888;">Débloqué à 1000 MSI</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Tab -->
+            <div class="sim-tab" id="tab-status" style="display: none;">
+                <div class="panel">
+                    <div class="panel-title">STATUT JOUEUR</div>
+                    <div class="stats-grid">
+                        <div class="stat-box positive">
+                            <div style="font-size: 2rem;">🛡️</div>
+                            <div style="color: var(--green);">BIM ACTIF</div>
+                            <div class="stat-label">Protection maintenue</div>
+                        </div>
+                        <div class="stat-box positive">
+                            <div style="font-size: 2rem;">💰</div>
+                            <div style="color: var(--green);">ALLOCATIONS OK</div>
+                            <div class="stat-label">Revenu taxable : 0€</div>
+                        </div>
+                        <div class="stat-box positive">
+                            <div style="font-size: 2rem;">⚖️</div>
+                            <div style="color: var(--green);">RULING ACTIF</div>
+                            <div class="stat-label">Protection juridique : 5 ans</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal">
+                    <div><span class="success">> </span>SYSTEM STATUS: ALL PROTECTIONS ACTIVE</div>
+                    <div><span class="prompt">> </span>Vous contribuez sans perdre vos droits.</div>
+                    <div><span class="prompt">> </span>Le piège à l'emploi est désactivé.</div>
+                    <div><span class="success">> </span>GAME ON.<span class="cursor"></span></div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <button class="btn" onclick="showScreen('screen-title')">
+                    > RETOUR AU MENU
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>PROTOCOLE NYXO <span class="version">v.2026.1</span></p>
+            <p style="margin-top: 5px;">Économie Contributive Provisionnée — Belgique</p>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        const gameState = {
+            msi: 0,
+            completedMissions: [],
+            contributions: []
+        };
+
+        // Missions data
+        const missions = [
+            { id: 1, name: "Surveillance Pollution Viaduc", desc: "Collecte de données qualité de l'air", reward: 5, icon: "🔬" },
+            { id: 2, name: "Aide aux Devoirs", desc: "Accompagnement scolaire enfants du quartier", reward: 8, icon: "📚" },
+            { id: 3, name: "Cleaning Day", desc: "Participation au nettoyage communautaire", reward: 3, icon: "🧹" },
+            { id: 4, name: "Visite Solidaire", desc: "Accompagnement personne isolée", reward: 10, icon: "🤝" },
+            { id: 5, name: "Audit Budget Communal", desc: "Analyse open source des dépenses", reward: 15, icon: "🔍" },
+            { id: 6, name: "Plantation Biodiversité", desc: "Reforestation urbaine participative", reward: 6, icon: "🌳" }
+        ];
+
+        // Boot sequence
+        const bootLines = [
+            "> Initialisation du Ruling Fiscal... OK",
+            "> Activation du Bouclier Social... OK",
+            "> Connexion Fonds de Contribution... OK",
+            "> Chargement des Missions... OK",
+            "> Vérification Statut BIM... PROTÉGÉ",
+            "> ",
+            "> PROTOCOLE NYXO v.2026.1",
+            "> Système prêt.",
+            "> "
+        ];
+
+        // Initialize boot sequence
+        async function bootSequence() {
+            const bootText = document.getElementById('bootText');
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            for (let i = 0; i < bootLines.length; i++) {
+                const line = document.createElement('div');
+                line.className = 'boot-line';
+                line.innerHTML = bootLines[i] || '&nbsp;';
+                bootText.appendChild(line);
+                
+                await sleep(200);
+                line.style.opacity = '1';
+            }
+
+            await sleep(500);
+            loadingScreen.classList.add('hidden');
+            
+            // Show title screen
+            document.getElementById('screen-title').classList.add('active');
+            initTitleScreen();
+        }
+
+        // Title screen initialization
+        async function initTitleScreen() {
+            const terminal = document.getElementById('introTerminal');
+            const progress = document.getElementById('initProgress');
+            const progressText = document.querySelector('.progress-text');
+            const startBtn = document.getElementById('startBtn');
+
+            const introLines = [
+                { text: "> Bienvenue, Contributeur.", class: "prompt" },
+                { text: "> Vous êtes dans le système belge.", class: "" },
+                { text: "> 978.000 joueurs sont piégés.", class: "error" },
+                { text: "> Le système pénalise l'activité.", class: "error" },
+                { text: "> Mais il existe un exploit...", class: "warning" },
+                { text: "> ", class: "" },
+                { text: "> PROTOCOLE NYXO : Initialisé.", class: "success" }
+            ];
+
+            for (let i = 0; i < introLines.length; i++) {
+                const line = document.createElement('div');
+                line.className = 'terminal-line';
+                line.innerHTML = `<span class="${introLines[i].class}">${introLines[i].text}</span>`;
+                line.style.animationDelay = `${i * 0.3}s`;
+                terminal.appendChild(line);
+                
+                // Update progress
+                const percent = Math.round(((i + 1) / introLines.length) * 100);
+                progress.style.width = percent + '%';
+                progressText.textContent = percent + '%';
+                
+                await sleep(400);
+            }
+
+            // Add cursor
+            const cursor = document.createElement('div');
+            cursor.innerHTML = '<span class="prompt">> </span><span class="cursor"></span>';
+            terminal.appendChild(cursor);
+
+            // Show start button
+            await sleep(500);
+            startBtn.style.display = 'inline-block';
+            startBtn.onclick = () => showScreen('screen-diagnostic');
+        }
+
+        // Show screen
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            
+            // Special handling for simulator
+            if (screenId === 'screen-simulator') {
+                initSimulator();
+            }
+
+            // Animate MSI balance on currency screen
+            if (screenId === 'screen-currency') {
+                animateMSI();
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize simulator
+        function initSimulator() {
+            renderMissions();
+            updateWallet();
+        }
+
+        // Render missions
+        function renderMissions() {
+            const list = document.getElementById('missionList');
+            list.innerHTML = '';
+
+            missions.forEach(mission => {
+                const completed = gameState.completedMissions.includes(mission.id);
+                const card = document.createElement('div');
+                card.className = `mission-card ${completed ? 'completed' : ''}`;
+                card.innerHTML = `
+                    <span class="mission-icon">${mission.icon}</span>
+                    <div class="mission-info">
+                        <div class="mission-name">${mission.name}</div>
+                        <div class="mission-desc">${mission.desc}</div>
+                    </div>
+                    <div class="mission-reward">
+                        ${completed ? '✓ COMPLÉTÉ' : `+${mission.reward} MSI`}
+                    </div>
+                `;
+                
+                if (!completed) {
+                    card.onclick = () => completeMission(mission);
+                }
+                
+                list.appendChild(card);
+            });
+        }
+
+        // Complete mission
+        function completeMission(mission) {
+            gameState.msi += mission.reward;
+            gameState.completedMissions.push(mission.id);
+            gameState.contributions.push({
+                name: mission.name,
+                reward: mission.reward,
+                date: new Date().toLocaleString('fr-BE')
+            });
+
+            renderMissions();
+            updateWallet();
+            
+            // Show feedback
+            alert(`Mission accomplie!\n+${mission.reward} MSI ajoutés à votre solde provisionné.`);
+        }
+
+        // Update wallet display
+        function updateWallet() {
+            document.getElementById('walletBalance').textContent = `${gameState.msi} MSI`;
+            
+            const history = document.getElementById('contributionHistory');
+            if (gameState.contributions.length > 0) {
+                history.innerHTML = gameState.contributions.map(c => `
+                    <div style="padding: 10px 0; border-bottom: 1px dashed #333;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>${c.name}</span>
+                            <span style="color: var(--green);">+${c.reward} MSI</span>
+                        </div>
+                        <div style="font-size: 0.8rem; color: #666;">${c.date}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Show simulator tab
+        function showSimTab(tabName) {
+            document.querySelectorAll('.sim-tab').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(`tab-${tabName}`).style.display = 'block';
+            event.target.classList.add('active');
+        }
+
+        // Animate MSI counter
+        function animateMSI() {
+            const el = document.getElementById('msiBalance');
+            let count = 0;
+            const target = gameState.msi || 0;
+            const duration = 1000;
+            const steps = 30;
+            const increment = target / steps;
+            
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(timer);
+                }
+                el.textContent = Math.round(count) + ' MSI';
+            }, duration / steps);
+        }
+
+        // Utility: sleep
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Start on load
+        window.onload = bootSequence;
+    </script>
+</body>
+</html>
