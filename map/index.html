@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type='text/javascript' src='https://ouaisfieu.github.io/GS12o3FjbHHosnVv38k4VgsD74akV4TeCXZfkxpNaGDPY26LJgei9r7A_61K8_fewjo03Vf45lLVOoACPkxc2Y3IyUYA-NXne0ZVGgjYWSmR0LVpjom-4dz4n08Ib7WtuP6bKyer8rZ7aA0GzG3tKsT4WFyU2eRGBApOriGE2W916NZ3b0RX41amCs5jr7zPtdcq9d68VxpPLDPn5Sda2D5e21WiKvlprg6ivaMvqsHWVHds9qVdAsFgFG-N0WNGSM4gcDhW2JQs2CRTezoIAm4iB7nxvAs25WbjxcsaA_yn5wiN6h-CTXUg9woVXTOQvcykowabXGTQ4Q19P1r7eETWxn52kvWJxGhJVtbmTejyUjWIwlH5G2Lj5ZEPtmCTqexU7Oz_3gYbyLMwqMPn1W00OLdscTXlV5YaXvrcUTKRzecX_GN9_KVhwYzZNF0eDHzbId0llsZ6RzX_maCZ0N4AAmWcTYUJN7w0AjaJHgWO-DaS'></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXUS.BXL — Claim Your Territory</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Orbitron:wght@600&family=Crimson+Pro:ital@1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* ======== VARIABLES ======== */
+:root{
+  --bg:#0a0a0c;
+  --surface:#14141c;
+  --border:rgba(0,255,157,.15);
+  --primary:#00ff9d;
+  --secondary:#ff006e;
+  --text:#e0e0e8;
+  --dim:#6b6b7b;
+  --metro:#ff6b35;
+  --tram:#3a86ff;
+  --bus:#8338ec;
+}
+
+/* ======== BASE ======== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'JetBrains Mono',monospace;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ======== HEADER ======== */
+header{
+  padding:1rem;
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.8rem;
+  color:var(--primary);
+}
+.subtitle{
+  font-size:.7rem;
+  color:var(--dim);
+  letter-spacing:2px;
+}
+
+/* ======== TOOLBAR ======== */
+.toolbar{
+  display:flex;
+  gap:.5rem;
+  padding:1rem;
+  flex-wrap:wrap;
+}
+.toolbar input{
+  flex:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:.6rem;
+}
+.toolbar button{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--dim);
+  padding:.6rem;
+  cursor:pointer;
+}
+.toolbar button:hover{color:var(--primary)}
+
+/* ======== MAP ======== */
+#map{
+  height:60vh;
+  border-top:1px solid var(--border);
+}
+
+/* ======== BOARD ======== */
+.board{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:8px;
+  padding:1rem;
+}
+.stop-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.6rem;
+  cursor:pointer;
+}
+.stop-card:hover{border-color:var(--primary)}
+.stop-id{font-size:.6rem;color:var(--dim)}
+.stop-name{font-size:.8rem;margin:.3rem 0}
+.line-badge{
+  font-size:.55rem;
+  padding:2px 5px;
+  margin:1px;
+  border-radius:3px;
+  display:inline-block;
+}
+.metro{background:var(--metro)}
+.tram{background:var(--tram)}
+.bus{background:var(--bus)}
+
+/* ======== MODAL ======== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.modal.open{display:flex}
+.modal-box{
+  background:var(--surface);
+  border:1px solid var(--primary);
+  padding:1rem;
+  max-width:400px;
+  width:100%;
+}
+.modal h2{font-family:'Orbitron'}
+.modal small{color:var(--dim)}
+.modal button{
+  margin-top:1rem;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">NEXUS.BXL</div>
+  <div class="subtitle">Brussels Transit Territory</div>
+</header>
+
+<div class="toolbar">
+  <input id="search" placeholder="Rechercher un arrêt…">
+  <button onclick="centerMap()">⦿ Center</button>
+  <button onclick="importFile.click()">⬇ Import</button>
+  <input id="importFile" type="file" hidden accept=".json,.csv,.txt">
+</div>
+
+<div id="map"></div>
+<div class="board" id="board"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2 id="m-title"></h2>
+    <small id="m-sub"></small>
+    <div id="m-body"></div>
+    <button onclick="closeModal()">Fermer</button>
+  </div>
+</div>
+
+<script>
+/* ================= CONFIG ================= */
+const LOCAL_JSON="./stops.json";
+const LOCAL_GTFS="./stops.txt";
+
+/* ================= STATE ================= */
+let ALL=[],MAP,LAYER;
+
+/* ================= INIT ================= */
+init();
+async function init(){
+  initMap();
+  ALL=await loadStops();
+  renderAll(ALL);
+}
+
+/* ================= LOAD ================= */
+async function loadStops(){
+  try{
+    const r=await fetch(LOCAL_JSON);
+    if(!r.ok)throw 0;
+    return normalizeJSON(await r.json(),"json");
+  }catch{}
+  try{
+    const r=await fetch(LOCAL_GTFS);
+    return normalizeGTFS(await r.text());
+  }catch{}
+  return [];
+}
+
+/* ================= NORMALIZE ================= */
+function normalizeJSON(data,src){
+  return data.map(s=>({
+    id:s.stop_id||s.id,
+    name:s.stop_name||s.name||"Unknown",
+    lat:+s.stop_lat||+s.lat,
+    lon:+s.stop_lon||+s.lon,
+    lines:s.lines||[],
+    mode:s.mode||"bus",
+    source:src
+  }));
+}
+function normalizeGTFS(txt){
+  const rows=txt.trim().split("\n").map(r=>r.split(","));
+  const h=rows.shift();
+  return rows.map(r=>{
+    const o=Object.fromEntries(h.map((k,i)=>[k,r[i]]));
+    return{
+      id:o.stop_id,
+      name:o.stop_name,
+      lat:+o.stop_lat,
+      lon:+o.stop_lon,
+      lines:[],
+      mode:"bus",
+      source:"gtfs"
+    };
+  });
+}
+
+/* ================= RENDER ================= */
+function renderAll(stops){
+  renderBoard(stops);
+  renderMap(stops);
+}
+function renderBoard(stops){
+  const b=document.getElementById("board");
+  b.innerHTML="";
+  const f=document.createDocumentFragment();
+  stops.forEach(s=>{
+    const d=document.createElement("div");
+    d.className="stop-card";
+    d.innerHTML=`
+      <div class="stop-id">#${s.id}</div>
+      <div class="stop-name">${s.name}</div>
+      ${s.lines.map(l=>`<span class="line-badge ${s.mode}">${l}</span>`).join("")}
+    `;
+    d.onclick=()=>openModal(s);
+    f.appendChild(d);
+  });
+  b.appendChild(f);
+}
+
+/* ================= MAP ================= */
+function initMap(){
+  MAP=L.map("map",{center:[50.8466,4.3528],zoom:12});
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png").addTo(MAP);
+  LAYER=L.layerGroup().addTo(MAP);
+}
+function renderMap(stops){
+  LAYER.clearLayers();
+  stops.forEach(s=>{
+    if(!s.lat||!s.lon)return;
+    const c=L.circleMarker([s.lat,s.lon],{
+      radius:5,color:"white",fillColor:
+        s.mode==="metro"?varColor("--metro"):
+        s.mode==="tram"?varColor("--tram"):
+        varColor("--bus"),
+      fillOpacity:.9
+    }).addTo(LAYER);
+    c.on("click",()=>openModal(s));
+  });
+}
+function centerMap(){MAP.setView([50.8466,4.3528],12)}
+function varColor(v){return getComputedStyle(document.documentElement).getPropertyValue(v)}
+
+/* ================= MODAL ================= */
+function openModal(s){
+  document.getElementById("m-title").textContent=s.name;
+  document.getElementById("m-sub").textContent=`#${s.id} — ${s.source}`;
+  document.getElementById("m-body").innerHTML=
+    `<p>Lat: ${s.lat}<br>Lon: ${s.lon}</p>`;
+  document.getElementById("modal").classList.add("open");
+  MAP.setView([s.lat,s.lon],16);
+}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+
+/* ================= SEARCH ================= */
+document.getElementById("search").oninput=e=>{
+  const q=e.target.value.toLowerCase();
+  renderAll(ALL.filter(s=>s.name.toLowerCase().includes(q)));
+}
+
+/* ================= IMPORT ================= */
+importFile.onchange=async e=>{
+  const f=e.target.files[0];
+  if(!f)return;
+  const t=await f.text();
+  let a=[];
+  if(f.name.endsWith(".json"))a=normalizeJSON(JSON.parse(t),"import");
+  if(f.name.endsWith(".txt"))a=normalizeGTFS(t);
+  ALL=ALL.concat(a);
+  renderAll(ALL);
+};
+</script>
+
+</body>
+</html>
