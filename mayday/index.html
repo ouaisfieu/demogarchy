@@ -1,0 +1,2763 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head><script type='text/javascript' src='https://ouaisfieu.github.io/RuKQMBADoqhTygKtY1CJvpTjpNEetB2sNIJdnMes0FAVVEcugOos-A7MSej7CBL7aTH9Jr3xKOijP217cgBabPwtG5y4eYcsLUm4SwIpEc0YgpYVEOK68DJHdMS7T51u81H86898TAZLkGRtv8sAO12e5PlSZs4NgcexBFB87b78owXLZz7duNIzXa51zzvy7-BV_hX4DPSLTkx-RmZbtwSNGXkagft6UL-RZTwxvViIzdhUyfysuE3iYpM3WmbUl3QD6Jdj-ix336erOSJl0PmrQMwGSLFma6LrQv3gqZ0wWkDrUGfM69j2qaI5CvWK4-QgYiBejLk8CAYbfTBF_OewhA_-CTN-YGKjQDCWe7n0pu4IJaLKkJkh4sDVWMElt68erQzsh6q3juob5A1fR0rBJG-sew-cMhqzGgGO6X0t7560SK7I8ui8AjOrztJV94E7oOTCd5tMQZ4A6TWJhxygjXvGo_Zye_tP30_uGN6XDQs'></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="La Constellation — 975 000 Belges piégés. 21 milliards €/an. Une autre voie existe.">
+<meta name="theme-color" content="#0a0a0f">
+<title>⬡ LA CONSTELLATION — Agence de Renseignement Citoyenne</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   LA CONSTELLATION — CHARTE GRAPHIQUE UNIFIÉE
+   Mint: #5EEAD4 | Lilac: #C4B5FD | Orange: #FBBF24 | Rouge: #F87171
+   ================================================================ */
+
+:root {
+  --mint: #5EEAD4;
+  --mint-soft: rgba(94, 234, 212, 0.8);
+  --mint-glow: rgba(94, 234, 212, 0.25);
+  --mint-deep: rgba(94, 234, 212, 0.08);
+  
+  --lilac: #C4B5FD;
+  --lilac-soft: rgba(196, 181, 253, 0.8);
+  --lilac-glow: rgba(196, 181, 253, 0.25);
+  --lilac-deep: rgba(196, 181, 253, 0.08);
+  
+  --orange: #FBBF24;
+  --orange-glow: rgba(251, 191, 36, 0.25);
+  --orange-deep: rgba(251, 191, 36, 0.08);
+  
+  --red: #F87171;
+  --red-glow: rgba(248, 113, 113, 0.25);
+  --red-deep: rgba(248, 113, 113, 0.08);
+  
+  --blue: #60A5FA;
+  --blue-glow: rgba(96, 165, 250, 0.25);
+  
+  --dark-base: #0a0a0f;
+  --dark-card: #101018;
+  --dark-elevated: #16161f;
+  --dark-border: #1e1e2a;
+  --dark-border-hover: #2a2a3a;
+  
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  
+  --transition-fast: 0.15s ease;
+  --transition-med: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--dark-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--mint); color: #000; }
+.mono { font-family: 'Space Mono', monospace; }
+a { color: var(--mint); text-decoration: none; transition: all var(--transition-fast); }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Skip link accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--mint);
+  color: #000;
+  padding: 8px 16px;
+  z-index: 1000;
+  transition: top var(--transition-fast);
+}
+.skip-link:focus { top: 0; }
+
+/* ================================================================
+   GRAPH CANVAS — OBSIDIAN STYLE
+   ================================================================ */
+
+#graphCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ================================================================
+   TICKER
+   ================================================================ */
+
+.ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--red);
+  color: #000;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker 40s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+
+nav {
+  position: fixed;
+  top: 28px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,10,15,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dark-border);
+  transition: transform var(--transition-med);
+}
+
+nav.hidden { transform: translateY(-100%); }
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.nav-brand span { color: var(--mint); }
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  padding: 6px 0;
+  text-decoration: none;
+}
+
+.nav-links a:hover { color: var(--mint); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ================================================================
+   CONTAINER & SECTIONS
+   ================================================================ */
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 100px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--mint);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--mint);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 24px 100px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--dark-base), transparent);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--red-deep);
+  border: 1px solid var(--red);
+  border-radius: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  margin-bottom: 24px;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--mint) 0%, var(--lilac) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero h1 .sub {
+  display: block;
+  font-size: 0.35em;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0;
+  margin-top: 8px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 40px 0;
+  padding: 28px 0;
+  border-top: 1px solid var(--dark-border);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.hero-stat { cursor: help; }
+
+.hero-stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+}
+
+.hero-stat-value.red { color: var(--red); }
+.hero-stat-value.orange { color: var(--orange); }
+.hero-stat-value.mint { color: var(--mint); }
+.hero-stat-value.lilac { color: var(--lilac); }
+
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.hero-stat-source {
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-family: 'Space Mono', monospace;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--dark-border);
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-med);
+}
+
+.btn:hover {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: #000;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: var(--mint-soft);
+  box-shadow: 0 10px 40px -10px var(--mint-glow);
+}
+
+.btn.danger {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.btn.danger:hover {
+  background: var(--red);
+  color: #000;
+}
+
+.btn-small {
+  padding: 8px 14px;
+  font-size: 12px;
+  background: var(--dark-elevated);
+  border: 1px solid var(--dark-border);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-small:hover {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: #000;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--dark-border-hover);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator span::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: var(--mint);
+  border-radius: 2px;
+  animation: scroll-dot 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@keyframes scroll-dot {
+  0%, 100% { opacity: 1; top: 6px; }
+  50% { opacity: 0.3; top: 16px; }
+}
+
+/* ================================================================
+   PIÈGE SECTION
+   ================================================================ */
+
+.piege-box {
+  border: 1px solid var(--red);
+  padding: 32px;
+  margin: 40px 0;
+  position: relative;
+  background: var(--red-deep);
+  border-radius: var(--radius-md);
+}
+
+.piege-box::before {
+  content: '⚠️ PIÈGE INSTITUTIONNEL';
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--dark-base);
+  padding: 0 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 0.1em;
+}
+
+.piege-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .piege-grid { grid-template-columns: 1fr; }
+  .piege-center { order: -1; }
+}
+
+.piege-side {
+  text-align: center;
+  padding: 24px;
+  border: 1px dashed var(--dark-border-hover);
+  border-radius: var(--radius-md);
+  background: var(--dark-card);
+}
+
+.piege-side-arrow {
+  font-size: 24px;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.piege-side-title {
+  font-weight: 600;
+  color: var(--red);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.piege-side-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.piege-center {
+  text-align: center;
+  padding: 32px;
+  background: var(--dark-elevated);
+  border: 2px solid var(--mint);
+  border-radius: var(--radius-md);
+}
+
+.piege-center-icon { font-size: 48px; margin-bottom: 12px; }
+.piege-center-title { font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+.piege-center-text { font-size: 13px; color: var(--text-muted); }
+
+.piege-stats {
+  margin-top: 32px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.piege-stats strong.red { color: var(--red); }
+.piege-stats strong.orange { color: var(--orange); }
+.piege-stats strong.lilac { color: var(--lilac); }
+
+/* ================================================================
+   OUTILS GRID
+   ================================================================ */
+
+.outils-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.outil-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: all var(--transition-med);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.outil-card:hover {
+  border-color: var(--dark-border-hover);
+  transform: translateY(-4px);
+}
+
+.outil-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  opacity: 0;
+  transition: opacity var(--transition-med);
+}
+
+.outil-card:hover::before { opacity: 1; }
+
+.outil-card.micro::before { background: var(--mint); }
+.outil-card.micro:hover { box-shadow: 0 20px 60px -20px var(--mint-glow); }
+
+.outil-card.meso::before { background: linear-gradient(90deg, var(--mint), var(--lilac)); }
+.outil-card.meso:hover { box-shadow: 0 20px 60px -20px var(--lilac-glow); }
+
+.outil-card.macro::before { background: var(--orange); }
+.outil-card.macro:hover { box-shadow: 0 20px 60px -20px var(--orange-glow); }
+
+.outil-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.outil-card.micro .outil-level { color: var(--mint); }
+.outil-card.meso .outil-level { color: var(--lilac); }
+.outil-card.macro .outil-level { color: var(--orange); }
+
+.outil-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.outil-status {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.outil-status.live { background: var(--mint-deep); color: var(--mint); border: 1px solid var(--mint); }
+.outil-status.beta { background: var(--orange-deep); color: var(--orange); border: 1px solid var(--orange); }
+.outil-status.wip { background: var(--red-deep); color: var(--red); border: 1px solid var(--red); }
+
+.outil-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.outil-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.outil-links {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.outil-links a { color: var(--text-muted); }
+.outil-links a:hover { color: var(--mint); text-decoration: none; }
+
+/* ================================================================
+   RÉSEAU / CONTACTS
+   ================================================================ */
+
+.reseau-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 800px) {
+  .reseau-stats { grid-template-columns: repeat(3, 1fr); }
+}
+
+.reseau-stat {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 16px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+}
+
+.reseau-stat.total { border-top: 3px solid var(--blue); }
+.reseau-stat.pending { border-top: 3px solid var(--text-muted); }
+.reseau-stat.contacted { border-top: 3px solid var(--orange); }
+.reseau-stat.ok { border-top: 3px solid var(--mint); }
+.reseau-stat.nope { border-top: 3px solid var(--red); }
+.reseau-stat.bug { border-top: 3px solid var(--lilac); }
+
+.reseau-stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.reseau-stat.total .reseau-stat-value { color: var(--blue); }
+.reseau-stat.pending .reseau-stat-value { color: var(--text-muted); }
+.reseau-stat.contacted .reseau-stat-value { color: var(--orange); }
+.reseau-stat.ok .reseau-stat-value { color: var(--mint); }
+.reseau-stat.nope .reseau-stat-value { color: var(--red); }
+.reseau-stat.bug .reseau-stat-value { color: var(--lilac); }
+
+.reseau-stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reseau-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+}
+
+.reseau-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reseau-filter-group label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.reseau-filter-group select,
+.reseau-filter-group input {
+  background: var(--dark-elevated);
+  border: 1px solid var(--dark-border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  min-width: 140px;
+  border-radius: var(--radius-sm);
+}
+
+.reseau-filter-group select:focus,
+.reseau-filter-group input:focus {
+  outline: none;
+  border-color: var(--mint);
+}
+
+.reseau-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.reseau-grid::-webkit-scrollbar { width: 6px; }
+.reseau-grid::-webkit-scrollbar-track { background: var(--dark-card); }
+.reseau-grid::-webkit-scrollbar-thumb { background: var(--dark-border-hover); border-radius: 3px; }
+
+.contact-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.contact-card:hover { border-color: var(--dark-border-hover); }
+
+.contact-card.status-ok { border-left: 3px solid var(--mint); }
+.contact-card.status-contacted { border-left: 3px solid var(--orange); }
+.contact-card.status-nope { border-left: 3px solid var(--red); }
+.contact-card.status-bof { border-left: 3px solid var(--text-muted); }
+.contact-card.status-bug { border-left: 3px solid var(--lilac); }
+
+.contact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.contact-name {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+}
+
+.contact-name a { color: var(--text-primary); }
+.contact-name a:hover { color: var(--mint); text-decoration: none; }
+
+.contact-type {
+  font-size: 10px;
+  padding: 2px 8px;
+  background: var(--dark-elevated);
+  color: var(--text-muted);
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.contact-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.contact-actions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.contact-actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+  background: var(--dark-elevated);
+  border: 1px solid var(--dark-border);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-radius: 4px;
+}
+
+.contact-actions button:hover { background: var(--mint); border-color: var(--mint); color: #000; }
+.contact-actions button.active { background: var(--mint); border-color: var(--mint); color: #000; }
+.contact-actions button.active-warn { background: var(--orange); border-color: var(--orange); color: #000; }
+.contact-actions button.active-nope { background: var(--red); border-color: var(--red); color: #000; }
+.contact-actions button.active-bof { background: var(--text-muted); border-color: var(--text-muted); color: #000; }
+.contact-actions button.active-bug { background: var(--lilac); border-color: var(--lilac); color: #000; }
+
+.contact-notes { margin-top: 4px; }
+
+.contact-notes input {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 11px;
+  background: var(--dark-elevated);
+  border: 1px solid var(--dark-border);
+  color: var(--text-primary);
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.contact-notes input:focus { outline: none; border-color: var(--mint); }
+.contact-notes input::placeholder { color: var(--text-muted); }
+
+.reseau-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.reseau-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 12px;
+  background: var(--dark-card);
+  border: 1px dashed var(--dark-border);
+  border-radius: var(--radius-sm);
+}
+
+/* ================================================================
+   PARTENAIRES
+   ================================================================ */
+
+.partenaires-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.partenaire-category {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.partenaire-category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--dark-elevated);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.partenaire-icon { font-size: 20px; }
+.partenaire-category-title { font-weight: 600; flex: 1; }
+
+.partenaire-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.partenaire-list { padding: 8px; }
+
+.partenaire-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  transition: background var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.partenaire-item:hover { background: var(--dark-elevated); }
+
+.partenaire-name { font-weight: 500; font-size: 14px; min-width: 140px; }
+.partenaire-meta { font-size: 12px; color: var(--text-muted); flex: 1; }
+.partenaire-status { font-size: 14px; width: 24px; text-align: center; }
+
+.partenaire-status.hot { color: var(--mint); }
+.partenaire-status.warm { color: var(--orange); }
+.partenaire-status.cold { color: var(--text-muted); }
+
+/* ================================================================
+   PLAN / ROADMAP
+   ================================================================ */
+
+.plan-warning {
+  background: var(--red-deep);
+  border: 1px solid var(--red);
+  color: var(--red);
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  border-radius: var(--radius-sm);
+}
+
+.plan-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.plan-phase {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.plan-phase.critical { border-color: var(--orange); }
+
+.plan-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--dark-elevated);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.plan-phase.critical .plan-phase-header { background: var(--orange-deep); }
+
+.plan-phase-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--mint);
+  font-weight: 700;
+}
+
+.plan-phase-title { font-weight: 700; font-size: 16px; flex: 1; }
+
+.plan-phase-time {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.plan-phase-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  background: var(--orange);
+  color: #000;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.plan-phase-content { padding: 20px; }
+
+.plan-phase-goal {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.plan-phase-goal strong { color: var(--text-primary); }
+
+.plan-phase-targets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.plan-target {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--dark-elevated);
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+}
+
+.plan-target.hot { border-left: 2px solid var(--mint); }
+
+.plan-target-name { font-weight: 500; }
+
+.plan-target-amount {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--mint);
+}
+
+.plan-target-note { font-size: 11px; color: var(--text-muted); }
+
+.plan-phase-risk {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-top: 12px;
+  border-top: 1px dashed var(--dark-border);
+}
+
+.risk-label { color: var(--red); font-weight: 600; }
+
+/* Budget */
+.plan-budget {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 24px;
+  margin-bottom: 32px;
+  border-radius: var(--radius-md);
+}
+
+.plan-budget-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.plan-budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.plan-budget-item {
+  text-align: center;
+  padding: 16px;
+  background: var(--dark-elevated);
+  border-radius: var(--radius-sm);
+}
+
+.plan-budget-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+
+.plan-budget-range {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mint);
+}
+
+.plan-budget-total {
+  text-align: center;
+  font-size: 18px;
+  padding: 16px;
+  background: var(--dark-elevated);
+  margin-bottom: 16px;
+  border-radius: var(--radius-sm);
+}
+
+.plan-budget-total strong {
+  font-family: 'Space Mono', monospace;
+  color: var(--mint);
+  font-size: 28px;
+  margin-left: 12px;
+}
+
+.plan-budget-source {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Risks */
+.plan-risks {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 24px;
+  border-radius: var(--radius-md);
+}
+
+.plan-risks-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: var(--red);
+}
+
+.plan-risks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.plan-risk {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--dark-elevated);
+  border-radius: var(--radius-sm);
+}
+
+.plan-risk.critical { border-left: 3px solid var(--red); }
+.plan-risk.high { border-left: 3px solid var(--orange); }
+
+.plan-risk-level { font-size: 16px; }
+.plan-risk-content { flex: 1; }
+.plan-risk-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.plan-risk-desc { font-size: 13px; color: var(--text-secondary); }
+
+/* ================================================================
+   TIMELINE
+   ================================================================ */
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  margin-top: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--mint), var(--orange), var(--lilac));
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-marker {
+  position: absolute;
+  left: -40px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  background: var(--dark-base);
+  border: 2px solid var(--dark-border);
+  border-radius: 50%;
+  color: var(--text-muted);
+}
+
+.timeline-item.done .timeline-marker {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: #000;
+}
+
+.timeline-item.current .timeline-marker {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #000;
+  animation: pulse-marker 2s infinite;
+}
+
+@keyframes pulse-marker {
+  0%, 100% { box-shadow: 0 0 0 0 var(--orange-glow); }
+  50% { box-shadow: 0 0 0 10px transparent; }
+}
+
+.timeline-item.future .timeline-marker { border-style: dashed; }
+
+.timeline-content {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.timeline-item.done .timeline-content { border-left: 3px solid var(--mint); }
+.timeline-item.current .timeline-content { border-left: 3px solid var(--orange); background: var(--dark-elevated); }
+.timeline-item.future .timeline-content { opacity: 0.6; border-style: dashed; }
+.timeline-item.future:hover .timeline-content { opacity: 1; }
+
+.timeline-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--mint);
+  margin-bottom: 6px;
+}
+
+.timeline-item.current .timeline-date { color: var(--orange); }
+.timeline-item.future .timeline-date { color: var(--text-muted); }
+
+.timeline-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+.timeline-text { font-size: 14px; color: var(--text-secondary); }
+
+/* ================================================================
+   PROBLÈMES
+   ================================================================ */
+
+.problemes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 32px;
+}
+
+.probleme-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: var(--dark-card);
+  border-left: 3px solid var(--red);
+}
+
+.probleme-item.warn { border-left-color: var(--orange); }
+.probleme-item.info { border-left-color: var(--blue); }
+
+.probleme-icon { font-size: 20px; flex-shrink: 0; }
+.probleme-content { flex: 1; }
+.probleme-title { font-weight: 600; margin-bottom: 4px; }
+.probleme-text { font-size: 14px; color: var(--text-secondary); }
+
+/* ================================================================
+   ESSAIMAGE
+   ================================================================ */
+
+.essaimage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.essaimage-card {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: all var(--transition-med);
+}
+
+.essaimage-card:hover {
+  border-color: var(--mint);
+  transform: translateY(-4px);
+}
+
+.essaimage-card-icon { font-size: 28px; margin-bottom: 12px; }
+.essaimage-card h4 { font-size: 16px; margin-bottom: 8px; }
+.essaimage-card p { font-size: 14px; color: var(--text-muted); }
+
+/* ================================================================
+   DISCLAIMER
+   ================================================================ */
+
+.disclaimer-box {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background: var(--dark-elevated);
+  border: 1px solid var(--dark-border);
+  border-left: 4px solid var(--lilac);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 24px 28px;
+}
+
+.disclaimer-box h3 {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lilac);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.disclaimer-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.disclaimer-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.disclaimer-list li::before {
+  content: '→';
+  color: var(--lilac);
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   GITHUB STATS
+   ================================================================ */
+
+.github-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .github-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+.github-stat {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 24px;
+  text-align: center;
+  border-radius: var(--radius-md);
+}
+
+.github-stat-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--mint);
+  margin-bottom: 8px;
+}
+
+.github-stat-label { font-size: 12px; color: var(--text-muted); }
+
+.github-repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.github-repo {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-border);
+  padding: 18px;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-md);
+}
+
+.github-repo:hover { border-color: var(--mint); }
+
+.github-repo-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.github-repo-name a { color: var(--text-primary); }
+.github-repo-name a:hover { color: var(--mint); text-decoration: none; }
+
+.github-repo-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.github-repo-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'Space Mono', monospace;
+}
+
+.github-loading, .github-error {
+  text-align: center;
+  padding: 48px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.github-error { color: var(--red); }
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+
+footer {
+  border-top: 1px solid var(--dark-border);
+  padding: 60px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-brand {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.footer-brand span { color: var(--mint); }
+
+.footer-tagline {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Easter egg */
+.easter {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.2;
+  font-family: 'Space Mono', monospace;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 50;
+}
+
+.easter:hover { opacity: 1; color: var(--mint); }
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<!-- GRAPH CANVAS -->
+<canvas id="graphCanvas"></canvas>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-content">
+    ⚠️ 975 000 BELGES PIÉGÉS HORS EMPLOI — 21-24 MILLIARDS €/AN BRÛLÉS — +65% D'INVALIDES EN 10 ANS — BUS FACTOR = 1 — CE N'EST PAS UNE BLAGUE — 
+    ⚠️ 975 000 BELGES PIÉGÉS HORS EMPLOI — 21-24 MILLIARDS €/AN BRÛLÉS — +65% D'INVALIDES EN 10 ANS — BUS FACTOR = 1 — CE N'EST PAS UNE BLAGUE — 
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="nav-brand">⬡ <span>CONSTELLATION</span></div>
+  <div class="nav-links">
+    <a href="#piege">Piège</a>
+    <a href="#outils">Outils</a>
+    <a href="#reseau">Réseau</a>
+    <a href="#plan">Plan</a>
+    <a href="#problemes">Problèmes</a>
+    <a href="https://github.com/ouaisfieu" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span>🔴</span> TRANSMISSION EN COURS
+    </div>
+    
+    <h1>
+      <span class="gradient">LA CONSTELLATION</span>
+      <span class="sub">Agence de Renseignement Citoyenne (autoproclamée) — Auderghem, Bruxelles</span>
+    </h1>
+    
+    <div class="hero-stats">
+      <div class="hero-stat" title="INAMI 2023 + ONEM 2024 + SPP Intégration Sociale">
+        <div class="hero-stat-value red">975 000</div>
+        <div class="hero-stat-label">otages du système</div>
+        <div class="hero-stat-source">// fact-checké</div>
+      </div>
+      <div class="hero-stat" title="Cour des Comptes, 181e Cahier, octobre 2024">
+        <div class="hero-stat-value orange">21-24 Mrd€</div>
+        <div class="hero-stat-label">brûlés chaque année</div>
+        <div class="hero-stat-source">// Cour des Comptes</div>
+      </div>
+      <div class="hero-stat" title="C'est un problème">
+        <div class="hero-stat-value lilac">1</div>
+        <div class="hero-stat-label">personne derrière</div>
+        <div class="hero-stat-source">// bus factor</div>
+      </div>
+      <div class="hero-stat" title="En production">
+        <div class="hero-stat-value mint">5</div>
+        <div class="hero-stat-label">outils qui marchent</div>
+        <div class="hero-stat-source">// open source</div>
+      </div>
+    </div>
+    
+    <div class="hero-actions">
+      <a href="#outils" class="btn primary">Voir les outils →</a>
+      <a href="#problemes" class="btn danger">Ce qui ne va pas</a>
+      <a href="https://ouaisfieu.github.io/boot/orientation.html" class="btn" target="_blank">Devenir agent</a>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn" target="_blank">Fuir</a>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <span></span>
+  </div>
+</section>
+
+<!-- ================================================================
+     LE PIÈGE
+     ================================================================ -->
+<section id="piege">
+  <div class="section-label">01 — Diagnostic</div>
+  <h2 class="section-title">Le piège parfait</h2>
+  <p class="section-subtitle">Le système belge a créé une machine à broyer. Pas par méchanceté. Par inertie.</p>
+  
+  <div class="piege-box">
+    <div class="piege-grid">
+      <div class="piege-side">
+        <div class="piege-side-arrow">←</div>
+        <div class="piege-side-title">SI ELLE TRAVAILLE</div>
+        <div class="piege-side-text">Perd allocations, statut BIM, parfois logement social. Retour à la case départ si ça foire.</div>
+      </div>
+      
+      <div class="piege-center">
+        <div class="piege-center-icon">🧑</div>
+        <div class="piege-center-title">PERSONNE HORS EMPLOI</div>
+        <div class="piege-center-text">A des compétences. Du temps. De l'énergie.<br>Mais le système dit : "reste tranquille".</div>
+      </div>
+      
+      <div class="piege-side">
+        <div class="piege-side-arrow">→</div>
+        <div class="piege-side-title">SI ELLE NE FAIT RIEN</div>
+        <div class="piege-side-text">Isolement. Perte de compétences. Dépression. Coût santé mentale → coût société.</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="piege-stats">
+    <strong class="red">526 507</strong> en incapacité longue durée (+65% en 10 ans). 
+    <strong class="orange">292 790</strong> chômeurs (47% depuis >2 ans). 
+    <strong class="lilac">158 697</strong> au CPAS.
+    <br><br>
+    L'inaction coûte <strong class="red">~1 million € par heure</strong> à l'État belge.
+    <br>
+    <span style="font-size:12px;opacity:0.6;">Sources : INAMI 2023, ONEM 2024, SPP Intégration Sociale, Cour des Comptes 181e Cahier.</span>
+  </div>
+</section>
+
+<!-- ================================================================
+     LES OUTILS
+     ================================================================ -->
+<section id="outils">
+  <div class="section-label">02 — Arsenal</div>
+  <h2 class="section-title">Les outils</h2>
+  <p class="section-subtitle">Trois niveaux. Cinq outils. Zéro bullshit. Tout est open source.</p>
+  
+  <div class="outils-grid">
+    <!-- MICRO -->
+    <a href="https://ouaisfieu.github.io/112/" target="_blank" class="outil-card micro">
+      <div class="outil-level">Micro — Moi</div>
+      <div class="outil-name">KERN <span class="outil-status beta">BETA</span></div>
+      <div class="outil-subtitle">Système d'Intelligence Personnelle</div>
+      <p class="outil-desc">Structure tes infos, tes contacts, tes projets. Reprends le contrôle avant de vouloir changer le monde.</p>
+      <div class="outil-links">
+        <span>Ouvrir →</span>
+      </div>
+    </a>
+    
+    <!-- MESO 1 -->
+    <a href="https://nyxo.brussels/" target="_blank" class="outil-card meso">
+      <div class="outil-level">Méso — Nous</div>
+      <div class="outil-name">NYXO <span class="outil-status live">LIVE</span></div>
+      <div class="outil-subtitle">Cartographie Santé Mentale</div>
+      <p class="outil-desc">Navigation santé mentale Bruxelles. 20+ lieux, 4 réseaux 107, export FHIR R4. Données ouvertes.</p>
+      <div class="outil-links">
+        <span>Ouvrir →</span>
+      </div>
+    </a>
+    
+    <!-- MESO 2 -->
+    <a href="https://ouaisfieu.github.io/ccplc/" target="_blank" class="outil-card meso">
+      <div class="outil-level">Méso — Nous</div>
+      <div class="outil-name">CCPLC <span class="outil-status live">LIVE</span></div>
+      <div class="outil-subtitle">Collectif Citoyen</div>
+      <p class="outil-desc">Structure chapeau. ASBL de fait. Charte, méthodes, accompagnement stratégique.</p>
+      <div class="outil-links">
+        <span>Ouvrir →</span>
+      </div>
+    </a>
+    
+    <!-- MACRO 1 -->
+    <a href="https://ouaisfieu.github.io/ecp/" target="_blank" class="outil-card macro">
+      <div class="outil-level">Macro — Ensemble</div>
+      <div class="outil-name">ECP <span class="outil-status wip">WIP</span></div>
+      <div class="outil-subtitle">Économie Contributive Provisionnée</div>
+      <p class="outil-desc">Le modèle économique alternatif. Fact-checké. Juridiquement pas encore sécurisé.</p>
+      <div class="outil-links">
+        <span>Ouvrir →</span>
+      </div>
+    </a>
+    
+    <!-- MACRO 2 -->
+    <a href="https://ouaisfieu.github.io/politika/" target="_blank" class="outil-card macro">
+      <div class="outil-level">Macro — Ensemble</div>
+      <div class="outil-name">POLiT!KA <span class="outil-status beta">BETA</span></div>
+      <div class="outil-subtitle">Formation Politique Gamifiée</div>
+      <p class="outil-desc">Comprendre le jeu politique. Créer ton parti virtuel. Gagner les élections. Ou pas.</p>
+      <div class="outil-links">
+        <span>Jouer →</span>
+      </div>
+    </a>
+    
+    <!-- BONUS -->
+    <a href="https://ouaisfieu.github.io/tech/" target="_blank" class="outil-card" style="border-left:3px solid var(--blue);">
+      <div class="outil-level" style="color:var(--blue);">Bonus — Infra</div>
+      <div class="outil-name">DOCTech <span class="outil-status live">LIVE</span></div>
+      <div class="outil-subtitle">Documentation Complète</div>
+      <p class="outil-desc">Belgique, démocratie, violence, champs, soft power. 50+ articles sourcés.</p>
+      <div class="outil-links">
+        <span>Lire →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================
+     RÉSEAU / CONTACTS
+     ================================================================ -->
+<section id="reseau">
+  <div class="section-label">03 — Réseau</div>
+  <h2 class="section-title">96 cibles. 0 bullshit.</h2>
+  <p class="section-subtitle">Médias militants, organisations, syndicats, collectifs. Tout est là. En temps réel.</p>
+  
+  <div class="reseau-stats" id="reseauStats">
+    <div class="reseau-stat total">
+      <div class="reseau-stat-value" id="statTotal">96</div>
+      <div class="reseau-stat-label">Total</div>
+    </div>
+    <div class="reseau-stat pending">
+      <div class="reseau-stat-value" id="statPending">—</div>
+      <div class="reseau-stat-label">À contacter</div>
+    </div>
+    <div class="reseau-stat contacted">
+      <div class="reseau-stat-value" id="statContacted">—</div>
+      <div class="reseau-stat-label">Contactés</div>
+    </div>
+    <div class="reseau-stat ok">
+      <div class="reseau-stat-value" id="statOk">—</div>
+      <div class="reseau-stat-label">OK 🎯</div>
+    </div>
+    <div class="reseau-stat nope">
+      <div class="reseau-stat-value" id="statNope">—</div>
+      <div class="reseau-stat-label">Non</div>
+    </div>
+    <div class="reseau-stat bug">
+      <div class="reseau-stat-value" id="statBug">—</div>
+      <div class="reseau-stat-label">Bug</div>
+    </div>
+  </div>
+  
+  <div class="reseau-filters">
+    <div class="reseau-filter-group">
+      <label>Type</label>
+      <select id="filterType"><option value="">Tous</option></select>
+    </div>
+    <div class="reseau-filter-group">
+      <label>Zone</label>
+      <select id="filterZone"><option value="">Toutes</option></select>
+    </div>
+    <div class="reseau-filter-group">
+      <label>Statut</label>
+      <select id="filterStatut">
+        <option value="">Tous</option>
+        <option value="pending">⏳ À contacter</option>
+        <option value="contacted">📤 Contacté</option>
+        <option value="ok">✅ OK</option>
+        <option value="nope">❌ Non</option>
+        <option value="bof">🤷 Bof</option>
+        <option value="bug">🐛 Bug</option>
+      </select>
+    </div>
+    <div class="reseau-filter-group">
+      <label>Recherche</label>
+      <input type="text" id="filterSearch" placeholder="Nom, URL...">
+    </div>
+    <button class="btn-small" onclick="exportContacts()">📥 Export</button>
+    <button class="btn-small" onclick="resetAllStatuts()">🔄 Reset</button>
+  </div>
+  
+  <div class="reseau-grid" id="reseauGrid"></div>
+  
+  <div class="reseau-legend">
+    <span>⏳ À contacter</span>
+    <span>📤 Contacté</span>
+    <span>✅ OK</span>
+    <span>❌ Non</span>
+    <span>🤷 Bof</span>
+    <span>🐛 Bug</span>
+  </div>
+  
+  <div class="reseau-note">
+    💾 Modifications sauvegardées localement (localStorage). Personne d'autre ne les voit — sauf si tu exportes.
+  </div>
+</section>
+
+<!-- ================================================================
+     PARTENAIRES STRATÉGIQUES
+     ================================================================ -->
+<section id="partenaires">
+  <div class="section-label">04 — Partenaires</div>
+  <h2 class="section-title">Les gros poissons</h2>
+  <p class="section-subtitle">Mutuelles, syndicats, fondations. Ceux qu'il faut convaincre pour passer à l'échelle.</p>
+  
+  <div class="partenaires-grid">
+    <div class="partenaire-category">
+      <div class="partenaire-category-header">
+        <span class="partenaire-icon">🏛️</span>
+        <span class="partenaire-category-title">Mutuelles</span>
+        <span class="partenaire-count">~7,5M affiliés</span>
+      </div>
+      <div class="partenaire-list">
+        <div class="partenaire-item">
+          <span class="partenaire-name">Mutualité Chrétienne</span>
+          <span class="partenaire-meta">4,6M · Fondation MC</span>
+          <span class="partenaire-status hot">🎯</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">Solidaris</span>
+          <span class="partenaire-meta">~3M · Lien FGTB</span>
+          <span class="partenaire-status warm">◐</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">Mutualités Libres</span>
+          <span class="partenaire-meta">2M affiliés</span>
+          <span class="partenaire-status cold">○</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="partenaire-category">
+      <div class="partenaire-category-header">
+        <span class="partenaire-icon">✊</span>
+        <span class="partenaire-category-title">Syndicats</span>
+        <span class="partenaire-count">~3M affiliés</span>
+      </div>
+      <div class="partenaire-list">
+        <div class="partenaire-item">
+          <span class="partenaire-name">FGTB</span>
+          <span class="partenaire-meta">1,52M · CEPAG</span>
+          <span class="partenaire-status warm">◐</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">CSC</span>
+          <span class="partenaire-meta">~1,6M · MOC</span>
+          <span class="partenaire-status cold">○</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">CGSLB</span>
+          <span class="partenaire-meta">~300K</span>
+          <span class="partenaire-status cold">○</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="partenaire-category">
+      <div class="partenaire-category-header">
+        <span class="partenaire-icon">💰</span>
+        <span class="partenaire-category-title">Économie Sociale</span>
+        <span class="partenaire-count">Financement</span>
+      </div>
+      <div class="partenaire-list">
+        <div class="partenaire-item">
+          <span class="partenaire-name">Fondation Roi Baudouin</span>
+          <span class="partenaire-meta">45M€/an</span>
+          <span class="partenaire-status hot">🎯</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">SAW-B</span>
+          <span class="partenaire-meta">130+ entreprises</span>
+          <span class="partenaire-status warm">◐</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">Financité</span>
+          <span class="partenaire-meta">Finance solidaire</span>
+          <span class="partenaire-status cold">○</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="partenaire-category">
+      <div class="partenaire-category-header">
+        <span class="partenaire-icon">🏥</span>
+        <span class="partenaire-category-title">Santé Mentale</span>
+        <span class="partenaire-count">Réseaux 107</span>
+      </div>
+      <div class="partenaire-list">
+        <div class="partenaire-item">
+          <span class="partenaire-name">Brusano</span>
+          <span class="partenaire-meta">Coordination 1ère ligne</span>
+          <span class="partenaire-status warm">◐</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">LBFSM</span>
+          <span class="partenaire-meta">Ligue Bruxelloise</span>
+          <span class="partenaire-status cold">○</span>
+        </div>
+        <div class="partenaire-item">
+          <span class="partenaire-name">4 Antennes 107</span>
+          <span class="partenaire-meta">Rézone · Norwest · Hermès+</span>
+          <span class="partenaire-status warm">◐</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     LE PLAN
+     ================================================================ -->
+<section id="plan">
+  <div class="section-label">05 — Le Plan</div>
+  <h2 class="section-title">Comment on compte faire</h2>
+  <p class="section-subtitle">500K€ - 2M€ sur 3 ans. 150+ opportunités cartographiées. 1 personne pour l'instant.</p>
+  
+  <div class="plan-warning">⚠️ Ce plan suppose qu'on crée une ASBL. Sans ça, 85% des financements sont inaccessibles.</div>
+  
+  <div class="plan-phases">
+    <div class="plan-phase">
+      <div class="plan-phase-header">
+        <div class="plan-phase-num">01</div>
+        <div class="plan-phase-title">Démarrage</div>
+        <div class="plan-phase-time">0-2 mois</div>
+      </div>
+      <div class="plan-phase-content">
+        <div class="plan-phase-goal"><strong>Objectif :</strong> Prouver qu'on existe. Lever les premiers €.</div>
+        <div class="plan-phase-targets">
+          <div class="plan-target"><span class="plan-target-name">Open Collective</span><span class="plan-target-amount">récurrent</span></div>
+          <div class="plan-target"><span class="plan-target-name">GitHub Sponsors</span><span class="plan-target-amount">récurrent</span></div>
+          <div class="plan-target hot"><span class="plan-target-name">NGI Zero Commons</span><span class="plan-target-amount">→ 50K€</span></div>
+        </div>
+        <div class="plan-phase-risk"><span class="risk-label">Risque :</span> Personne ne donne. Pas de traction prouvée.</div>
+      </div>
+    </div>
+    
+    <div class="plan-phase critical">
+      <div class="plan-phase-header">
+        <div class="plan-phase-num">02</div>
+        <div class="plan-phase-title">ASBL</div>
+        <div class="plan-phase-time">2-4 mois</div>
+        <div class="plan-phase-badge">CRITIQUE</div>
+      </div>
+      <div class="plan-phase-content">
+        <div class="plan-phase-goal"><strong>Objectif :</strong> Créer l'entité juridique. Débloquer 85% des financements.</div>
+        <div class="plan-phase-targets">
+          <div class="plan-target hot"><span class="plan-target-name">COCOF Impulsion</span><span class="plan-target-amount">30K€</span><span class="plan-target-note">nouvelles ASBL BXL</span></div>
+          <div class="plan-target"><span class="plan-target-name">Coopcity SEEDS</span><span class="plan-target-amount">18 mois accompagnement</span></div>
+        </div>
+        <div class="plan-phase-risk"><span class="risk-label">Risque :</span> ASBL = 2-4 semaines. Le reste du temps fait quoi ?</div>
+      </div>
+    </div>
+    
+    <div class="plan-phase">
+      <div class="plan-phase-header">
+        <div class="plan-phase-num">03</div>
+        <div class="plan-phase-title">Consolidation</div>
+        <div class="plan-phase-time">4-12 mois</div>
+      </div>
+      <div class="plan-phase-content">
+        <div class="plan-phase-goal"><strong>Objectif :</strong> Gros financements. Partenariats académiques. Pilotes.</div>
+        <div class="plan-phase-targets">
+          <div class="plan-target hot"><span class="plan-target-name">Innoviris PYSI</span><span class="plan-target-amount">100K€</span><span class="plan-target-note">innovation sociale</span></div>
+          <div class="plan-target"><span class="plan-target-name">FRB Santé Mentale</span><span class="plan-target-amount">Dr. De Coninck</span></div>
+        </div>
+        <div class="plan-phase-risk"><span class="risk-label">Risque :</span> "Partenariats académiques" = avec qui exactement ?</div>
+      </div>
+    </div>
+    
+    <div class="plan-phase">
+      <div class="plan-phase-header">
+        <div class="plan-phase-num">04</div>
+        <div class="plan-phase-title">Échelle</div>
+        <div class="plan-phase-time">12+ mois</div>
+      </div>
+      <div class="plan-phase-content">
+        <div class="plan-phase-goal"><strong>Objectif :</strong> Auto-suffisance. Marchés publics. Essaimage.</div>
+        <div class="plan-phase-targets">
+          <div class="plan-target"><span class="plan-target-name">Wellcome Trust</span><span class="plan-target-amount">international</span></div>
+          <div class="plan-target"><span class="plan-target-name">COCOM/Iriscare</span><span class="plan-target-amount">marchés publics</span></div>
+        </div>
+        <div class="plan-phase-risk"><span class="risk-label">Risque :</span> "Auto-suffisance" = quel modèle économique exactement ?</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="plan-budget">
+    <div class="plan-budget-title">Potentiel sur 3 ans</div>
+    <div class="plan-budget-grid">
+      <div class="plan-budget-item"><div class="plan-budget-label">Subventions BXL</div><div class="plan-budget-range">200K - 400K€</div></div>
+      <div class="plan-budget-item"><div class="plan-budget-label">Fédéral</div><div class="plan-budget-range">50K - 300K€</div></div>
+      <div class="plan-budget-item"><div class="plan-budget-label">Programmes UE</div><div class="plan-budget-range">50K - 500K€</div></div>
+      <div class="plan-budget-item"><div class="plan-budget-label">Fondations</div><div class="plan-budget-range">50K - 200K€</div></div>
+      <div class="plan-budget-item"><div class="plan-budget-label">Prix & Fellowships</div><div class="plan-budget-range">25K - 100K€</div></div>
+      <div class="plan-budget-item"><div class="plan-budget-label">Tech (en nature)</div><div class="plan-budget-range">~50K€/an</div></div>
+    </div>
+    <div class="plan-budget-total">Total estimé : <strong>500K€ - 2M€</strong></div>
+    <div class="plan-budget-source">Sources : sites officiels, Funding & Tenders Portal UE, kbs-frb.be, innoviris.brussels — 150+ opportunités cartographiées</div>
+  </div>
+  
+  <div class="plan-risks">
+    <div class="plan-risks-title">Ce qui peut foirer</div>
+    <div class="plan-risks-grid">
+      <div class="plan-risk critical">
+        <div class="plan-risk-level">🔴</div>
+        <div class="plan-risk-content">
+          <div class="plan-risk-name">Bus factor = 1</div>
+          <div class="plan-risk-desc">Une personne maintient tout. Mitigation : aucune pour l'instant.</div>
+        </div>
+      </div>
+      <div class="plan-risk critical">
+        <div class="plan-risk-level">🔴</div>
+        <div class="plan-risk-content">
+          <div class="plan-risk-name">Ruling ECP pas obtenu</div>
+          <div class="plan-risk-desc">Le modèle économique central n'est pas légalement sécurisé.</div>
+        </div>
+      </div>
+      <div class="plan-risk high">
+        <div class="plan-risk-level">🟠</div>
+        <div class="plan-risk-content">
+          <div class="plan-risk-name">Dépendance aux subventions</div>
+          <div class="plan-risk-desc">Pas de revenus propres avant Phase 4. Et encore.</div>
+        </div>
+      </div>
+      <div class="plan-risk high">
+        <div class="plan-risk-level">🟠</div>
+        <div class="plan-risk-content">
+          <div class="plan-risk-name">Pas de traction prouvée</div>
+          <div class="plan-risk-desc">Les financeurs veulent des métriques. On n'en a pas encore.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     TIMELINE
+     ================================================================ -->
+<section id="timeline">
+  <div class="section-label">06 — Historique</div>
+  <h2 class="section-title">Ce qui a été fait / Ce qui reste</h2>
+  <p class="section-subtitle">Transparence totale. Juge par toi-même.</p>
+  
+  <div class="timeline">
+    <div class="timeline-item done">
+      <div class="timeline-marker">✓</div>
+      <div class="timeline-content">
+        <div class="timeline-date">2024</div>
+        <div class="timeline-title">Conception & prototypage</div>
+        <div class="timeline-text">Idée initiale, premiers prototypes KERN, recherche documentaire système belge.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item done">
+      <div class="timeline-marker">✓</div>
+      <div class="timeline-content">
+        <div class="timeline-date">Q1 2025</div>
+        <div class="timeline-title">NYXO v1 en production</div>
+        <div class="timeline-text">Cartographie santé mentale Bruxelles. 20+ lieux, 4 réseaux 107, export FHIR R4.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item done">
+      <div class="timeline-marker">✓</div>
+      <div class="timeline-content">
+        <div class="timeline-date">Q2-Q3 2025</div>
+        <div class="timeline-title">DOCTech, ECP, POLiT!KA, CCPLC</div>
+        <div class="timeline-text">50+ articles. Fact-checking ECP. Formation politique. Charte v1.0.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item current">
+      <div class="timeline-marker">●</div>
+      <div class="timeline-content">
+        <div class="timeline-date">Q1 2026</div>
+        <div class="timeline-title">Consolidation & Hub</div>
+        <div class="timeline-text">Unification écosystème. Landing page définitive. Système XP transversal. On est là.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item future">
+      <div class="timeline-marker">○</div>
+      <div class="timeline-content">
+        <div class="timeline-date">Q2 2026</div>
+        <div class="timeline-title">Juridique ECP + ASBL</div>
+        <div class="timeline-text">Dossier ruling SPF Finances. Création ASBL. Premiers financements.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item future">
+      <div class="timeline-marker">○</div>
+      <div class="timeline-content">
+        <div class="timeline-date">Q3-Q4 2026</div>
+        <div class="timeline-title">Trilingue + Agrément</div>
+        <div class="timeline-text">Traduction NL/EN. Dossier éducation permanente FWB.</div>
+      </div>
+    </div>
+    
+    <div class="timeline-item future">
+      <div class="timeline-marker">?</div>
+      <div class="timeline-content">
+        <div class="timeline-date">2027+</div>
+        <div class="timeline-title">Et après ?</div>
+        <div class="timeline-text">Pilote avec partenaire. 100 contributeurs. Essaimage. Ou échec. On verra.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PROBLÈMES
+     ================================================================ -->
+<section id="problemes">
+  <div class="section-label">07 — Honnêteté</div>
+  <h2 class="section-title">Ce qui ne va pas</h2>
+  <p class="section-subtitle">On ne vous vend rien. Donc on peut être honnêtes.</p>
+  
+  <div class="problemes-list">
+    <div class="probleme-item">
+      <div class="probleme-icon">🚨</div>
+      <div class="probleme-content">
+        <div class="probleme-title">L'ECP n'est pas légal</div>
+        <div class="probleme-text">Le ruling SPF Finances n'est pas obtenu. Risque de requalification en contrat de travail. Zone grise juridique.</div>
+      </div>
+    </div>
+    <div class="probleme-item">
+      <div class="probleme-icon">⚠️</div>
+      <div class="probleme-content">
+        <div class="probleme-title">Bus factor = 1</div>
+        <div class="probleme-text">Une seule personne maintient tout. Pas d'équipe. Pas de financement. Pas de structure juridique.</div>
+      </div>
+    </div>
+    <div class="probleme-item warn">
+      <div class="probleme-icon">🌐</div>
+      <div class="probleme-content">
+        <div class="probleme-title">Pas trilingue</div>
+        <div class="probleme-text">Tout est en français. Pour un agrément COCOM à Bruxelles, il faut NL et EN.</div>
+      </div>
+    </div>
+    <div class="probleme-item warn">
+      <div class="probleme-icon">🎮</div>
+      <div class="probleme-content">
+        <div class="probleme-title">Gamification non testée</div>
+        <div class="probleme-text">Le système XP/badges/missions existe. On ne sait pas si ça marche vraiment.</div>
+      </div>
+    </div>
+    <div class="probleme-item info">
+      <div class="probleme-icon">🤝</div>
+      <div class="probleme-content">
+        <div class="probleme-title">Partenaires = 0</div>
+        <div class="probleme-text">MC, Solidaris, FGTB, SAW-B, FRB identifiés. Aucun n'a signé quoi que ce soit.</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="disclaimer-box">
+    <h3><span>⚠</span> En toute honnêteté</h3>
+    <ul class="disclaimer-list">
+      <li>Ce sont des outils <strong>en construction</strong> — pas des produits finis</li>
+      <li>On ne promet pas de miracle — <strong>le changement vient de toi</strong></li>
+      <li>Pas de support 24/7 — on fait ça avec nos moyens, depuis un appart</li>
+      <li>Zéro tracking, zéro données captées — mais ça veut dire <strong>zéro revenus pub</strong></li>
+      <li>On peut se planter — mais on documente et on recommence</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================
+     ESSAIMAGE
+     ================================================================ -->
+<section id="essaimage">
+  <div class="section-label">08 — Essaimage</div>
+  <h2 class="section-title">Tu veux faire pareil dans ta ville ?</h2>
+  <p class="section-subtitle">Tout est conçu pour être copié, adapté, approprié. C'est le but.</p>
+  
+  <div class="essaimage-grid">
+    <div class="essaimage-card">
+      <div class="essaimage-card-icon">⑂</div>
+      <h4>Fork le code</h4>
+      <p>Tout est sur GitHub. Licence MIT. Tu prends, tu adaptes, tu fais tourner.</p>
+    </div>
+    <div class="essaimage-card">
+      <div class="essaimage-card-icon">🗺️</div>
+      <h4>Change le territoire</h4>
+      <p>NYXO marche pour n'importe quelle ville. Modifie les coordonnées, charge tes données.</p>
+    </div>
+    <div class="essaimage-card">
+      <div class="essaimage-card-icon">🎨</div>
+      <h4>Adapte l'identité</h4>
+      <p>Change les couleurs, le nom, le ton. On s'en fout, ce qui compte c'est l'impact.</p>
+    </div>
+    <div class="essaimage-card">
+      <div class="essaimage-card-icon">🤝</div>
+      <h4>Rejoins le réseau</h4>
+      <p>D'autres cellules se créent. On peut mutualiser, apprendre ensemble, coordonner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     GITHUB
+     ================================================================ -->
+<section id="github">
+  <div class="section-label">09 — Code</div>
+  <h2 class="section-title">Activité GitHub</h2>
+  <p class="section-subtitle">Temps réel. Pas de triche.</p>
+  
+  <div class="github-stats" id="githubStats">
+    <div class="github-stat"><div class="github-stat-value" id="repoCount">—</div><div class="github-stat-label">Repos publics</div></div>
+    <div class="github-stat"><div class="github-stat-value" id="totalCommits">—</div><div class="github-stat-label">Commits (estimé)</div></div>
+    <div class="github-stat"><div class="github-stat-value" id="lastUpdate">—</div><div class="github-stat-label">Dernière activité</div></div>
+    <div class="github-stat"><div class="github-stat-value" id="topLang">—</div><div class="github-stat-label">Langage principal</div></div>
+  </div>
+  
+  <div class="github-repos" id="githubRepos">
+    <div class="github-loading">Chargement depuis l'API GitHub...</div>
+  </div>
+  
+  <div style="text-align:center;margin-top:32px;">
+    <a href="https://github.com/ouaisfieu" class="btn primary" target="_blank">⑂ Voir sur GitHub</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <div class="footer-brand">⬡ <span>LA CONSTELLATION</span></div>
+  <div class="footer-tagline">
+    On ne vous veut pas du bien. On veut que vous puissiez vous en vouloir vous-mêmes.
+    <br>Auderghem, Bruxelles-Capitale.
+  </div>
+  
+  <div class="footer-links">
+    <a href="https://ouaisfieu.github.io/112/" target="_blank">KERN</a>
+    <a href="https://nyxo.brussels/" target="_blank">NYXO</a>
+    <a href="https://ouaisfieu.github.io/ccplc/" target="_blank">CCPLC</a>
+    <a href="https://ouaisfieu.github.io/ecp/" target="_blank">ECP</a>
+    <a href="https://ouaisfieu.github.io/politika/" target="_blank">POLiT!KA</a>
+    <a href="https://ouaisfieu.github.io/tech/" target="_blank">DOCTech</a>
+    <a href="https://github.com/ouaisfieu" target="_blank">GitHub</a>
+  </div>
+  
+  <div class="footer-copy">
+    CC BY-NC 4.0 · Zéro tracking · Offline-first · <a href="https://github.com/ouaisfieu">Code source libre</a>
+    <br><span style="opacity:0.5;">Fait depuis un appart à Auderghem avec de la conviction et pas de budget.</span>
+  </div>
+</footer>
+
+<div class="easter" onclick="alert('T\'as trouvé. Maintenant va faire quelque chose d\'utile.')">[?]</div>
+
+<!-- ================================================================
+     SCRIPTS
+     ================================================================ -->
+<script>
+// ================================================================
+// OBSIDIAN-STYLE GRAPH ANIMATION
+// ================================================================
+(function() {
+  const canvas = document.getElementById('graphCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  let width, height, nodes = [], mouse = { x: null, y: null }, animationId;
+  
+  const config = {
+    nodeCount: 80,
+    connectionDistance: 180,
+    mouseRadius: 200,
+    nodeSpeed: 0.3,
+    nodeMinSize: 1.5,
+    nodeMaxSize: 4,
+    colors: {
+      mint: { r: 94, g: 234, b: 212 },
+      lilac: { r: 196, g: 181, b: 253 },
+      orange: { r: 251, g: 191, b: 36 }
+    }
+  };
+  
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+  
+  function createNodes() {
+    nodes = [];
+    const colorKeys = Object.keys(config.colors);
+    
+    for (let i = 0; i < config.nodeCount; i++) {
+      const colorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * config.nodeSpeed,
+        vy: (Math.random() - 0.5) * config.nodeSpeed,
+        baseVx: (Math.random() - 0.5) * config.nodeSpeed,
+        baseVy: (Math.random() - 0.5) * config.nodeSpeed,
+        radius: Math.random() * (config.nodeMaxSize - config.nodeMinSize) + config.nodeMinSize,
+        color: config.colors[colorKey],
+        pulseOffset: Math.random() * Math.PI * 2
+      });
+    }
+  }
+  
+  function drawConnections() {
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < config.connectionDistance) {
+          const opacity = (1 - dist / config.connectionDistance) * 0.15;
+          
+          // Gradient line between two node colors
+          const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+          gradient.addColorStop(0, `rgba(${nodes[i].color.r}, ${nodes[i].color.g}, ${nodes[i].color.b}, ${opacity})`);
+          gradient.addColorStop(1, `rgba(${nodes[j].color.r}, ${nodes[j].color.g}, ${nodes[j].color.b}, ${opacity})`);
+          
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  
+  function drawNodes(time) {
+    for (const node of nodes) {
+      // Pulse effect
+      const pulse = Math.sin(time * 0.002 + node.pulseOffset) * 0.3 + 1;
+      const radius = node.radius * pulse;
+      
+      // Glow
+      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 3);
+      gradient.addColorStop(0, `rgba(${node.color.r}, ${node.color.g}, ${node.color.b}, 0.8)`);
+      gradient.addColorStop(0.5, `rgba(${node.color.r}, ${node.color.g}, ${node.color.b}, 0.2)`);
+      gradient.addColorStop(1, `rgba(${node.color.r}, ${node.color.g}, ${node.color.b}, 0)`);
+      
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, radius * 3, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Core
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${node.color.r}, ${node.color.g}, ${node.color.b}, 0.9)`;
+      ctx.fill();
+    }
+  }
+  
+  function updateNodes() {
+    for (const node of nodes) {
+      // Mouse interaction
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = mouse.x - node.x;
+        const dy = mouse.y - node.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < config.mouseRadius) {
+          const force = (config.mouseRadius - dist) / config.mouseRadius;
+          node.vx -= (dx / dist) * force * 0.02;
+          node.vy -= (dy / dist) * force * 0.02;
+        }
+      }
+      
+      // Return to base velocity
+      node.vx += (node.baseVx - node.vx) * 0.01;
+      node.vy += (node.baseVy - node.vy) * 0.01;
+      
+      // Update position
+      node.x += node.vx;
+      node.y += node.vy;
+      
+      // Bounce off edges
+      if (node.x < 0 || node.x > width) {
+        node.vx *= -1;
+        node.baseVx *= -1;
+        node.x = Math.max(0, Math.min(width, node.x));
+      }
+      if (node.y < 0 || node.y > height) {
+        node.vy *= -1;
+        node.baseVy *= -1;
+        node.y = Math.max(0, Math.min(height, node.y));
+      }
+    }
+  }
+  
+  function animate(time) {
+    ctx.clearRect(0, 0, width, height);
+    updateNodes();
+    drawConnections();
+    drawNodes(time);
+    animationId = requestAnimationFrame(animate);
+  }
+  
+  // Mouse tracking
+  document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  
+  document.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+  
+  // Reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  
+  function init() {
+    resize();
+    createNodes();
+    if (!prefersReducedMotion.matches) {
+      animate(0);
+    } else {
+      drawConnections();
+      drawNodes(0);
+    }
+  }
+  
+  window.addEventListener('resize', () => {
+    resize();
+    if (prefersReducedMotion.matches) {
+      ctx.clearRect(0, 0, width, height);
+      drawConnections();
+      drawNodes(0);
+    }
+  });
+  
+  prefersReducedMotion.addEventListener('change', () => {
+    if (prefersReducedMotion.matches) {
+      cancelAnimationFrame(animationId);
+    } else {
+      animate(0);
+    }
+  });
+  
+  init();
+})();
+
+// ================================================================
+// NAVIGATION HIDE ON SCROLL
+// ================================================================
+(function() {
+  let lastScroll = 0;
+  const nav = document.getElementById('mainNav');
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      nav.classList.add('hidden');
+    } else {
+      nav.classList.remove('hidden');
+    }
+    lastScroll = currentScroll;
+  });
+})();
+
+// ================================================================
+// CONTACTS DATA & MANAGEMENT
+// ================================================================
+const CONTACTS_DATA = [
+  {"nom": "Info Libertaire", "url": "https://www.infolibertaire.net", "type": "Média militant", "zone": "France"},
+  {"nom": "Rebellyon", "url": "https://rebellyon.info", "type": "Média militant", "zone": "Lyon"},
+  {"nom": "Paris Luttes", "url": "https://paris-luttes.info", "type": "Média militant", "zone": "Paris"},
+  {"nom": "Squat.net", "url": "https://squat.net", "type": "Média militant", "zone": "International", "defaultStatus": "bug"},
+  {"nom": "CQFD", "url": "https://www.cqfd-journal.org", "type": "Revue", "zone": "France"},
+  {"nom": "L'Envolée", "url": "https://www.lenvolee.net", "type": "Média militant", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Marseille Infos Autonomes", "url": "https://marseille.indymedia.org", "type": "Indymedia", "zone": "Marseille", "defaultStatus": "bug"},
+  {"nom": "CNT-AIT", "url": "https://www.cnt-ait.info", "type": "Organisation", "zone": "France"},
+  {"nom": "UCL", "url": "https://www.unioncommunistelibertaire.org", "type": "Organisation", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Kedistan", "url": "https://kedistan.net", "type": "Média militant", "zone": "Kurdistan", "defaultStatus": "contacted"},
+  {"nom": "Manif Est", "url": "https://manif-est.info", "type": "Média militant", "zone": "Est"},
+  {"nom": "Dijoncter", "url": "https://dijoncter.info", "type": "Média militant", "zone": "Dijon"},
+  {"nom": "Ricochets", "url": "https://ricochets.cc", "type": "Média militant", "zone": "Drôme"},
+  {"nom": "Frustration Magazine", "url": "https://www.frustrationmagazine.fr", "type": "Revue", "zone": "France"},
+  {"nom": "Lundi Matin", "url": "https://lundi.am", "type": "Média militant", "zone": "France"},
+  {"nom": "Plateforme Palestine", "url": "https://plateforme-palestine.org", "type": "Solidarité", "zone": "Palestine"},
+  {"nom": "Révolution Permanente", "url": "https://www.revolutionpermanente.fr", "type": "Média militant", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Nantes Indymedia", "url": "https://nantes.indymedia.org", "type": "Indymedia", "zone": "Nantes", "defaultStatus": "bug"},
+  {"nom": "Brassica Nigra", "url": "https://www.brassicanigra.org", "type": "Média militant", "zone": ""},
+  {"nom": "IAATA", "url": "https://iaata.info", "type": "Média militant", "zone": "Toulouse"},
+  {"nom": "Le Poing", "url": "https://www.lepoing.net", "type": "Média militant", "zone": "Montpellier", "defaultStatus": "contacted"},
+  {"nom": "ACRIMED", "url": "https://www.acrimed.org", "type": "Critique médias", "zone": "France"},
+  {"nom": "Contretemps", "url": "https://www.contretemps.eu", "type": "Revue", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Désarmons-les", "url": "https://desarmons.net", "type": "Média militant", "zone": "France"},
+  {"nom": "Sans Nom", "url": "https://sans-nom.org", "type": "Média militant", "zone": "", "defaultStatus": "bug"},
+  {"nom": "Rapports De Force", "url": "https://rapportsdeforce.fr", "type": "Média militant", "zone": "France"},
+  {"nom": "Contre Attaque", "url": "https://www.contre-attaque.net", "type": "Média militant", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Expansive", "url": "https://expansive.info", "type": "Média militant", "zone": ""},
+  {"nom": "Brest Media Libre", "url": "https://brassmedia.org", "type": "Média militant", "zone": "Brest"},
+  {"nom": "Renversé", "url": "https://renverse.co", "type": "Média militant", "zone": "Suisse"},
+  {"nom": "Indymedia Grenoble", "url": "https://grenoble.indymedia.org", "type": "Indymedia", "zone": "Grenoble", "defaultStatus": "bug"},
+  {"nom": "Indymedia Lille", "url": "https://lille.indymedia.org", "type": "Indymedia", "zone": "Lille"},
+  {"nom": "Indymedia Strasbourg", "url": "https://strasbourg.indymedia.org", "type": "Indymedia", "zone": "Strasbourg"},
+  {"nom": "Fédération Anarchiste", "url": "https://federation-anarchiste.org", "type": "Organisation", "zone": "France"},
+  {"nom": "OCL", "url": "https://oclibertaire.lautre.net", "type": "Organisation", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Le Monde Libertaire", "url": "https://monde-libertaire.fr", "type": "Revue", "zone": "France"},
+  {"nom": "Le Libertaire", "url": "http://le-libertaire.net", "type": "Revue", "zone": "France"},
+  {"nom": "CNT-F", "url": "https://cnt-f.org", "type": "Syndicat", "zone": "France", "defaultStatus": "bug"},
+  {"nom": "Socialisme Libertaire", "url": "https://socialisme-libertaire.fr", "type": "Média militant", "zone": ""},
+  {"nom": "Partage Noir", "url": "https://partage-noir.fr", "type": "Média militant", "zone": "", "defaultStatus": "contacted"},
+  {"nom": "Anarchistes Ivry", "url": "https://anarchistes-ivry.org", "type": "Collectif", "zone": "Ivry", "defaultStatus": "bug"},
+  {"nom": "Attaque", "url": "https://attaque.noblogs.org", "type": "Média militant", "zone": ""},
+  {"nom": "Infokiosques", "url": "https://www.infokiosques.net", "type": "Ressources", "zone": "France"},
+  {"nom": "La Voie du Jaguar", "url": "https://lavoiedujaguar.net", "type": "Média militant", "zone": ""},
+  {"nom": "Divergences", "url": "https://divergences.be", "type": "Média militant", "zone": "Belgique"},
+  {"nom": "Union Syndicale Solidaires", "url": "https://solidaires.org", "type": "Syndicat", "zone": "France"},
+  {"nom": "Réseau Syndical International", "url": "https://www.laboursolidarity.org", "type": "Syndicat", "zone": "International"},
+  {"nom": "SUD Éducation", "url": "https://sudeducation.org", "type": "Syndicat", "zone": "France"},
+  {"nom": "CNT-SO", "url": "https://www.syndicat-cnt-so.org", "type": "Syndicat", "zone": "France"},
+  {"nom": "Questions de Classe", "url": "https://questionsdeclasses.org", "type": "Éducation", "zone": "France"},
+  {"nom": "Kurdistan Au Féminin", "url": "https://kurdistan-au-feminin.fr", "type": "Média militant", "zone": "Kurdistan", "defaultStatus": "contacted"},
+  {"nom": "Rojava Solidarity", "url": "https://rojavasolidarity.org", "type": "Solidarité", "zone": "Rojava"},
+  {"nom": "ISM France", "url": "https://ism-france.org", "type": "Solidarité", "zone": "Palestine", "defaultStatus": "bug"},
+  {"nom": "Mondialisme.org", "url": "https://mondialisme.org", "type": "Média militant", "zone": ""},
+  {"nom": "A-Infos", "url": "https://www.a-infos.ca", "type": "Agence", "zone": "International"},
+  {"nom": "Anarchist Writers", "url": "https://anarchism.pageabode.com", "type": "Ressources", "zone": "International", "defaultStatus": "bug"},
+  {"nom": "325", "url": "https://325.nostate.net", "type": "Média militant", "zone": "UK"},
+  {"nom": "Anarchist News", "url": "https://anarchistnews.org", "type": "Média militant", "zone": "USA"},
+  {"nom": "CrimethInc", "url": "https://crimethinc.com", "type": "Média militant", "zone": "USA"},
+  {"nom": "It's Going Down", "url": "https://itsgoingdown.org", "type": "Média militant", "zone": "USA"},
+  {"nom": "Enough Is Enough", "url": "https://enoughisenough14.org", "type": "Média militant", "zone": "International"},
+  {"nom": "Libcom", "url": "https://libcom.org", "type": "Ressources", "zone": "UK"},
+  {"nom": "Zabalaza", "url": "https://zabalaza.net", "type": "Média militant", "zone": "Afrique"},
+  {"nom": "Collectif Antifasciste", "url": "https://collectif-antifasciste.org", "type": "Antifascisme", "zone": "France"},
+  {"nom": "La Mule (Avignon)", "url": "https://www.lamuledupape.com", "type": "Média militant", "zone": "Avignon"},
+  {"nom": "Basse Chaine", "url": "https://bassechaine.noblogs.org", "type": "Média militant", "zone": "", "defaultStatus": "bug"},
+  {"nom": "La Relève", "url": "https://www.lareleve.org", "type": "Média militant", "zone": ""},
+  {"nom": "QG Décolonial", "url": "https://qgdecolonial.fr", "type": "Média militant", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Soulèvements de la Terre", "url": "https://www.lesoulevementsdelaterre.org", "type": "Écologie", "zone": "France"},
+  {"nom": "Vallées En Lutte", "url": "https://valleesenlutteen.noblogs.org", "type": "Écologie", "zone": "", "defaultStatus": "bug"},
+  {"nom": "Adret Morvan", "url": "https://adret-morvan.org", "type": "Écologie", "zone": "Morvan"},
+  {"nom": "Reporterre", "url": "https://reporterre.net", "type": "Écologie", "zone": "France"},
+  {"nom": "Terrestres", "url": "https://www.terrestres.org", "type": "Revue", "zone": "France"},
+  {"nom": "Coquelicots Toulouse", "url": "https://www.coquelicots-toulouse.org", "type": "Anti-répression", "zone": "Toulouse"},
+  {"nom": "Crame Ton CRA", "url": "https://crametoncra.noblogs.org", "type": "Anti-répression", "zone": "France"},
+  {"nom": "Police Crimes (QC)", "url": "https://www.policecrimes.com", "type": "Anti-répression", "zone": "Québec"},
+  {"nom": "LDH France", "url": "https://www.ldh-france.org", "type": "Droits humains", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "Getting The Voice Out", "url": "https://gettingthevoiceout.org", "type": "Anti-répression", "zone": "Belgique"},
+  {"nom": "Secours Rouge", "url": "https://secours-rouge.org", "type": "Anti-répression", "zone": ""},
+  {"nom": "Occupons", "url": "https://occupons.noblogs.org", "type": "Squats", "zone": "", "defaultStatus": "bug"},
+  {"nom": "ZAD Infos", "url": "https://www.zad.nadir.org", "type": "Squats/ZAD", "zone": "France", "defaultStatus": "contacted"},
+  {"nom": "BDS France", "url": "https://bdsfrance.org", "type": "Solidarité", "zone": "Palestine"},
+  {"nom": "UJFP", "url": "https://ujfp.org", "type": "Solidarité", "zone": "Palestine", "defaultStatus": "contacted"},
+  {"nom": "UCL Saguenay", "url": "https://ucl-saguenay.blogspot.com", "type": "Organisation", "zone": "Québec"},
+  {"nom": "Cause Commune", "url": "https://www.causecommune.net.ca", "type": "Média militant", "zone": "Québec"},
+  {"nom": "CMAQ", "url": "https://www.cmaq.net", "type": "Média militant", "zone": "Québec"},
+  {"nom": "COBP", "url": "https://www.cobp.resist.ca", "type": "Anti-répression", "zone": "Québec"},
+  {"nom": "Le Numéro Zéro", "url": "https://lenumerozero.info", "type": "Média militant", "zone": "Saint-Étienne", "defaultStatus": "bug"},
+  {"nom": "Dialectik Football", "url": "https://dialectique-football.com", "type": "Revue", "zone": "", "defaultStatus": "bug"},
+  {"nom": "La Rotative", "url": "https://www.larotative.info", "type": "Média militant", "zone": "Tours", "defaultStatus": "bug"},
+  {"nom": "Tarage", "url": "https://tarage.noblogs.org", "type": "Revue", "zone": ""},
+  {"nom": "La Bogue", "url": "https://labogue.info", "type": "Média militant", "zone": "Ardèche"},
+  {"nom": "Sortir du Capitalisme", "url": "https://sortirducapitalisme.fr", "type": "Podcast", "zone": ""},
+  {"nom": "Radio Panik", "url": "https://www.radiopanik.org", "type": "Radio", "zone": "Belgique"},
+  {"nom": "Stuut", "url": "https://stuut.info", "type": "Média militant", "zone": "Belgique"},
+  {"nom": "Solidarité Ouvrière", "url": "https://solidarite-ouvriere.org", "type": "Syndicat", "zone": ""}
+];
+
+const STORAGE_KEY = 'constellation_contacts_v2';
+
+function loadContactsState() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) return JSON.parse(saved);
+  const state = {};
+  CONTACTS_DATA.forEach((c, i) => {
+    state[i] = { status: c.defaultStatus || 'pending', notes: '', dateContact: '' };
+  });
+  return state;
+}
+
+function saveContactsState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+let contactsState = loadContactsState();
+
+function getUniqueValues(key) {
+  const values = new Set();
+  CONTACTS_DATA.forEach(c => { if (c[key]) values.add(c[key]); });
+  return Array.from(values).sort();
+}
+
+function initFilters() {
+  const typeSelect = document.getElementById('filterType');
+  const zoneSelect = document.getElementById('filterZone');
+  
+  getUniqueValues('type').forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t; opt.textContent = t;
+    typeSelect.appendChild(opt);
+  });
+  
+  getUniqueValues('zone').forEach(z => {
+    const opt = document.createElement('option');
+    opt.value = z; opt.textContent = z;
+    zoneSelect.appendChild(opt);
+  });
+}
+
+function updateStats() {
+  const counts = { pending: 0, contacted: 0, ok: 0, nope: 0, bof: 0, bug: 0 };
+  Object.values(contactsState).forEach(s => { if (counts.hasOwnProperty(s.status)) counts[s.status]++; });
+  
+  document.getElementById('statTotal').textContent = CONTACTS_DATA.length;
+  document.getElementById('statPending').textContent = counts.pending;
+  document.getElementById('statContacted').textContent = counts.contacted;
+  document.getElementById('statOk').textContent = counts.ok;
+  document.getElementById('statNope').textContent = counts.nope;
+  document.getElementById('statBug').textContent = counts.bug + counts.bof;
+}
+
+function renderContacts() {
+  const grid = document.getElementById('reseauGrid');
+  const filterType = document.getElementById('filterType').value;
+  const filterZone = document.getElementById('filterZone').value;
+  const filterStatut = document.getElementById('filterStatut').value;
+  const filterSearch = document.getElementById('filterSearch').value.toLowerCase();
+  
+  grid.innerHTML = '';
+  
+  CONTACTS_DATA.forEach((contact, index) => {
+    const state = contactsState[index];
+    
+    if (filterType && contact.type !== filterType) return;
+    if (filterZone && contact.zone !== filterZone) return;
+    if (filterStatut && state.status !== filterStatut) return;
+    if (filterSearch && !contact.nom.toLowerCase().includes(filterSearch) && !contact.url.toLowerCase().includes(filterSearch)) return;
+    
+    const card = document.createElement('div');
+    card.className = `contact-card status-${state.status}`;
+    card.innerHTML = `
+      <div class="contact-header">
+        <div class="contact-name"><a href="${contact.url}" target="_blank" rel="noopener">${contact.nom}</a></div>
+        <div class="contact-type">${contact.type}</div>
+      </div>
+      <div class="contact-meta">${contact.zone ? `<span>📍 ${contact.zone}</span>` : ''}</div>
+      <div class="contact-actions">
+        <button onclick="setStatus(${index}, 'pending')" class="${state.status === 'pending' ? 'active' : ''}" title="À contacter">⏳</button>
+        <button onclick="setStatus(${index}, 'contacted')" class="${state.status === 'contacted' ? 'active-warn' : ''}" title="Contacté">📤</button>
+        <button onclick="setStatus(${index}, 'ok')" class="${state.status === 'ok' ? 'active' : ''}" title="OK">✅</button>
+        <button onclick="setStatus(${index}, 'nope')" class="${state.status === 'nope' ? 'active-nope' : ''}" title="Non">❌</button>
+        <button onclick="setStatus(${index}, 'bof')" class="${state.status === 'bof' ? 'active-bof' : ''}" title="Bof">🤷</button>
+        <button onclick="setStatus(${index}, 'bug')" class="${state.status === 'bug' ? 'active-bug' : ''}" title="Bug">🐛</button>
+      </div>
+      <div class="contact-notes">
+        <input type="text" placeholder="Notes..." value="${state.notes || ''}" onchange="setNotes(${index}, this.value)">
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  
+  updateStats();
+}
+
+function setStatus(index, status) {
+  contactsState[index].status = status;
+  if (status === 'contacted' && !contactsState[index].dateContact) {
+    contactsState[index].dateContact = new Date().toISOString().split('T')[0];
+  }
+  saveContactsState(contactsState);
+  renderContacts();
+}
+
+function setNotes(index, notes) {
+  contactsState[index].notes = notes;
+  saveContactsState(contactsState);
+}
+
+function exportContacts() {
+  const exportData = CONTACTS_DATA.map((c, i) => ({ ...c, ...contactsState[i] }));
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `constellation_contacts_${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function resetAllStatuts() {
+  if (confirm('Réinitialiser tous les statuts ?')) {
+    CONTACTS_DATA.forEach((c, i) => { contactsState[i].status = c.defaultStatus || 'pending'; });
+    saveContactsState(contactsState);
+    renderContacts();
+  }
+}
+
+document.getElementById('filterType').addEventListener('change', renderContacts);
+document.getElementById('filterZone').addEventListener('change', renderContacts);
+document.getElementById('filterStatut').addEventListener('change', renderContacts);
+document.getElementById('filterSearch').addEventListener('input', renderContacts);
+
+initFilters();
+renderContacts();
+
+// ================================================================
+// GITHUB API
+// ================================================================
+async function fetchGitHubData() {
+  const username = 'ouaisfieu';
+  const reposContainer = document.getElementById('githubRepos');
+  
+  try {
+    const userResponse = await fetch(`https://api.github.com/users/${username}`);
+    if (!userResponse.ok) throw new Error('User fetch failed');
+    const userData = await userResponse.json();
+    
+    const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+    if (!reposResponse.ok) throw new Error('Repos fetch failed');
+    const reposData = await reposResponse.json();
+    
+    const totalRepos = userData.public_repos;
+    const lastUpdate = reposData[0] ? new Date(reposData[0].updated_at) : null;
+    const estimatedCommits = totalRepos * 20;
+    
+    const languages = {};
+    reposData.forEach(repo => { if (repo.language) languages[repo.language] = (languages[repo.language] || 0) + 1; });
+    const topLang = Object.entries(languages).sort((a, b) => b[1] - a[1])[0];
+    
+    document.getElementById('repoCount').textContent = totalRepos;
+    document.getElementById('totalCommits').textContent = '~' + estimatedCommits;
+    document.getElementById('lastUpdate').textContent = lastUpdate ? formatTimeAgo(lastUpdate) : '—';
+    document.getElementById('topLang').textContent = topLang ? topLang[0] : '—';
+    
+    const topRepos = reposData.slice(0, 6);
+    reposContainer.innerHTML = topRepos.map(repo => `
+      <div class="github-repo">
+        <div class="github-repo-name">📁 <a href="${repo.html_url}" target="_blank">${repo.name}</a></div>
+        <div class="github-repo-desc">${repo.description || 'Pas de description'}</div>
+        <div class="github-repo-meta">
+          ${repo.language ? `<span>● ${repo.language}</span>` : ''}
+          <span>⭐ ${repo.stargazers_count}</span>
+          <span>🔀 ${repo.forks_count}</span>
+        </div>
+      </div>
+    `).join('');
+    
+  } catch (error) {
+    console.error('GitHub API error:', error);
+    reposContainer.innerHTML = `<div class="github-error">Impossible de charger GitHub. <a href="https://github.com/${username}" target="_blank">Voir directement →</a></div>`;
+  }
+}
+
+function formatTimeAgo(date) {
+  const now = new Date();
+  const diff = now - date;
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  
+  if (minutes < 60) return `${minutes}min`;
+  if (hours < 24) return `${hours}h`;
+  if (days < 30) return `${days}j`;
+  return `${Math.floor(days / 30)}mois`;
+}
+
+fetchGitHubData();
+
+// ================================================================
+// EASTER EGGS
+// ================================================================
+console.log('%c⬡ LA CONSTELLATION', 'font-size:24px; font-weight:bold; color:#5EEAD4; background:#0a0a0f; padding:12px 24px;');
+console.log('%cT\'es curieux. C\'est bien.', 'font-size:14px; color:#f4f4f5;');
+console.log('%chttps://github.com/ouaisfieu', 'font-size:12px; color:#C4B5FD;');
+
+// Konami code
+let konamiCode = [];
+const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+document.addEventListener('keydown', (e) => {
+  konamiCode.push(e.keyCode);
+  konamiCode = konamiCode.slice(-10);
+  if (konamiCode.join(',') === konamiSequence.join(',')) {
+    document.body.style.filter = 'hue-rotate(180deg)';
+    alert('🎮 Mode agent activé. Bienvenue dans le Jeu.');
+  }
+});
+</script>
+
+</body>
+</html>
